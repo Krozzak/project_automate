@@ -1,0 +1,1157 @@
+{
+  "name": "Todo Manager (Standalone)",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {
+          "userIds": "YOUR_TELEGRAM_USER_ID"
+        }
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "telegram-trigger",
+      "name": "Telegram Trigger",
+      "webhookId": "YOUR_WEBHOOK_ID",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "voice-check",
+                    "leftValue": "={{$json.message.voice ? \"voice\" : \"other\"}}",
+                    "rightValue": "voice",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "text-check",
+                    "leftValue": "={{$json.message.text ? \"text\" : \"other\"}}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "voice-text-switch",
+      "name": "Voice/Text Switch"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{$json.message.voice.file_id}}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        440,
+        -100
+      ],
+      "id": "get-voice-file",
+      "name": "Get Voice File",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        660,
+        -100
+      ],
+      "id": "transcribe-voice",
+      "name": "Transcribe Voice",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAi Ideas Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "transcript",
+              "name": "transcript",
+              "value": "={{$json.text}}",
+              "type": "string"
+            },
+            {
+              "id": "chatId",
+              "name": "chatId",
+              "value": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+              "type": "number"
+            },
+            {
+              "id": "messageId",
+              "name": "messageId",
+              "value": "={{ $('Telegram Trigger').item.json.message.message_id }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        -100
+      ],
+      "id": "edit-fields-voice",
+      "name": "Edit Fields (Voice)"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "transcript",
+              "name": "transcript",
+              "value": "={{$json.message.text}}",
+              "type": "string"
+            },
+            {
+              "id": "chatId",
+              "name": "chatId",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "number"
+            },
+            {
+              "id": "messageId",
+              "name": "messageId",
+              "value": "={{ $json.message.message_id }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        660,
+        100
+      ],
+      "id": "edit-fields-text",
+      "name": "Edit Fields (Text)"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "YOUR_IDEAS_DATABASE_ID",
+          "mode": "list",
+          "cachedResultName": "Ideas Logger"
+        },
+        "returnAll": false,
+        "limit": 10,
+        "filterType": "string",
+        "filterJson": "={{ JSON.stringify({ filter: { property: 'Title', title: { contains: $json.transcript || '' } } }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        1100,
+        100
+      ],
+      "id": "search-idea",
+      "name": "Search Idea by Title",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Handle search results: 0, 1, or N results\nconst results = $input.all();\n\n// Get chatId and transcript from the Edit Fields nodes\nlet chatId, transcript;\ntry {\n  chatId = $('Edit Fields (Voice)').first().json.chatId;\n  transcript = $('Edit Fields (Voice)').first().json.transcript;\n} catch(e) {\n  chatId = $('Edit Fields (Text)').first().json.chatId;\n  transcript = $('Edit Fields (Text)').first().json.transcript;\n}\n\nconst count = results.length;\n\nif (count === 0) {\n  return [{ json: { found: 'none', chatId } }];\n} else if (count === 1) {\n  return [{ json: { found: 'one', pageId: results[0].json.id, chatId } }];\n} else {\n  const ref = (transcript || '').toLowerCase();\n  const exactMatch = results.find(r => {\n    const title = (r.json.property_title || r.json.name || '').toLowerCase();\n    return title === ref;\n  });\n  if (exactMatch) {\n    return [{ json: { found: 'one', pageId: exactMatch.json.id, chatId } }];\n  }\n  const options = results.slice(0, 5).map(r => ({\n    id: r.json.id,\n    title: r.json.property_title || r.json.name || 'Sans titre'\n  }));\n  return [{ json: { found: 'many', options, chatId } }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        100
+      ],
+      "id": "handle-results",
+      "name": "Handle Results"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "found-one",
+                    "leftValue": "={{ $json.found }}",
+                    "rightValue": "one",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "FOUND"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "found-none",
+                    "leftValue": "={{ $json.found }}",
+                    "rightValue": "none",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NOT_FOUND"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1540,
+        100
+      ],
+      "id": "result-switch",
+      "name": "Result Switch"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "❌ Idée non trouvée. Vérifie le nom et réessaie.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1760,
+        200
+      ],
+      "id": "send-not-found",
+      "name": "Send Not Found",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ambiguous results — format message\nconst data = $json;\nconst options = data.options || [];\nlet message = '⚠️ Plusieurs idées trouvées :\\n\\n';\noptions.forEach((opt, idx) => {\n  message += `${idx + 1}. ${opt.title}\\n`;\n});\nmessage += '\\nPrécise le nom exact de l\\'idée.';\n\nreturn [{ json: { message, chatId: data.chatId } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        300
+      ],
+      "id": "format-ambiguity",
+      "name": "Format Ambiguity"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.message }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1980,
+        300
+      ],
+      "id": "send-ambiguity",
+      "name": "Send Ambiguity",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Merge pageId from search result + transcript/chatId from Edit Fields\nlet chatId, transcript;\ntry {\n  chatId = $('Edit Fields (Voice)').first().json.chatId;\n  transcript = $('Edit Fields (Voice)').first().json.transcript;\n} catch(e) {\n  chatId = $('Edit Fields (Text)').first().json.chatId;\n  transcript = $('Edit Fields (Text)').first().json.transcript;\n}\n\nlet pageId;\ntry {\n  pageId = $('Handle Results').first().json.pageId;\n} catch(e) {}\n\nreturn [{ json: { pageId, chatId, transcript } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        -100
+      ],
+      "id": "merge-page-id",
+      "name": "Merge PageId"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "get",
+        "pageId": {
+          "__rl": true,
+          "value": "={{ $json.pageId }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        1980,
+        -100
+      ],
+      "id": "fetch-full-idea",
+      "name": "Fetch Full Idea",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "YOUR_TODOS_DATABASE_ID",
+          "mode": "list",
+          "cachedResultName": "Todos"
+        },
+        "returnAll": true,
+        "filterType": "string",
+        "filterJson": "={{ JSON.stringify({ filter: { property: 'Ideas Logger', relation: { contains: $('Merge PageId').first().json.pageId } } }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        2200,
+        -100
+      ],
+      "id": "fetch-existing-todos",
+      "name": "Fetch Existing Todos",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Format idea + existing todos for GPT\nconst allTodos = $input.all();\nconst idea = $('Fetch Full Idea').first().json;\nconst mergeData = $('Merge PageId').first().json;\n\n// Format idea\nconst ideaForGPT = [\n  `Titre: ${idea.property_title || idea.name || 'Sans titre'}`,\n  `Summary: ${idea.property_summary || 'N/A'}`,\n  `Pillar: ${idea.property_pilar || 'N/A'}`,\n  `Domain: ${(idea.property_domain || []).join(', ') || 'N/A'}`,\n  `Tags: ${(idea.property_tags || []).join(', ') || 'N/A'}`,\n  `Status: ${idea.property_status || 'Pas commencé'}`,\n  `Difficulty: ${idea.property_difficulty || 'N/A'}`,\n  `Impact: ${idea.property_impact || 'N/A'}`,\n  `Urgency: ${idea.property_urgency || 'N/A'}`,\n  `Clarity: ${idea.property_clarity || 'N/A'}`,\n  `ICE: ${idea.property_ice || 'N/A'}`,\n  `NextAction: ${idea.property_nextaction || 'N/A'}`,\n  `Dependencies: ${idea.property_dependencies || 'Aucune'}`,\n  `TimeBucket: ${idea.property_timebucket || 'N/A'}`\n].join('\\n');\n\n// Format existing todos\nconst existingTodos = allTodos.map((item, idx) => {\n  const t = item.json;\n  return {\n    order: idx + 1,\n    id: t.id,\n    title: t.property_title || t.name || 'Sans titre',\n    status: t.property_status || 'À faire',\n    priority: t.property_priority || 'P2',\n    estimatedMinutes: t.property_estimatedminutes || null,\n    context: t.property_context || null,\n    energyLevel: t.property_energylevel || null,\n    validationCriteria: t.property_validationcriteria || null\n  };\n});\n\nconst existingTodosForGPT = existingTodos.length > 0\n  ? existingTodos.map(t => \n      `${t.order}. [${t.status}] ${t.title} (${t.priority})` +\n      (t.estimatedMinutes ? ` ~${t.estimatedMinutes}min` : ' [pas de durée]') +\n      (t.context ? ` @${t.context}` : ' [pas de context]') +\n      (t.energyLevel ? ` ⚡${t.energyLevel}` : ' [pas d\\'énergie]') +\n      (t.validationCriteria ? ` ✓${t.validationCriteria}` : ' [pas de validation]')\n    ).join('\\n')\n  : 'Aucun todo existant.';\n\nreturn [{\n  json: {\n    ideaForGPT,\n    existingTodosForGPT,\n    existingTodos,\n    pageId: mergeData.pageId,\n    chatId: mergeData.chatId,\n    transcript: mergeData.transcript,\n    ideaTitle: idea.property_title || idea.name || 'Sans titre'\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2420,
+        -100
+      ],
+      "id": "format-for-gpt",
+      "name": "Format for GPT"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Tu es un expert en décomposition de projets en tâches actionnables.\n\nIDÉE:\n{{ $json.ideaForGPT }}\n\nTODOS EXISTANTS (à enrichir si métadonnées manquantes):\n{{ $json.existingTodosForGPT }}\n\nMESSAGE DE L'UTILISATEUR (contexte supplémentaire si dispo):\n{{ $json.transcript || 'Aucun — génération automatique après création d\\'idée' }}\n\nINSTRUCTIONS:\n1. Détermine le CRITÈRE DE VALIDATION GLOBAL de l'idée (quand est-elle \"terminée\"?)\n2. Pour chaque todo existant sans métadonnées → enrichis-le\n3. Si un todo est trop complexe (critère de validation non simple) → découpe en sous-tâches\n4. Ajoute les todos manquants pour couvrir l'idée complètement\n5. Définis les dépendances (blocked_by_order)\n\nRÈGLE: Chaque todo DOIT avoir un critère de validation SIMPLE et VÉRIFIABLE.\n- BON: \"Créer le endpoint POST /ideas retournant 201\"\n- MAUVAIS: \"Travailler sur l'API\"\n\nMÉTADONNÉES OBLIGATOIRES par todo:\n- estimatedMinutes: 15 | 30 | 45 | 60 | 90 | 120 | 180 | 240\n- context: \"Bureau\" (ordi+calme) | \"Maison\" (ordi perso) | \"Mobile\" (téléphone) | \"Partout\"\n- energyLevel: \"Haute\" (concentration profonde) | \"Moyenne\" (standard) | \"Basse\" (mécanique)\n- priority: \"P1\" (bloquant/prérequis) | \"P2\" (important) | \"P3\" (bonus)\n- blocked_by_order: [1,2] ou null (quels todos doivent être terminés avant)\n\nIMPORTANT: Ne duplique PAS les todos existants. Si un todo existant a déjà toutes ses métadonnées, ne le mets PAS dans enriched_todos.\n\nJSON STRICT:\n{\n  \"validation_criteria\": \"L'idée est terminée quand...\",\n  \"enriched_todos\": [\n    {\n      \"existing_title\": \"titre exact du todo existant\",\n      \"estimatedMinutes\": 30,\n      \"context\": \"Bureau\",\n      \"energyLevel\": \"Haute\",\n      \"order\": 1,\n      \"validation\": \"Fait quand...\",\n      \"blocked_by_order\": null\n    }\n  ],\n  \"new_todos\": [\n    {\n      \"title\": \"Verbe infinitif + action concrète\",\n      \"priority\": \"P1\",\n      \"order\": 3,\n      \"estimatedMinutes\": 45,\n      \"context\": \"Bureau\",\n      \"energyLevel\": \"Moyenne\",\n      \"validation\": \"Fait quand...\",\n      \"blocked_by_order\": [1, 2]\n    }\n  ],\n  \"total_estimated_minutes\": 240,\n  \"suggested_time_bucket\": \"3-10h\",\n  \"summary_message\": \"Résumé pour Telegram\"\n}\n\nIMPORTANT: Retourne UNIQUEMENT le JSON brut, sans backticks markdown."
+            },
+            {
+              "content": "=Analyse cette idée et génère/enrichis les todos."
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        2640,
+        -100
+      ],
+      "id": "gpt-todos",
+      "name": "GPT Analyze Todos",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAi Ideas Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse GPT response for todos\nconst gptOutput = $json.output?.[0]?.content?.[0]?.text;\nconst prevData = $('Format for GPT').first().json;\n\nif (!gptOutput) {\n  return [{ json: { error: true, message: 'Pas de réponse GPT', ...prevData } }];\n}\n\ntry {\n  const match = gptOutput.match(/```(?:json)?\\s*([\\s\\S]*?)\\s*```/);\n  const cleaned = match ? match[1] : gptOutput.trim();\n  const parsed = JSON.parse(cleaned);\n  \n  return [{ json: { \n    ...parsed,\n    existingTodos: prevData.existingTodos,\n    pageId: prevData.pageId,\n    chatId: prevData.chatId,\n    transcript: prevData.transcript,\n    ideaTitle: prevData.ideaTitle\n  } }];\n} catch (e) {\n  return [{ json: { \n    error: true, \n    message: 'Erreur parsing: ' + e.message,\n    raw: gptOutput,\n    ...prevData\n  } }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2860,
+        -100
+      ],
+      "id": "parse-response",
+      "name": "Parse Response"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "has-enriched",
+              "leftValue": "={{ $json.enriched_todos?.length > 0 }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3080,
+        -100
+      ],
+      "id": "has-enriched",
+      "name": "Has Enriched?"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Match enriched todos with existing todo IDs and split\nconst data = $('Parse Response').first().json;\nconst enriched = data.enriched_todos || [];\nconst existing = data.existingTodos || [];\n\nreturn enriched.map(e => {\n  // Find matching existing todo by title\n  const match = existing.find(t => t.title === e.existing_title);\n  if (!match) return null;\n  \n  return {\n    json: {\n      todoId: match.id,\n      estimatedMinutes: e.estimatedMinutes,\n      context: e.context,\n      energyLevel: e.energyLevel,\n      order: e.order,\n      validation: e.validation,\n      blocked_by_order: e.blocked_by_order\n    }\n  };\n}).filter(Boolean);"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3300,
+        -200
+      ],
+      "id": "split-enriched",
+      "name": "Split Enriched"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "value": "={{ $json.todoId }}",
+          "mode": "id"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "EstimatedMinutes|number",
+              "numberValue": "={{ $json.estimatedMinutes }}"
+            },
+            {
+              "key": "Context|select",
+              "selectValue": "={{ $json.context }}"
+            },
+            {
+              "key": "EnergyLevel|select",
+              "selectValue": "={{ $json.energyLevel }}"
+            },
+            {
+              "key": "Order|number",
+              "numberValue": "={{ $json.order }}"
+            },
+            {
+              "key": "ValidationCriteria|rich_text",
+              "textContent": "={{ $json.validation }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        3520,
+        -200
+      ],
+      "id": "update-todo",
+      "name": "Update Todo",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "has-new",
+              "leftValue": "={{ $('Parse Response').first().json.new_todos?.length > 0 }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3080,
+        100
+      ],
+      "id": "has-new-todos",
+      "name": "Has New Todos?"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Split new todos for creation\nconst data = $('Parse Response').first().json;\nconst newTodos = data.new_todos || [];\nconst pageId = data.pageId;\n\nreturn newTodos.map(todo => ({\n  json: {\n    ...todo,\n    parentIdeaId: pageId,\n    createdAt: new Date().toISOString(),\n    status: 'À faire',\n    source: 'Generated'\n  }\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3300,
+        100
+      ],
+      "id": "split-new-todos",
+      "name": "Split New Todos"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "YOUR_TODOS_DATABASE_ID",
+          "mode": "list",
+          "cachedResultName": "Todos"
+        },
+        "title": "={{ $json.title }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Ideas Logger|relation",
+              "relationValue": [
+                "={{ $json.parentIdeaId }}"
+              ]
+            },
+            {
+              "key": "Status|status",
+              "statusValue": "={{ $json.status }}"
+            },
+            {
+              "key": "Priority|select",
+              "selectValue": "={{ $json.priority }}"
+            },
+            {
+              "key": "EstimatedMinutes|number",
+              "numberValue": "={{ $json.estimatedMinutes }}"
+            },
+            {
+              "key": "Context|select",
+              "selectValue": "={{ $json.context }}"
+            },
+            {
+              "key": "EnergyLevel|select",
+              "selectValue": "={{ $json.energyLevel }}"
+            },
+            {
+              "key": "Order|number",
+              "numberValue": "={{ $json.order }}"
+            },
+            {
+              "key": "ValidationCriteria|rich_text",
+              "textContent": "={{ $json.validation }}"
+            },
+            {
+              "key": "CreatedAt|date",
+              "date": "={{ $json.createdAt }}"
+            },
+            {
+              "key": "Source|select",
+              "selectValue": "={{ $json.source }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        3520,
+        100
+      ],
+      "id": "create-todo",
+      "name": "Create Todo",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "value": "={{ $('Parse Response').first().json.pageId }}",
+          "mode": "id"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "TimeBucket|select",
+              "selectValue": "={{ $('Parse Response').first().json.suggested_time_bucket }}"
+            },
+            {
+              "key": "LastUpdated|date",
+              "date": "={{ new Date().toISOString() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        3740,
+        0
+      ],
+      "id": "update-idea",
+      "name": "Update Idea",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "YOUR_LOGS_DATABASE_ID",
+          "mode": "list",
+          "cachedResultName": "Logs"
+        },
+        "title": "=Todos: {{ $('Parse Response').first().json.ideaTitle }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Ideas Logger|relation",
+              "relationValue": [
+                "={{ $('Parse Response').first().json.pageId }}"
+              ]
+            },
+            {
+              "key": "Timestamp|date",
+              "date": "={{ new Date().toISOString() }}"
+            },
+            {
+              "key": "UpdateType|select",
+              "selectValue": "todo_generation"
+            },
+            {
+              "key": "Content|rich_text",
+              "textContent": "=Validation: {{ $('Parse Response').first().json.validation_criteria }}. Enriched: {{ $('Parse Response').first().json.enriched_todos?.length || 0 }}, New: {{ $('Parse Response').first().json.new_todos?.length || 0 }}. Total: {{ $('Parse Response').first().json.total_estimated_minutes }}min"
+            },
+            {
+              "key": "RawTranscript|rich_text",
+              "textContent": "={{ $('Parse Response').first().json.transcript || '' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        3960,
+        0
+      ],
+      "id": "create-log",
+      "name": "Create Log",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Parse Response').first().json.chatId }}",
+        "text": "=📋 Todos pour *{{ $('Parse Response').first().json.ideaTitle }}*\n\n{{ $('Parse Response').first().json.summary_message }}\n\n✅ Validation: {{ $('Parse Response').first().json.validation_criteria }}\n⏱️ Estimation totale: {{ $('Parse Response').first().json.total_estimated_minutes }}min ({{ $('Parse Response').first().json.suggested_time_bucket }})\n\n{{ $('Parse Response').first().json.enriched_todos?.length > 0 ? '🔄 Enrichis: ' + $('Parse Response').first().json.enriched_todos.length + ' todos\\n' : '' }}{{ $('Parse Response').first().json.new_todos?.length > 0 ? '➕ Nouveaux: ' + $('Parse Response').first().json.new_todos.map(t => '- ' + t.title + ' (' + t.priority + ', ~' + t.estimatedMinutes + 'min)').join('\\n') : '' }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        4180,
+        0
+      ],
+      "id": "send-confirmation",
+      "name": "Send Confirmation",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Voice/Text Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Voice/Text Switch": {
+      "main": [
+        [
+          {
+            "node": "Get Voice File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields (Text)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Voice File": {
+      "main": [
+        [
+          {
+            "node": "Transcribe Voice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe Voice": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields (Voice)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields (Voice)": {
+      "main": [
+        [
+          {
+            "node": "Search Idea by Title",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields (Text)": {
+      "main": [
+        [
+          {
+            "node": "Search Idea by Title",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Idea by Title": {
+      "main": [
+        [
+          {
+            "node": "Handle Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Handle Results": {
+      "main": [
+        [
+          {
+            "node": "Result Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Result Switch": {
+      "main": [
+        [
+          {
+            "node": "Merge PageId",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Not Found",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format Ambiguity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Ambiguity": {
+      "main": [
+        [
+          {
+            "node": "Send Ambiguity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge PageId": {
+      "main": [
+        [
+          {
+            "node": "Fetch Full Idea",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Full Idea": {
+      "main": [
+        [
+          {
+            "node": "Fetch Existing Todos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Existing Todos": {
+      "main": [
+        [
+          {
+            "node": "Format for GPT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format for GPT": {
+      "main": [
+        [
+          {
+            "node": "GPT Analyze Todos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT Analyze Todos": {
+      "main": [
+        [
+          {
+            "node": "Parse Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Response": {
+      "main": [
+        [
+          {
+            "node": "Has Enriched?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Has New Todos?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Enriched?": {
+      "main": [
+        [
+          {
+            "node": "Split Enriched",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update Idea",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Enriched": {
+      "main": [
+        [
+          {
+            "node": "Update Todo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Todo": {
+      "main": [
+        [
+          {
+            "node": "Update Idea",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has New Todos?": {
+      "main": [
+        [
+          {
+            "node": "Split New Todos",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Update Idea",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split New Todos": {
+      "main": [
+        [
+          {
+            "node": "Create Todo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Todo": {
+      "main": [
+        [
+          {
+            "node": "Update Idea",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Idea": {
+      "main": [
+        [
+          {
+            "node": "Create Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Log": {
+      "main": [
+        [
+          {
+            "node": "Send Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "timeSavedPerExecution": 30
+  },
+  "versionId": "standalone-1",
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "standalone"
+  },
+  "tags": [
+    {
+      "name": "todo-manager"
+    },
+    {
+      "name": "standalone"
+    }
+  ]
+}

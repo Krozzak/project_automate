@@ -1,0 +1,828 @@
+{
+  "name": "Smart Router v1",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {
+          "userIds": "YOUR_TELEGRAM_USER_ID"
+        }
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "telegram-trigger",
+      "name": "Telegram Trigger",
+      "webhookId": "YOUR_WEBHOOK_ID",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "voice-check",
+                    "leftValue": "={{$json.message.voice ? \"voice\" : \"other\"}}",
+                    "rightValue": "voice",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "text-check",
+                    "leftValue": "={{$json.message.text ? \"text\" : \"other\"}}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "voice-text-switch",
+      "name": "Voice/Text Switch"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{$json.message.voice.file_id}}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        440,
+        -100
+      ],
+      "id": "get-voice-file",
+      "name": "Get Voice File",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        660,
+        -100
+      ],
+      "id": "transcribe-voice",
+      "name": "Transcribe Voice",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAi Ideas Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "transcript",
+              "name": "transcript",
+              "value": "={{$json.text}}",
+              "type": "string"
+            },
+            {
+              "id": "chatId",
+              "name": "chatId",
+              "value": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+              "type": "number"
+            },
+            {
+              "id": "messageId",
+              "name": "messageId",
+              "value": "={{ $('Telegram Trigger').item.json.message.message_id }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        -100
+      ],
+      "id": "edit-fields-voice",
+      "name": "Edit Fields (Voice)"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "transcript",
+              "name": "transcript",
+              "value": "={{$json.message.text}}",
+              "type": "string"
+            },
+            {
+              "id": "chatId",
+              "name": "chatId",
+              "value": "={{ $json.message.chat.id }}",
+              "type": "number"
+            },
+            {
+              "id": "messageId",
+              "name": "messageId",
+              "value": "={{ $json.message.message_id }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        660,
+        100
+      ],
+      "id": "edit-fields-text",
+      "name": "Edit Fields (Text)"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "is-reply",
+              "leftValue": "={{ $('Telegram Trigger').first().json.message.reply_to_message ? true : false }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1100,
+        0
+      ],
+      "id": "is-reply",
+      "name": "Is Reply?"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse selection from reply message\nconst triggerData = $('Telegram Trigger').first().json;\nconst msg = triggerData.message;\nconst replyText = msg.reply_to_message?.text || '';\nconst currentData = $input.first().json;\nconst userResponse = currentData.transcript?.trim() || '';\n\n// Check if this looks like a selection (01, 02, 1, 2, etc.)\nconst selectionMatch = userResponse.match(/^0*(\\d{1,2})$/);\n\nif (!selectionMatch) {\n  // Not a selection — treat as \"nouveau\" or new input\n  // Could be user replying \"nouveau\" or giving new context\n  const isNouveau = userResponse.toLowerCase().includes('nouveau');\n  if (isNouveau) {\n    // User wants a new idea from the original transcript\n    const transcriptMatch = replyText.match(/📝\\s*[\"«]([^\"»]+)[\"»]/);\n    return [{ json: {\n      isSelection: false,\n      isNouveau: true,\n      transcript: transcriptMatch ? transcriptMatch[1] : userResponse,\n      chatId: currentData.chatId,\n      messageId: currentData.messageId\n    } }];\n  }\n  // Regular text, not a reply selection — just pass through to decompose\n  return [{ json: {\n    isSelection: false,\n    isNouveau: false,\n    transcript: userResponse,\n    chatId: currentData.chatId,\n    messageId: currentData.messageId\n  } }];\n}\n\nconst selectedId = selectionMatch[1].padStart(2, '0');\n\n// Extract the original transcript from the reply message\nconst transcriptMatch = replyText.match(/📝\\s*[\"«]([^\"»]+)[\"»]/);\nconst originalTranscript = transcriptMatch ? transcriptMatch[1] : '';\n\nreturn [{\n  json: {\n    isSelection: true,\n    selectedId,\n    originalTranscript,\n    chatId: currentData.chatId,\n    messageId: currentData.messageId\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        -100
+      ],
+      "id": "parse-reply",
+      "name": "Parse Reply"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "is-selection",
+              "leftValue": "={{ $json.isSelection }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1540,
+        -100
+      ],
+      "id": "is-selection",
+      "name": "Is Selection?"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ /* Ideas Logger v4 workflow ID — set after import */ '' }}",
+          "mode": "id"
+        },
+        "options": {},
+        "inputData": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "transcript": "={{ $json.originalTranscript || $json.transcript }}",
+            "chatId": "={{ $json.chatId }}",
+            "messageId": "={{ $json.messageId }}",
+            "is_reply": true,
+            "selected_id": "={{ $json.selectedId }}",
+            "original_transcript": "={{ $json.originalTranscript }}"
+          }
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1760,
+        -200
+      ],
+      "id": "execute-reply-handler",
+      "name": "Execute Reply Handler",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Tu es un décomposeur de messages. Tu analyses un message vocal/texte et extrais TOUTES les actions que l'utilisateur veut réaliser.\n\nMessage: \"{{ $json.transcript }}\"\n\nUn seul message peut contenir PLUSIEURS actions. Exemples:\n- \"Pour l'idée du logger, je veux ajouter la gestion des tags. Du coup il faut une étape pour parser les tags\" → 1 update_idea + 1 todo\n- \"Nouvelle idée: un dashboard analytics\" → 1 new_idea\n- \"L'idée du blocker est terminée, et pour le logger il faut ajouter un cache\" → 1 update_idea (blocker) + 1 update_idea (logger) + 1 todo (logger cache)\n\nTYPES D'ACTIONS:\n- \"new_idea\": Nouvelle idée/concept/projet décrit pour la première fois\n- \"update_idea\": Modification d'une idée existante (ajout scope, changement statut, nouvelle info)\n- \"todo\": Tâches concrètes/actions/étapes à faire pour une idée existante\n- \"unknown\": Partie du message incompréhensible\n\nPOUR CHAQUE ACTION, EXTRAIS:\n- type: le type d'action\n- idea_reference: nom/sujet de l'idée concernée (null si new_idea)\n- content: la partie pertinente du message pour cette action uniquement\n- context: résumé du contexte global si utile pour cette action\n\nRÈGLES:\n- Si un update change le scope d'une idée ET implique de nouvelles tâches → crée DEUX actions: update_idea + todo\n- Ne JAMAIS générer d'action de suppression (pas de delete)\n- Si ambigu: un CONCEPT → new_idea, des ACTIONS concrètes → todo\n- Préfère sur-décomposer que sous-décomposer\n\nJSON STRICT:\n{\n  \"actions\": [\n    {\n      \"type\": \"update_idea\",\n      \"idea_reference\": \"logger d'idées\",\n      \"content\": \"ajouter la gestion automatique des tags au scope\",\n      \"context\": \"l'utilisateur étend le scope de l'idée\"\n    },\n    {\n      \"type\": \"todo\",\n      \"idea_reference\": \"logger d'idées\",\n      \"content\": \"ajouter une étape pour parser les tags depuis le texte brut\",\n      \"context\": \"suite à l'extension du scope avec les tags\"\n    }\n  ],\n  \"original_transcript\": \"le message complet\"\n}\n\nIMPORTANT: Retourne UNIQUEMENT le JSON brut, sans backticks markdown."
+            },
+            {
+              "content": "=Analyse ce message et décompose-le en actions."
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1320,
+        100
+      ],
+      "id": "gpt-decompose",
+      "name": "GPT Decompose Message",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAi Ideas Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse GPT decompose response and order actions\nconst gptOutput = $json.output?.[0]?.content?.[0]?.text;\nconst inputData = $('Is Reply?').first()?.json || $input.first().json;\n\nif (!gptOutput) {\n  return [{ json: { \n    error: true, \n    actions: [{ type: 'unknown', content: 'Pas de réponse GPT' }],\n    chatId: inputData.chatId,\n    messageId: inputData.messageId,\n    transcript: inputData.transcript\n  } }];\n}\n\ntry {\n  const match = gptOutput.match(/```(?:json)?\\s*([\\s\\S]*?)\\s*```/);\n  const cleaned = match ? match[1] : gptOutput.trim();\n  const parsed = JSON.parse(cleaned);\n  \n  const actions = parsed.actions || [];\n  \n  // Group by idea_reference for sequencing\n  const ideaGroups = {};\n  for (const action of actions) {\n    const key = action.idea_reference || '__new_' + Math.random();\n    if (!ideaGroups[key]) ideaGroups[key] = [];\n    ideaGroups[key].push(action);\n  }\n  \n  // Within each group: update_idea before todo\n  // Between groups: can be parallel (handled by splitInBatches)\n  const orderedActions = [];\n  for (const [key, group] of Object.entries(ideaGroups)) {\n    // Sort: update_idea first, then todo, then others\n    const priority = { 'new_idea': 0, 'update_idea': 1, 'todo': 2, 'unknown': 3 };\n    group.sort((a, b) => (priority[a.type] || 99) - (priority[b.type] || 99));\n    \n    // Tag with group key for sequencing\n    group.forEach((action, idx) => {\n      action._group = key;\n      action._groupOrder = idx;\n      action._groupSize = group.length;\n    });\n    \n    orderedActions.push(...group);\n  }\n  \n  return [{ json: {\n    actions: orderedActions,\n    actionCount: orderedActions.length,\n    chatId: inputData.chatId,\n    messageId: inputData.messageId,\n    transcript: inputData.transcript\n  } }];\n  \n} catch (e) {\n  return [{ json: {\n    error: true,\n    actions: [{ type: 'unknown', content: 'Erreur parsing: ' + e.message }],\n    chatId: inputData.chatId,\n    messageId: inputData.messageId,\n    transcript: inputData.transcript\n  } }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1540,
+        100
+      ],
+      "id": "parse-actions",
+      "name": "Parse Actions"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Split actions into individual items\nconst data = $json;\nconst actions = data.actions || [];\n\nreturn actions.map(action => ({\n  json: {\n    ...action,\n    chatId: data.chatId,\n    messageId: data.messageId,\n    transcript: data.transcript\n  }\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        100
+      ],
+      "id": "split-actions",
+      "name": "Split Actions"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "new-idea",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "new_idea",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NEW_IDEA"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "update-idea",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "update_idea",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "UPDATE_IDEA"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "todo",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "todo",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "TODO"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1980,
+        100
+      ],
+      "id": "action-switch",
+      "name": "Action Switch"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ /* Ideas Logger v4 workflow ID — set after import */ '' }}",
+          "mode": "id"
+        },
+        "options": {},
+        "inputData": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "transcript": "={{ $json.content }}",
+            "chatId": "={{ $json.chatId }}",
+            "messageId": "={{ $json.messageId }}",
+            "action_type": "new_idea",
+            "idea_reference": "",
+            "context": "={{ $json.context || '' }}",
+            "is_reply": false
+          }
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        2200,
+        -100
+      ],
+      "id": "execute-ideas-logger-new",
+      "name": "Execute Ideas Logger (New)",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ /* Ideas Logger v4 workflow ID — set after import */ '' }}",
+          "mode": "id"
+        },
+        "options": {},
+        "inputData": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "transcript": "={{ $json.content }}",
+            "chatId": "={{ $json.chatId }}",
+            "messageId": "={{ $json.messageId }}",
+            "action_type": "update_idea",
+            "idea_reference": "={{ $json.idea_reference || '' }}",
+            "context": "={{ $json.context || '' }}",
+            "is_reply": false
+          }
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        2200,
+        100
+      ],
+      "id": "execute-ideas-logger-update",
+      "name": "Execute Ideas Logger (Update)",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ /* Todo Manager v1 workflow ID — set after import */ '' }}",
+          "mode": "id"
+        },
+        "options": {},
+        "inputData": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chatId": "={{ $json.chatId }}",
+            "transcript": "={{ $json.content }}",
+            "idea_reference": "={{ $json.idea_reference || '' }}"
+          }
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        2200,
+        300
+      ],
+      "id": "execute-todo-manager",
+      "name": "Execute Todo Manager",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "🤔 Je n'ai pas compris cette partie du message. Peux-tu reformuler?\n\n_{{ $json.content || '' }}_",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2200,
+        500
+      ],
+      "id": "send-unknown",
+      "name": "Send Unknown",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "YOUR_LOGS_DATABASE_ID",
+          "mode": "list",
+          "cachedResultName": "Logs"
+        },
+        "title": "=Router: {{ $json.transcript?.substring(0, 50) || 'message' }}...",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Timestamp|date",
+              "date": "={{ new Date().toISOString() }}"
+            },
+            {
+              "key": "UpdateType|select",
+              "selectValue": "router_dispatch"
+            },
+            {
+              "key": "Content|rich_text",
+              "textContent": "=Actions détectées: {{ $json.actionCount }}. Types: {{ $json.actions?.map(a => a.type + '(' + (a.idea_reference || 'new') + ')').join(', ') || 'aucune' }}"
+            },
+            {
+              "key": "RawTranscript|rich_text",
+              "textContent": "={{ $json.transcript || '' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        1760,
+        300
+      ],
+      "id": "log-router-decision",
+      "name": "Log Router Decision",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Voice/Text Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Voice/Text Switch": {
+      "main": [
+        [
+          {
+            "node": "Get Voice File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields (Text)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Voice File": {
+      "main": [
+        [
+          {
+            "node": "Transcribe Voice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe Voice": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields (Voice)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields (Voice)": {
+      "main": [
+        [
+          {
+            "node": "Is Reply?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields (Text)": {
+      "main": [
+        [
+          {
+            "node": "Is Reply?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Reply?": {
+      "main": [
+        [
+          {
+            "node": "Parse Reply",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "GPT Decompose Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Reply": {
+      "main": [
+        [
+          {
+            "node": "Is Selection?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Selection?": {
+      "main": [
+        [
+          {
+            "node": "Execute Reply Handler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "GPT Decompose Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT Decompose Message": {
+      "main": [
+        [
+          {
+            "node": "Parse Actions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Actions": {
+      "main": [
+        [
+          {
+            "node": "Split Actions",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Log Router Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Actions": {
+      "main": [
+        [
+          {
+            "node": "Action Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Action Switch": {
+      "main": [
+        [
+          {
+            "node": "Execute Ideas Logger (New)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Execute Ideas Logger (Update)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Execute Todo Manager",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Unknown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "timeSavedPerExecution": 60
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 1,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}

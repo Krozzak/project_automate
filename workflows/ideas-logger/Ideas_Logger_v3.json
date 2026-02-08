@@ -1,0 +1,821 @@
+{
+  "name": "Ideas Logger v3",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": ["message"],
+        "additionalFields": {
+          "userIds": "YOUR_TELEGRAM_USER_ID"
+        }
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0],
+      "id": "telegram-trigger",
+      "name": "Telegram Trigger",
+      "webhookId": "YOUR_WEBHOOK_ID",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
+                "conditions": [{"id": "voice-check", "leftValue": "={{$json.message.voice ? \"voice\" : \"other\"}}", "rightValue": "voice", "operator": {"type": "string", "operation": "equals"}}],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
+                "conditions": [{"id": "text-check", "leftValue": "={{$json.message.text ? \"text\" : \"other\"}}", "rightValue": "text", "operator": {"type": "string", "operation": "equals"}}],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [220, 0],
+      "id": "voice-text-switch",
+      "name": "Voice/Text Switch"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{$json.message.voice.file_id}}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [440, -100],
+      "id": "get-voice-file",
+      "name": "Get Voice File",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [660, -100],
+      "id": "transcribe-voice",
+      "name": "Transcribe Voice",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAi Ideas Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {"id": "transcript", "name": "transcript", "value": "={{$json.text}}", "type": "string"},
+            {"id": "chatId", "name": "chatId", "value": "={{ $('Telegram Trigger').item.json.message.chat.id }}", "type": "number"},
+            {"id": "messageId", "name": "messageId", "value": "={{ $('Telegram Trigger').item.json.message.message_id }}", "type": "number"}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [880, -100],
+      "id": "edit-fields-voice",
+      "name": "Edit Fields (Voice)"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {"id": "transcript", "name": "transcript", "value": "={{$json.message.text}}", "type": "string"},
+            {"id": "chatId", "name": "chatId", "value": "={{ $json.message.chat.id }}", "type": "number"},
+            {"id": "messageId", "name": "messageId", "value": "={{ $json.message.message_id }}", "type": "number"}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [660, 100],
+      "id": "edit-fields-text",
+      "name": "Edit Fields (Text)"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "YOUR_IDEAS_DATABASE_ID",
+          "mode": "list",
+          "cachedResultName": "Ideas Logger"
+        },
+        "returnAll": false,
+        "limit": 50,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1100, 0],
+      "id": "query-all-ideas",
+      "name": "Query All Ideas",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Format ideas list for GPT\n// Input: all Notion ideas\n// Output: formatted string + transcript\nconst allItems = $input.all();\n\n// Get transcript from upstream\nlet transcript = '';\nlet chatId = null;\nlet messageId = null;\ntry {\n  const voiceData = $('Edit Fields (Voice)').first()?.json;\n  if (voiceData?.transcript) {\n    transcript = voiceData.transcript;\n    chatId = voiceData.chatId;\n    messageId = voiceData.messageId;\n  }\n} catch (e) {}\nif (!transcript) {\n  try {\n    const textData = $('Edit Fields (Text)').first()?.json;\n    if (textData?.transcript) {\n      transcript = textData.transcript;\n      chatId = textData.chatId;\n      messageId = textData.messageId;\n    }\n  } catch (e) {}\n}\n\n// Format ideas for GPT (compact format)\nconst ideasList = allItems.map((item, idx) => {\n  const d = item.json;\n  const id = d.id; // Full Notion page ID\n  const shortId = String(idx + 1).padStart(2, '0'); // 01, 02, 03...\n  const title = d.property_title || d.name || 'Sans titre';\n  const tags = Array.isArray(d.property_tags) ? d.property_tags : [];\n  const status = d.property_status || 'Pas commencé';\n  const ice = d.property_ice || 0;\n  \n  return {\n    shortId,\n    fullId: id,\n    title,\n    tags,\n    status,\n    ice,\n    url: d.url\n  };\n});\n\n// Create formatted string for GPT\nconst ideasForGPT = ideasList.map(i => \n  `${i.shortId}: \"${i.title}\" [${i.tags.join(', ')}] - ${i.status} (ICE: ${i.ice})`\n).join('\\n');\n\nreturn [{\n  json: {\n    transcript,\n    chatId,\n    messageId,\n    ideasForGPT,\n    ideasList,\n    ideasCount: ideasList.length\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1320, 0],
+      "id": "format-ideas-for-gpt",
+      "name": "Format Ideas for GPT"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "Tu es un assistant de gestion d'idées. Tu analyses le message et détermine s'il s'agit d'une nouvelle idée ou d'une mise à jour d'une idée existante.\n\nIDÉES EXISTANTES (format: ID: \"Titre\" [tags] - Status):\n{{ $json.ideasForGPT }}\n\nRetourne UNIQUEMENT ce JSON:\n\n{\n  \"action\": \"new\" | \"update\" | \"ask\" | \"reject\",\n  \n  // Si action = \"new\" (nouvelle idée)\n  \"idea\": {\n    \"title\": \"Titre court et clair\",\n    \"summary\": \"Résumé de l'idée\",\n    \"pillar\": \"Catégorie principale\",\n    \"domain\": [\"domain1\", \"domain2\"],\n    \"tags\": [\"tag1\", \"tag2\"],\n    \"difficulty_1to5\": 3,\n    \"impact_1to5\": 3,\n    \"urgency_1to5\": 3,\n    \"clarity_1to5\": 3,\n    \"next_action\": \"Prochaine action concrète\",\n    \"dependencies\": \"Dépendances éventuelles\",\n    \"time_required_bucket\": \"15-60min\",\n    \"todos\": [\n      {\"title\": \"Première étape concrète\", \"priority\": \"P1\"}\n    ]\n  },\n  \n  // Si action = \"update\" (mise à jour)\n  \"matched_idea_id\": \"01\",\n  \"update\": {\n    \"status\": \"En cours\" | \"Terminé\" | \"En attente\" | null,\n    \"new_info\": \"Information à ajouter\" | null,\n    \"new_todos\": [\n      {\"title\": \"Tâche à faire\", \"priority\": \"P1\"}\n    ]\n  },\n  \n  // Si action = \"ask\" (clarification nécessaire)\n  \"options\": [\n    {\"id\": \"01\", \"title\": \"Titre idée 1\", \"why\": \"Raison du match possible\"},\n    {\"id\": \"02\", \"title\": \"Titre idée 2\", \"why\": \"Raison du match possible\"}\n  ],\n  \"question\": \"Quelle idée veux-tu mettre à jour?\",\n  \n  // Si action = \"reject\" (pas une idée valide)\n  \"reject_reason\": \"Raison du rejet\",\n  \n  // Toujours présent\n  \"confirmation_message\": \"Message de confirmation pour l'utilisateur\"\n}\n\nRÈGLES:\n- action=\"new\": Message contient une NOUVELLE idée/projet/intention\n- action=\"update\": Message référence CLAIREMENT une idée existante de la liste\n- action=\"ask\": Message pourrait concerner PLUSIEURS idées existantes\n- action=\"reject\": Message n'est pas une idée (salutation, test, question simple)\n\n- Pour \"new\", time_required_bucket doit être: \"5-15min\", \"15-60min\", \"1-3h\", \"3-10h\", ou \"10h+\"\n- Pour \"new\", todos: liste les premières étapes concrètes mentionnées ou déductibles du message (2-4 todos max). Priorité: P1 (urgent), P2 (normal), P3 (plus tard)\n- Pour \"update\", utilise l'ID court (01, 02...) pas l'ID Notion complet\n- new_todos: prochaines étapes/actions mentionnées dans le message\n\nIMPORTANT: Retourne UNIQUEMENT le JSON brut, sans backticks markdown."
+            },
+            {
+              "content": "=MESSAGE UTILISATEUR:\n{{ $json.transcript }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [1540, 0],
+      "id": "unified-gpt",
+      "name": "Unified GPT",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAi Ideas Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse GPT response\nconst gptOutput = $json.output?.[0]?.content?.[0]?.text;\nconst prevData = $('Format Ideas for GPT').first().json;\n\nif (!gptOutput) {\n  return [{ json: { \n    error: true, \n    action: 'reject',\n    confirmation_message: \"Erreur: pas de réponse de GPT\",\n    ...prevData\n  } }];\n}\n\ntry {\n  // Remove markdown if present\n  const match = gptOutput.match(/```(?:json)?\\s*([\\s\\S]*?)\\s*```/);\n  const cleaned = match ? match[1] : gptOutput.trim();\n  const parsed = JSON.parse(cleaned);\n  \n  // If it's an update, resolve the full Notion ID\n  if (parsed.action === 'update' && parsed.matched_idea_id) {\n    const shortId = parsed.matched_idea_id;\n    const matchedIdea = prevData.ideasList.find(i => i.shortId === shortId);\n    if (matchedIdea) {\n      parsed.fullNotionId = matchedIdea.fullId;\n      parsed.matchedIdeaTitle = matchedIdea.title;\n      parsed.matchedIdeaUrl = matchedIdea.url;\n      parsed.matchedIdeaStatus = matchedIdea.status;\n      parsed.matchedIdeaIce = matchedIdea.ice;\n    }\n  }\n  \n  // If it's ask, resolve full IDs for options\n  if (parsed.action === 'ask' && parsed.options) {\n    parsed.options = parsed.options.map(opt => {\n      const matchedIdea = prevData.ideasList.find(i => i.shortId === opt.id);\n      return {\n        ...opt,\n        fullId: matchedIdea?.fullId,\n        url: matchedIdea?.url\n      };\n    });\n  }\n  \n  return [{ json: { \n    ...parsed, \n    transcript: prevData.transcript,\n    chatId: prevData.chatId,\n    messageId: prevData.messageId,\n    ideasList: prevData.ideasList\n  } }];\n  \n} catch (e) {\n  return [{ json: { \n    error: true, \n    action: 'reject',\n    confirmation_message: \"Erreur de parsing: \" + e.message,\n    raw: gptOutput,\n    ...prevData\n  } }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1760, 0],
+      "id": "parse-gpt-response",
+      "name": "Parse GPT Response"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
+                "conditions": [{"id": "action-new", "leftValue": "={{ $json.action }}", "rightValue": "new", "operator": {"type": "string", "operation": "equals"}}],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "NEW"
+            },
+            {
+              "conditions": {
+                "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
+                "conditions": [{"id": "action-update", "leftValue": "={{ $json.action }}", "rightValue": "update", "operator": {"type": "string", "operation": "equals"}}],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "UPDATE"
+            },
+            {
+              "conditions": {
+                "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
+                "conditions": [{"id": "action-ask", "leftValue": "={{ $json.action }}", "rightValue": "ask", "operator": {"type": "string", "operation": "equals"}}],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ASK"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [1980, 0],
+      "id": "action-switch",
+      "name": "Action Switch"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Prepare new idea for Notion\nconst data = $json;\nconst idea = data.idea || {};\n\nconst toStrings = (arr) =>\n  (Array.isArray(arr) ? arr : [])\n    .map(x => (typeof x === 'string' ? x.trim() : ''))\n    .filter(Boolean)\n    .slice(0, 20);\n\nconst impact = Number(idea.impact_1to5 || 0);\nconst clarity = Number(idea.clarity_1to5 || 0);\nconst difficulty = Number(idea.difficulty_1to5 || 0);\nconst ease = difficulty ? (6 - difficulty) : 0;\nconst ICE = impact && clarity && ease ? impact * clarity * ease : 0;\n\nreturn [{\n  json: {\n    ...data,\n    capturedAt: new Date().toISOString(),\n    source: \"Telegram\",\n    ice: ICE,\n    domain_strings: toStrings(idea.domain),\n    tags_strings: toStrings(idea.tags),\n    time_required_bucket: idea.time_required_bucket || \"15-60min\",\n    updateCount: 0\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2200, -200],
+      "id": "prepare-new-idea",
+      "name": "Prepare New Idea"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "YOUR_IDEAS_DATABASE_ID",
+          "mode": "list",
+          "cachedResultName": "Ideas Logger"
+        },
+        "title": "={{ $json.idea.title }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {"key": "Summary|rich_text", "textContent": "={{ $json.idea.summary }}"},
+            {"key": "Pilar|rich_text", "textContent": "={{ $json.idea.pillar }}"},
+            {"key": "Domain|multi_select", "multiSelectValue": "={{ $json.domain_strings }}"},
+            {"key": "Tags|multi_select", "multiSelectValue": "={{ $json.tags_strings }}"},
+            {"key": "TimeBucket|select", "selectValue": "={{ $json.time_required_bucket }}"},
+            {"key": "Difficulty|number", "numberValue": "={{ $json.idea.difficulty_1to5 }}"},
+            {"key": "Impact|number", "numberValue": "={{ $json.idea.impact_1to5 }}"},
+            {"key": "Urgency|number", "numberValue": "={{ $json.idea.urgency_1to5 }}"},
+            {"key": "Clarity|number", "numberValue": "={{ $json.idea.clarity_1to5 }}"},
+            {"key": "NextAction|rich_text", "textContent": "={{ $json.idea.next_action }}"},
+            {"key": "Dependencies|rich_text", "textContent": "={{ $json.idea.dependencies }}"},
+            {"key": "Status|status", "statusValue": "Pas commencé"},
+            {"key": "CapturedAt|date", "date": "={{ $json.capturedAt }}"},
+            {"key": "ICE|number", "numberValue": "={{ $json.ice }}"},
+            {"key": "Source|rich_text", "textContent": "={{ $json.source }}"},
+            {"key": "RawText|rich_text", "textContent": "={{ $json.transcript }}"},
+            {"key": "UpdateCount|number", "numberValue": "={{ $json.updateCount }}"}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [2420, -200],
+      "id": "create-notion-idea",
+      "name": "Create Notion Idea",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
+          "conditions": [
+            {"id": "has-new-todos", "leftValue": "={{ $('Prepare New Idea').first().json.idea?.todos?.length > 0 }}", "rightValue": true, "operator": {"type": "boolean", "operation": "equals"}}
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [2640, -200],
+      "id": "has-new-todos-check",
+      "name": "Has New Todos?"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Split todos for new idea\nconst prepData = $('Prepare New Idea').first().json;\nconst todos = prepData.idea?.todos || [];\nconst pageId = $('Create Notion Idea').first().json.id;\n\nreturn todos.map(todo => ({\n  json: {\n    ...todo,\n    parentIdeaId: pageId,\n    createdAt: new Date().toISOString(),\n    status: 'À faire',\n    source: 'VoiceLog'\n  }\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2860, -300],
+      "id": "split-new-todos",
+      "name": "Split New Todos"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "YOUR_TODOS_DATABASE_ID",
+          "mode": "list",
+          "cachedResultName": "Todos"
+        },
+        "title": "={{ $json.title }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {"key": "Ideas Logger|relation", "relationValue": ["={{ $json.parentIdeaId }}"]},
+            {"key": "Status|status", "statusValue": "={{ $json.status }}"},
+            {"key": "Priority|select", "selectValue": "={{ $json.priority }}"},
+            {"key": "CreatedAt|date", "date": "={{ $json.createdAt }}"},
+            {"key": "Source|select", "selectValue": "={{ $json.source }}"}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [3080, -300],
+      "id": "create-new-todo",
+      "name": "Create New Todo",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Prepare New Idea').first().json.chatId }}",
+        "text": "=✅ Idée enregistrée\n\n📌 *{{ $('Create Notion Idea').first().json.name }}*\n\n📝 {{ $('Prepare New Idea').first().json.idea.summary }}\n\n🏷️ {{ $('Prepare New Idea').first().json.tags_strings.join(', ') }}\n📂 {{ $('Prepare New Idea').first().json.domain_strings.join(', ') }}\n🔗 {{ $('Prepare New Idea').first().json.idea.dependencies || 'Aucune' }}\n\n⏱️ {{ $('Prepare New Idea').first().json.time_required_bucket }}\n📊 ICE : {{ $('Prepare New Idea').first().json.ice }}\n\n➡️ Next Step : {{ $('Prepare New Idea').first().json.idea.next_action }}\n\n{{ $('Prepare New Idea').first().json.idea.todos?.length > 0 ? '📋 Todos :\\n' + $('Prepare New Idea').first().json.idea.todos.map(t => '- ' + t.title + ' (' + t.priority + ')').join('\\n') + '\\n' : '' }}\n🔗 {{ $('Create Notion Idea').first().json.url }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [3300, -200],
+      "id": "send-new-confirmation",
+      "name": "Send New Confirmation",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Prepare update data with all fields\nconst data = $json;\nconst update = data.update || {};\nconst currentStatus = data.matchedIdeaStatus || 'Pas commencé';\nconst currentIce = data.matchedIdeaIce || 0;\n\n// Get existing RawText from the matched idea (we need to fetch it)\n// For now, we'll append the new transcript\nconst now = new Date().toISOString();\n\n// Calculate new ICE if we have update info that affects it\n// For updates, we keep existing ICE unless explicitly changed\nlet newIce = currentIce;\n\n// Prepare the update object\nconst result = {\n  pageId: data.fullNotionId,\n  transcript: data.transcript,\n  chatId: data.chatId,\n  messageId: data.messageId,\n  \n  // Fields to update\n  newStatus: update.status || currentStatus,\n  newInfo: update.new_info || null,\n  newTodos: update.new_todos || [],\n  lastUpdated: now,\n  \n  // For confirmation message\n  matchedIdeaTitle: data.matchedIdeaTitle,\n  matchedIdeaUrl: data.matchedIdeaUrl,\n  confirmation_message: data.confirmation_message,\n  \n  // Keep track of what changed for the log\n  changes: {\n    statusChanged: update.status && update.status !== currentStatus,\n    oldStatus: currentStatus,\n    infoAdded: !!update.new_info,\n    todosAdded: (update.new_todos || []).length\n  }\n};\n\nreturn [{ json: result }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2200, 0],
+      "id": "prepare-update-data",
+      "name": "Prepare Update Data"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "value": "={{ $json.pageId }}",
+          "mode": "id"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {"key": "Status|status", "statusValue": "={{ $json.newStatus }}"},
+            {"key": "LastUpdated|date", "date": "={{ $json.lastUpdated }}"}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [2420, 0],
+      "id": "update-notion-idea",
+      "name": "Update Notion Idea",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
+          "conditions": [
+            {"id": "has-todos", "leftValue": "={{ $('Prepare Update Data').first().json.newTodos?.length > 0 }}", "rightValue": true, "operator": {"type": "boolean", "operation": "equals"}}
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [2640, 0],
+      "id": "has-todos-check",
+      "name": "Has Todos?"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Split todos for creation\nconst data = $('Prepare Update Data').first().json;\nconst todos = data.newTodos || [];\nconst pageId = data.pageId;\n\nreturn todos.map(todo => ({\n  json: {\n    ...todo,\n    parentIdeaId: pageId,\n    createdAt: new Date().toISOString(),\n    status: 'À faire',\n    source: 'VoiceLog'\n  }\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2860, -100],
+      "id": "split-todos",
+      "name": "Split Todos"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "YOUR_TODOS_DATABASE_ID",
+          "mode": "list",
+          "cachedResultName": "Todos"
+        },
+        "title": "={{ $json.title }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {"key": "Ideas Logger|relation", "relationValue": ["={{ $json.parentIdeaId }}"]},
+            {"key": "Status|status", "statusValue": "={{ $json.status }}"},
+            {"key": "Priority|select", "selectValue": "={{ $json.priority }}"},
+            {"key": "CreatedAt|date", "date": "={{ $json.createdAt }}"},
+            {"key": "Source|select", "selectValue": "={{ $json.source }}"}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [3080, -100],
+      "id": "create-todo",
+      "name": "Create Todo",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Prepare Update Data').first().json.chatId }}",
+        "text": "=✅ Idée mise à jour: **{{ $('Prepare Update Data').first().json.matchedIdeaTitle }}**\n\n{{ $('Prepare Update Data').first().json.confirmation_message }}\n\n{{ $('Prepare Update Data').first().json.changes.statusChanged ? '📊 Status: ' + $('Prepare Update Data').first().json.changes.oldStatus + ' → ' + $('Prepare Update Data').first().json.newStatus + '\\n' : '' }}{{ $('Prepare Update Data').first().json.newTodos?.length > 0 ? '📋 Todos ajoutés:\\n' + $('Prepare Update Data').first().json.newTodos.map(t => '- ' + t.title).join('\\n') : '' }}\n\n🔗 {{ $('Prepare Update Data').first().json.matchedIdeaUrl }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [3300, 0],
+      "id": "send-update-confirmation",
+      "name": "Send Update Confirmation",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Format options message for user (sans encodage base64)\nconst data = $json;\nconst options = data.options || [];\nconst transcript = data.transcript || '';\n\n// Message simple avec transcript visible\nlet message = `📝 \"${transcript}\"\\n\\n`;\nmessage += `${data.question || 'Quelle idée veux-tu mettre à jour?'}\\n\\n`;\n\noptions.forEach(opt => {\n  message += `**${opt.id}.** ${opt.title}\\n`;\n  if (opt.why) message += `   _${opt.why}_\\n`;\n  message += '\\n';\n});\n\nmessage += `Réponds avec l'ID (${options.map(o => o.id).join(', ')}) ou \"nouveau\".`;\n\nreturn [{\n  json: {\n    message,\n    chatId: data.chatId,\n    messageId: data.messageId\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2200, 200],
+      "id": "format-ask-message",
+      "name": "Format Ask Message"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.message }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [2420, 200],
+      "id": "send-ask-options",
+      "name": "Send Ask Options",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.confirmation_message || 'Message non reconnu comme une idée.' }}\n\n{{ $json.reject_reason ? 'Raison: ' + $json.reject_reason : '' }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [2200, 400],
+      "id": "send-reject",
+      "name": "Send Reject",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "YOUR_LOGS_DATABASE_ID",
+          "mode": "list",
+          "cachedResultName": "Logs"
+        },
+        "title": "=Update: {{ $('Prepare Update Data').first().json.matchedIdeaTitle }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {"key": "Ideas Logger|relation", "relationValue": ["={{ $('Prepare Update Data').first().json.pageId }}"]},
+            {"key": "Timestamp|date", "date": "={{ $('Prepare Update Data').first().json.lastUpdated }}"},
+            {"key": "UpdateType|select", "selectValue": "={{ $('Prepare Update Data').first().json.changes.statusChanged ? 'status_change' : ($('Prepare Update Data').first().json.changes.infoAdded ? 'add_info' : 'update') }}"},
+            {"key": "Content|rich_text", "textContent": "={{ $('Prepare Update Data').first().json.newInfo || $('Prepare Update Data').first().json.confirmation_message }}"},
+            {"key": "RawTranscript|rich_text", "textContent": "={{ $('Prepare Update Data').first().json.transcript }}"}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [3080, 0],
+      "id": "create-log-entry",
+      "name": "Create Log Entry",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
+          "conditions": [
+            {"id": "is-reply", "leftValue": "={{ $json.message.reply_to_message ? true : false }}", "rightValue": true, "operator": {"type": "boolean", "operation": "equals"}}
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [220, 300],
+      "id": "check-is-reply",
+      "name": "Is Reply?"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse selection response\nconst msg = $json.message;\nconst replyText = msg.reply_to_message?.text || '';\nconst userResponse = msg.text?.trim() || '';\n\n// Check if this looks like a selection (01, 02, 1, 2, etc.)\nconst selectionMatch = userResponse.match(/^0*(\\d{1,2})$/);\nif (!selectionMatch) {\n  // Not a selection, treat as new message\n  return [{ json: { isSelection: false, ...msg } }];\n}\n\nconst selectedId = selectionMatch[1].padStart(2, '0');\n\n// Extract the original transcript from the reply message\n// Format: 📝 \"transcript here...\"\nconst transcriptMatch = replyText.match(/📝\\s*[\"«]([^\"»]+)[\"»]/);\nconst originalTranscript = transcriptMatch ? transcriptMatch[1] : '';\n\n// Extract idea options from the message\n// Format: **01.** Titre de l'idée\nconst ideaMatches = [...replyText.matchAll(/\\*\\*(\\d{2})\\.\\*\\*\\s*([^\\n]+)/g)];\nconst ideas = ideaMatches.map(m => ({\n  shortId: m[1],\n  title: m[2].trim()\n}));\n\n// Find the selected idea\nconst selectedIdea = ideas.find(i => i.shortId === selectedId);\n\nreturn [{\n  json: {\n    isSelection: true,\n    selectedId,\n    selectedTitle: selectedIdea?.title || '',\n    originalTranscript,\n    chatId: msg.chat.id,\n    messageId: msg.message_id,\n    // We need to re-query to get the full Notion ID\n    needsIdLookup: true\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300],
+      "id": "parse-selection",
+      "name": "Parse Selection"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
+          "conditions": [
+            {"id": "is-selection", "leftValue": "={{ $json.isSelection }}", "rightValue": true, "operator": {"type": "boolean", "operation": "equals"}}
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [660, 300],
+      "id": "is-selection-check",
+      "name": "Is Selection?"
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "YOUR_IDEAS_DATABASE_ID",
+          "mode": "list",
+          "cachedResultName": "Ideas Logger"
+        },
+        "returnAll": false,
+        "limit": 50,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [880, 300],
+      "id": "query-ideas-for-selection",
+      "name": "Query Ideas (Selection)",
+      "credentials": {
+        "notionApi": {
+          "id": "YOUR_NOTION_CREDENTIAL_ID",
+          "name": "Idea Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Find the selected idea and prepare update\nconst allIdeas = $input.all();\nconst selectionData = $('Parse Selection').first().json;\n\n// Build the same shortId mapping as Format Ideas for GPT\nconst ideasList = allIdeas.map((item, idx) => {\n  const d = item.json;\n  return {\n    shortId: String(idx + 1).padStart(2, '0'),\n    fullId: d.id,\n    title: d.property_title || d.name || 'Sans titre',\n    status: d.property_status || 'Pas commencé',\n    url: d.url\n  };\n});\n\n// Find the selected idea\nconst selected = ideasList.find(i => i.shortId === selectionData.selectedId);\n\nif (!selected) {\n  return [{\n    json: {\n      error: true,\n      chatId: selectionData.chatId,\n      message: `❌ ID \"${selectionData.selectedId}\" non trouvé. Essaie à nouveau.`\n    }\n  }];\n}\n\n// Now we have the full Notion ID, prepare the update\nreturn [{\n  json: {\n    pageId: selected.fullId,\n    transcript: selectionData.originalTranscript,\n    chatId: selectionData.chatId,\n    messageId: selectionData.messageId,\n    matchedIdeaTitle: selected.title,\n    matchedIdeaUrl: selected.url,\n    newStatus: selected.status, // Keep current status\n    newInfo: null,\n    newTodos: [],\n    lastUpdated: new Date().toISOString(),\n    confirmation_message: `Mise à jour de \"${selected.title}\" avec le transcript.`,\n    changes: {\n      statusChanged: false,\n      infoAdded: true,\n      todosAdded: 0\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1100, 300],
+      "id": "resolve-selection",
+      "name": "Resolve Selection"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
+          "conditions": [
+            {"id": "has-error", "leftValue": "={{ $json.error }}", "rightValue": true, "operator": {"type": "boolean", "operation": "equals"}}
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [1320, 300],
+      "id": "selection-error-check",
+      "name": "Selection Error?"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.message }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [1540, 400],
+      "id": "send-selection-error",
+      "name": "Send Selection Error",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Trigger": {
+      "main": [[{"node": "Voice/Text Switch", "type": "main", "index": 0}]]
+    },
+    "Voice/Text Switch": {
+      "main": [
+        [{"node": "Get Voice File", "type": "main", "index": 0}],
+        [{"node": "Is Reply?", "type": "main", "index": 0}]
+      ]
+    },
+    "Get Voice File": {
+      "main": [[{"node": "Transcribe Voice", "type": "main", "index": 0}]]
+    },
+    "Transcribe Voice": {
+      "main": [[{"node": "Edit Fields (Voice)", "type": "main", "index": 0}]]
+    },
+    "Edit Fields (Voice)": {
+      "main": [[{"node": "Query All Ideas", "type": "main", "index": 0}]]
+    },
+    "Is Reply?": {
+      "main": [
+        [{"node": "Parse Selection", "type": "main", "index": 0}],
+        [{"node": "Edit Fields (Text)", "type": "main", "index": 0}]
+      ]
+    },
+    "Parse Selection": {
+      "main": [[{"node": "Is Selection?", "type": "main", "index": 0}]]
+    },
+    "Is Selection?": {
+      "main": [
+        [{"node": "Query Ideas (Selection)", "type": "main", "index": 0}],
+        [{"node": "Edit Fields (Text)", "type": "main", "index": 0}]
+      ]
+    },
+    "Query Ideas (Selection)": {
+      "main": [[{"node": "Resolve Selection", "type": "main", "index": 0}]]
+    },
+    "Resolve Selection": {
+      "main": [[{"node": "Selection Error?", "type": "main", "index": 0}]]
+    },
+    "Selection Error?": {
+      "main": [
+        [{"node": "Send Selection Error", "type": "main", "index": 0}],
+        [{"node": "Update Notion Idea", "type": "main", "index": 0}]
+      ]
+    },
+    "Edit Fields (Text)": {
+      "main": [[{"node": "Query All Ideas", "type": "main", "index": 0}]]
+    },
+    "Query All Ideas": {
+      "main": [[{"node": "Format Ideas for GPT", "type": "main", "index": 0}]]
+    },
+    "Format Ideas for GPT": {
+      "main": [[{"node": "Unified GPT", "type": "main", "index": 0}]]
+    },
+    "Unified GPT": {
+      "main": [[{"node": "Parse GPT Response", "type": "main", "index": 0}]]
+    },
+    "Parse GPT Response": {
+      "main": [[{"node": "Action Switch", "type": "main", "index": 0}]]
+    },
+    "Action Switch": {
+      "main": [
+        [{"node": "Prepare New Idea", "type": "main", "index": 0}],
+        [{"node": "Prepare Update Data", "type": "main", "index": 0}],
+        [{"node": "Format Ask Message", "type": "main", "index": 0}],
+        [{"node": "Send Reject", "type": "main", "index": 0}]
+      ]
+    },
+    "Prepare New Idea": {
+      "main": [[{"node": "Create Notion Idea", "type": "main", "index": 0}]]
+    },
+    "Create Notion Idea": {
+      "main": [[{"node": "Has New Todos?", "type": "main", "index": 0}]]
+    },
+    "Has New Todos?": {
+      "main": [
+        [{"node": "Split New Todos", "type": "main", "index": 0}],
+        [{"node": "Send New Confirmation", "type": "main", "index": 0}]
+      ]
+    },
+    "Split New Todos": {
+      "main": [[{"node": "Create New Todo", "type": "main", "index": 0}]]
+    },
+    "Create New Todo": {
+      "main": [[{"node": "Send New Confirmation", "type": "main", "index": 0}]]
+    },
+    "Prepare Update Data": {
+      "main": [[{"node": "Update Notion Idea", "type": "main", "index": 0}]]
+    },
+    "Update Notion Idea": {
+      "main": [[{"node": "Has Todos?", "type": "main", "index": 0}]]
+    },
+    "Has Todos?": {
+      "main": [
+        [{"node": "Split Todos", "type": "main", "index": 0}],
+        [{"node": "Create Log Entry", "type": "main", "index": 0}]
+      ]
+    },
+    "Split Todos": {
+      "main": [[{"node": "Create Todo", "type": "main", "index": 0}]]
+    },
+    "Create Todo": {
+      "main": [[{"node": "Create Log Entry", "type": "main", "index": 0}]]
+    },
+    "Create Log Entry": {
+      "main": [[{"node": "Send Update Confirmation", "type": "main", "index": 0}]]
+    },
+    "Format Ask Message": {
+      "main": [[{"node": "Send Ask Options", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "timeSavedPerExecution": 30
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 1,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}
