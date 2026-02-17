@@ -4,15 +4,8 @@
 *.zip
 node_modules/
 
-# Claude Code config (contient des chemins locaux et credentials dans CLAUDE.md)
+# Claude Code config (contient des chemins locaux et credentials)
 CLAUDE.md
-
-# Docs originales (déplacées dans docs/ en version sanitized)
-NOTION_SETUP.md
-
-# Private strategy docs (copies dans .private/)
-posts_linkedin/STRATEGIE_POSTS.md
-posts_linkedin/*.docx
 
 # Original workflows with real credentials
 silliard-thomas-workflows/

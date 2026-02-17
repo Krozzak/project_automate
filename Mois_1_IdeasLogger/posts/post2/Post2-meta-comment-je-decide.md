@@ -2,7 +2,16 @@
 **Type** : MÉTA / BUILD IN PUBLIC
 **Sous-thème** : Discipline, Simplicité
 **Projet** : Logger d'idées
-**Visuel** : Aucun
+**Visuel** : 1 iconographie (score ICE)
+
+## Key takeaways
+
+1. Capturer c'est bien, mais prioriser c'est le vrai sujet
+2. Le score ICE (Impact x Clarté x Facilité) permet de trier sans choisir au feeling
+3. L'IA évalue, toi tu décris — séparation des rôles
+
+**Concept présenté** : Score ICE (Sean Ellis, Growth Hacking — Dropbox, Eventbrite)
+**Niveau de complexité** : Simple (accessible à tous)
 
 ---
 
@@ -55,6 +64,23 @@ Et vous, comment vous décidez sur quoi avancer en premier ?
 
 ---
 
-## Notes
-- Pas de visuel nécessaire (post MÉTA)
-- Publication prévue : lundi 8h30
+## Images publiées (carousel LinkedIn)
+
+| Slide | Fichier | Description | Rôle |
+|-------|---------|-------------|------|
+| 1 | `ICE.png` | Infographie "Comment prioriser les idées efficacement" — formule ICE = Impact x Clarté x (6-Difficulté) avec icônes (graphique, ampoule, montagne). Fond clair. | Illustre le concept central du post |
+
+**Note** : image en fond clair, pas dans la charte dark mode. A refaire en dark mode pour les prochains posts.
+
+## Tracking publication
+
+| Champ | Valeur |
+|-------|--------|
+| Date publication | *à remplir* |
+| Heure publication | *à remplir* |
+| Impressions (J+7) | *à remplir* |
+| Likes (J+7) | *à remplir* |
+| Commentaires (J+7) | *à remplir* |
+| Partages (J+7) | *à remplir* |
+| Clics (J+7) | *à remplir* |
+| Notes / observations | *à remplir* |

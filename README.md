@@ -8,40 +8,30 @@ Je perds du temps sur des tâches que je pourrais automatiser. Plutôt que de co
 
 Pas de tuto. Pas de gourou. Juste un builder qui montre ce qu'il construit et ce que ça change.
 
-## Architecture
+## Structure
+
+Chaque mois = un projet d'automatisation. Tout est regroupé par mois : les posts LinkedIn, le workflow n8n, et la documentation technique.
 
 ```
-Telegram (voix ou texte)
-       ↓
-  Transcription (Whisper, si vocal)
-       ↓
-  Analyse GPT (classification, extraction)
-       ↓
-  Notion (stockage structuré)
-       ↓
-  Confirmation Telegram
+Mois_1_IdeasLogger/
+├── posts/          ← 4 posts LinkedIn (texte + images)
+├── workflow/       ← Workflow n8n importable
+└── docs/           ← Architecture, setup Notion
+
+Mois_2_TodoManager/
+├── posts/
+├── workflow/
+└── docs/
 ```
 
-## Workflows disponibles
+## Automatisations disponibles
 
-| Workflow | Description | Standalone |
-|----------|-------------|:----------:|
-| [Ideas Logger](workflows/ideas-logger/) | Capture vocale/texte d'idées → Notion, détection update vs nouvelle idée, todos, logs | oui |
-| [Todo Manager](workflows/todo-manager/) | Transforme une idée en tâches actionnables avec métadonnées (durée, énergie, contexte) | oui |
-| [Smart Router](workflows/smart-router/) | Orchestrateur : décompose un message en actions et dispatch vers les autres workflows | requiert les 2 autres |
+| Mois | Projet | Description |
+|------|--------|-------------|
+| 1 | [Ideas Logger](Mois_1_IdeasLogger/) | Capture vocale/texte d'idées → Notion, détection update vs nouvelle idée |
+| 2 | [Todo Manager](Mois_2_TodoManager/) | Transforme une idée en tâches actionnables avec métadonnées |
 
 Chaque workflow est **importable directement dans n8n**. Il suffit de configurer vos propres credentials.
-
-D'autres automatisations arrivent chaque mois — chaque dossier dans [`workflows/`](workflows/) correspond à une automatisation avec son README et ses exemples.
-
-## Posts LinkedIn
-
-Les posts sont dans [`posts_linkedin/`](posts_linkedin/). Organisés par mois, chaque mois correspond à un projet d'automatisation.
-
-| Mois | Projet | Posts |
-|------|--------|-------|
-| 1 | Logger d'idées vocal | 4 posts (automatisation, réflexion, retour d'expérience, méta) |
-| 2 | Todo Manager + Router | 4 posts (en cours) |
 
 ## Comment utiliser un workflow
 
@@ -54,13 +44,12 @@ Les posts sont dans [`posts_linkedin/`](posts_linkedin/). Organisés par mois, c
    - `YOUR_TODOS_DATABASE_ID` → l'ID de votre base Notion "Todos"
    - `YOUR_LOGS_DATABASE_ID` → l'ID de votre base Notion "Logs"
    - `YOUR_TELEGRAM_USER_ID` → votre Telegram user ID
-3. **Configurer Notion** : Voir [docs/NOTION_SETUP.md](docs/NOTION_SETUP.md) pour la structure des bases
+3. **Configurer Notion** : Voir le dossier `docs/` du mois correspondant pour la structure des bases
 4. **Activer** le workflow et envoyer un message à votre bot Telegram
 
-## Documentation
+## Ligne éditoriale
 
-- [Architecture technique](docs/ARCHITECTURE.md) — schémas, data flow, tech stack
-- [Configuration Notion](docs/NOTION_SETUP.md) — structure des bases de données
+Voir [EDITORIAL.md](EDITORIAL.md) pour la charte graphique, les types de posts et le rythme de publication.
 
 ## Licence
 
