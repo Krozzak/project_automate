@@ -1,4 +1,5 @@
 # POST 4 — MOIS 1, SEMAINE 4
+
 **Type** : RÉFLEXION
 **Sous-thème** : Discipline, Friction
 **Projet** : Logger d'idées
@@ -7,68 +8,61 @@
 ## Key takeaways
 
 1. La volonté est un budget quotidien — chaque micro-décision le consomme
-2. La solution c'est pas "forcer plus", c'est décider moins — déléguer les choix répétitifs à un cadre
-3. Un système imparfait qui tourne > une méthode parfaite qu'on relance
+2. Le levier c'est pas de forcer plus, c'est de décider moins — déléguer les choix répétitifs à un cadre
 
 **Concept présenté** : Ego Depletion (Roy Baumeister, 1998) — la volonté comme ressource limitée
 **Niveau de complexité** : Intermédiaire (concept de psychologie cognitive, moins connu que la loi de Gall)
 
-## Post LinkedIn (DRAFT v2)
+## Post LinkedIn (DRAFT v7 — révisé le 2026-02-22)
 
-On surévalue la discipline.
+La discipline, c'est surfait.
 
-"Il suffit de s'y tenir."
-"C'est une question de volonté."
-"Fais-toi un planning et respecte-le."
+En vrai, chaque décision qu'on prend dans la journée
+puise dans le même budget.
 
-Sauf que la volonté, c'est un budget.
+Roy Baumeister, chercheur en psychologie, a nommé ça
+l'ego depletion dès 1998 :
+la volonté est une ressource limitée. 🔋
 
-Un psychologue, Roy Baumeister, a montré ça dès 1998.
-Il appelle ça l'ego depletion :
-chaque décision que tu prends dans la journée puise dans la même réserve.
+Le problème, c'est pas les grosses décisions.
+C'est les centaines de micro-choix invisibles :
 
-Où je range ça.
+Où je range cette idée.
 Par quoi je commence.
-Est-ce que c'est urgent.
-Est-ce que je fais ça maintenant ou plus tard.
+Est-ce que c'est urgent ou pas.
 
-Des micro-choix. Invisibles.
-Mais à 17h, le budget est à zéro.
+À 17h, le budget est à zéro.
+Et on se dit qu'on a "manqué de discipline".
 
-Et là, tu te dis que t'as "manqué de discipline".
-Alors que t'as juste pris 200 décisions inutiles
-avant celle qui comptait.
+Alors qu'on a juste dépensé toute son énergie
+sur des trucs qui ne méritaient pas qu'on y réfléchisse. 😮‍💨
 
-Le problème, c'est pas le manque de volonté.
-C'est que la volonté est gaspillée sur des trucs
-qui ne méritent pas qu'on y réfléchisse.
+Et c'est là que ça devient vicieux :
+fatigué, on prend de mauvaises décisions.
+On lâche sa méthode. On procrastine.
+Pas par flemme — par épuisement décisionnel.
 
-Le vrai levier, c'est pas de forcer plus.
-C'est de décider moins.
+Du coup j'ai arrêté d'essayer de forcer.
+J'ai commencé à construire des cadres
+qui absorbent ces micro-décisions à ma place :
 
-Supprimer les choix qui reviennent chaque jour.
-Pas avec plus de rigueur.
-Avec un cadre qui décide à ta place
-sur les trucs qui n'ont pas besoin de toi.
+💡 Une idée me vient → je la dicte → elle est rangée, classée, scorée
+📋 Le matin → mes tâches sont déjà triées par priorité et énergie
+📬 Trier ses mails → mes courriels sont triés et étiquetés.
+🍽️ On mange quoi ce soir ? → un système qui propose un menu basé sur les courses de la semaine
+💸 Avant un achat impulsif → un bot me pose 3 questions avant de valider
 
-Où je note ça ? Le cadre le sait.
-Dans quel ordre ? Le cadre le sait.
-C'est quoi la prochaine étape ? Déjà prête.
+Un bon système ne fatigue pas.
+Il te permet d'aller plus loin.
 
-Un cadre imparfait qui tourne depuis un mois,
-c'est toujours mieux qu'une méthode parfaite
-qu'on relance tous les lundis.
+Et surtout, d'être encore lucide le soir
+pour les décisions qui comptent vraiment.
 
-La discipline ne scale pas.
-Les systèmes, oui.
+C'est quoi la vôtre ?
+La micro-décision que vous prenez tous les jours
+et qui ne devrait plus exister ?
 
-Et le mois prochain, je vous montre
-comment ce cadre transforme une idée
-en actions concrètes, sans que j'aie à y penser.
-
-Est-ce que vous avez déjà abandonné une méthode d'organisation
-non pas parce qu'elle était mauvaise,
-mais parce qu'elle demandait trop d'efforts pour être maintenue ?
+Si ça se trouve, c'est mon prochain projet. 👇
 
 ---
 
@@ -113,7 +107,7 @@ STYLE :
 
 ## Notes
 
-- Transition vers Mois 2 (Todo Manager)
+- Pas de transition/teasing vers le mois 2 (conforme ligne éditoriale : pas de CTA)
 - Concept sourcé : Ego Depletion (Roy Baumeister, 1998) — fiche dans `.private/notes/Ego_depletion_volonte_limitee.md`
 - **Nuance importante** : on dit "budget" mais PAS "pas un muscle". Des études (Muraven 1999, 2010) montrent qu'on peut muscler la volonté. Dweck (2010) montre même que l'ego depletion ne touche que ceux qui y croient. Fiche complète : `.private/notes/Volonte_muscle_entrainement.md`
 - Dans ce post on se concentre sur l'aspect "économiser l'énergie décisionnelle", pas sur le renforcement
@@ -123,11 +117,76 @@ STYLE :
 
 | Champ | Valeur |
 |-------|--------|
-| Date publication | *à remplir* |
-| Heure publication | *à remplir* |
+| Date publication | Lundi 23/02/2026 |
+| Heure publication | 08:30 |
 | Impressions (J+7) | *à remplir* |
 | Likes (J+7) | *à remplir* |
 | Commentaires (J+7) | *à remplir* |
 | Partages (J+7) | *à remplir* |
 | Clics (J+7) | *à remplir* |
 | Notes / observations | *à remplir* |
+
+## Historique de rédaction (v2 → v6)
+
+### v2 (draft initial)
+
+- Structure classique : concept → expérience perso → conclusion
+- Accroche : 3 citations ("Il suffit de s'y tenir", "C'est une question de volonté"...)
+- 3 takeaways (trop, message dilué)
+- Teasing explicite du mois 2 en conclusion ("le mois prochain je vous montre...")
+- Question finale passive ("Vous avez déjà abandonné une méthode d'organisation...") → pas de raison de commenter
+- Tout le post parlait de l'Ideas Logger uniquement
+
+### v3 — Alignement nouvelle stratégie éditoriale (2026-02-22)
+
+- **Accroche resserrée** : "La discipline, c'est surfait." (1 ligne percutante au lieu de 3 citations)
+- **2 takeaways max** (règle ligne éditoriale)
+- **Résultat concret ajouté** : "40+ idées capturées" (stratégie "Résultat > Process")
+- **Teasing mois 2 supprimé** (pas de CTA, conforme ligne éditoriale)
+- **Tutoiement → "on"** (plus inclusif, moins professoral)
+
+### v4 — Orientation engagement / build with audience
+
+- **Question finale transformée** : de passive ("vous avez déjà...") à active ("c'est quoi la vôtre ?")
+- Ajout de 3 exemples génériques (mails, tâches, projets) pour inspirer les réponses
+- Objectif : récupérer des use cases réels dans les commentaires
+
+### v5 — Exemples + emojis
+
+- **Emojis ajoutés** (6 au total) pour rythmer la lecture
+- **Sourcing naturalisé** : "Roy Baumeister, chercheur en psychologie" au lieu de "Un psychologue, Roy Baumeister"
+- **Structure inversée** : le problème posé AVANT les exemples de micro-choix (meilleur flow)
+- **Résultat émotionnel** : "énergie en fin de journée" > "40+ idées" (émotion > chiffre)
+
+### v6 — Diversification des exemples (version finale)
+
+- **Suppression du doublon Ideas Logger** : le post 1, 2 et 3 en parlaient déjà
+- **4 exemples concrets de MES automatisations** au lieu d'1 seul :
+  - 💡 Ideas Logger (idées dictées → rangées)
+  - 📋 Todo Manager (tâches triées par priorité et énergie)
+  - 🎯 Smart Focus (une seule tâche visible)
+  - 💸 Should I Buy It (bot anti-achat impulsif)
+- **Teasing implicite** des futurs projets sans les nommer → curiosité naturelle
+- Les exemples génériques (mails, tâches, projets) supprimés car remplacés par des vrais
+
+### v7 — Ajout du "why" (version finale)
+
+- **Conséquence ajoutée** : "fatigué, on prend de mauvaises décisions. On lâche sa méthode." → le cercle vicieux
+- **Phrase de punch** : "Un bon système ne fatigue pas. Il te permet d'aller plus loin."
+- Le post explique maintenant : le mécanisme (ego depletion) → la conséquence (on lâche) → la solution (cadres) → le résultat (lucidité)
+- Accepté de dépasser la règle des 2 takeaways car le "why" renforce le message sans le diluer
+
+### Décisions éditoriales clés
+
+- **Max 2 points par post** appliqué (vs 3 en v2)
+- **Pas de CTA** : pas de teasing mois 2, pas de "suivez-moi", pas de lien
+- **Build with audience** : question finale conçue pour récupérer des commentaires = use cases pour futurs posts
+- **Concept sert le projet** : Ego Depletion justifie pourquoi automatiser (économiser la volonté)
+- **Nuance Ego Depletion non mentionnée dans le post** : concept controversé mais valide comme modèle mental vécu
+
+### Techniques testées (à comparer avec les stats J+7)
+
+- **Accroche polarisante** : "La discipline, c'est surfait." — volontairement provocant, on ne le pense pas littéralement. Objectif : créer une tension qui force à lire la suite. Premier test de cette technique → comparer engagement vs posts 1-3 (accroches descriptives)
+- **Phrase punch** : "Un bon système ne fatigue pas. Il te permet d'aller plus loin." — premier test
+- **"Why" explicite** : cercle vicieux fatigue → mauvaises décisions → on lâche — premier test
+- **Question d'engagement active** : "C'est quoi la vôtre ?" avec exemples concrets pour inspirer — premier test
