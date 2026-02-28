@@ -84,11 +84,11 @@ parce que tout a été généré d'un coup ?
 
 | Champ | Valeur |
 |-------|--------|
-| Date publication | Lundi 17 février 2026 |
-| Heure publication | 08:30 (programmé) |
-| Impressions (J+7) | *à remplir le 24/02* |
-| Likes (J+7) | *à remplir le 24/02* |
-| Commentaires (J+7) | *à remplir le 24/02* |
-| Partages (J+7) | *à remplir le 24/02* |
-| Clics (J+7) | *à remplir le 24/02* |
-| Notes / observations | *à remplir* |
+| Date publication | Lundi 17/02/2026 |
+| Heure publication | 08:30 |
+| Impressions (J+11) | 300 |
+| Réactions (J+11) | 4 |
+| Commentaires (J+11) | 0 |
+| Membres touchés (J+11) | 150 |
+| Enregistrements (J+11) | 1 |
+| Notes / observations | Stats au 28/02 (J+11 seulement — post encore récent). Carousel 3 slides avec annotations. Accroche avec ⚡ émoji. |

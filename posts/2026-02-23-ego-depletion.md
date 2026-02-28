@@ -119,12 +119,12 @@ STYLE :
 |-------|--------|
 | Date publication | Lundi 23/02/2026 |
 | Heure publication | 08:30 |
-| Impressions (J+7) | *à remplir* |
-| Likes (J+7) | *à remplir* |
-| Commentaires (J+7) | *à remplir* |
-| Partages (J+7) | *à remplir* |
-| Clics (J+7) | *à remplir* |
-| Notes / observations | *à remplir* |
+| Impressions (J+5) | 187 |
+| Réactions (J+5) | 4 |
+| Commentaires (J+5) | 0 |
+| Membres touchés (J+5) | 105 |
+| Enregistrements (J+5) | 0 |
+| Notes / observations | Stats au 28/02 (J+5 seulement — post très récent). Accroche polarisante "La discipline, c'est surfait." — premier test de cette technique. |
 
 ## Historique de rédaction (v2 → v6)
 

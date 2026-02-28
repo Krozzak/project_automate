@@ -85,11 +85,11 @@ ou est-ce que vous avez déjà un système qui tient la route ?
 
 | Champ | Valeur |
 |-------|--------|
-| Date publication | *à remplir* |
-| Heure publication | *à remplir* |
-| Impressions (J+7) | *à remplir* |
-| Likes (J+7) | *à remplir* |
-| Commentaires (J+7) | *à remplir* |
-| Partages (J+7) | *à remplir* |
-| Clics (J+7) | *à remplir* |
-| Notes / observations | *à remplir* |
+| Date publication | Lundi 03/02/2026 |
+| Heure publication | 08:30 |
+| Impressions (J+28) | 772 |
+| Réactions (J+28) | 18 |
+| Commentaires (J+28) | 2 |
+| Membres touchés (J+28) | 358 |
+| Enregistrements (J+28) | 1 |
+| Notes / observations | Meilleur post du mois en volume. Accroche descriptive (pas polarisante). Carousel 3 slides. |
