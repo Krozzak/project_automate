@@ -1,3 +1,16 @@
+---
+title: "Pourquoi je ne cherche pas la viralité"
+slug: "2026-04-10-pas-de-viralite"
+type: RÉFLEXION
+projet: LinkedIn Auto
+status: Brouillon
+planned_date: "2026-04-10"
+slot: Jeudi
+concept: "Goodhart's Law"
+concept_level: Simple
+tags: [Discipline, Simplicité]
+---
+
 # Post 4.2 — Pourquoi je ne cherche pas la viralité
 
 ## Metadata

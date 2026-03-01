@@ -1,3 +1,16 @@
+---
+title: "Retour sur le Todo Manager — premiers usages"
+slug: "2026-03-20-retour-todo-manager"
+type: RETOUR_EXP
+projet: Todo Manager
+status: Brouillon
+planned_date: "2026-03-20"
+slot: Jeudi
+concept: ""
+concept_level: Simple
+tags: [IA pragmatique, Simplicité]
+---
+
 # POST 3 — MOIS 2, SEMAINE 3
 **Type** : RETOUR D'EXPÉRIENCE
 **Sous-thème** : IA pragmatique, Simplicité

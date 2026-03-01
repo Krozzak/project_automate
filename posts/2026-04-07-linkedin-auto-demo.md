@@ -1,3 +1,16 @@
+---
+title: "J'ai automatisé la publication (pas l'écriture)"
+slug: "2026-04-07-linkedin-auto-demo"
+type: AUTOMATISATION
+projet: LinkedIn Auto
+status: Brouillon
+planned_date: "2026-04-07"
+slot: Lundi
+concept: ""
+concept_level: Simple
+tags: [Friction, Discipline]
+---
+
 # Post 4.1 — J'ai automatisé la publication (pas l'écriture)
 
 ## Metadata

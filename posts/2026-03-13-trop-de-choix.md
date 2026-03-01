@@ -1,3 +1,16 @@
+---
+title: "Trop de choix tue l'action"
+slug: "2026-03-13-trop-de-choix"
+type: RÉFLEXION
+projet: Smart Focus
+status: Squelette
+planned_date: "2026-03-13"
+slot: Jeudi
+concept: "Choice Overload"
+concept_level: Simple
+tags: [Focus, Charge mentale]
+---
+
 # POST 2 — MOIS 3, SEMAINE 2 — Trop de choix tue l'action
 
 **Type** : REFLEXION

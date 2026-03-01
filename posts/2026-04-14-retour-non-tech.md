@@ -1,3 +1,16 @@
+---
+title: "Ce que les non-tech pensent impossible"
+slug: "2026-04-14-retour-non-tech"
+type: RETOUR_EXP
+projet: LinkedIn Auto
+status: Brouillon
+planned_date: "2026-04-14"
+slot: Lundi
+concept: "Curse of Knowledge"
+concept_level: Simple
+tags: [IA pragmatique, Simplicité]
+---
+
 # Post 4.3 — Ce que les non-tech pensent impossible
 
 ## Metadata

@@ -1,3 +1,16 @@
+---
+title: "La discipline c'est surfait. La vraie question c'est : combien ça coûte ?"
+slug: "2026-02-23-ego-depletion"
+type: RÉFLEXION
+projet: Ideas Logger
+status: Publié
+planned_date: "2026-02-23"
+slot: Lundi
+concept: "Ego Depletion"
+concept_level: Intermédiaire
+tags: [Discipline, Friction]
+---
+
 # POST 4 — MOIS 1, SEMAINE 4
 
 **Type** : RÉFLEXION

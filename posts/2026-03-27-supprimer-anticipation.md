@@ -1,3 +1,16 @@
+---
+title: "Supprimer l'anticipation (Tunneling Effect)"
+slug: "2026-03-27-supprimer-anticipation"
+type: VISION
+projet: Smart Focus
+status: Squelette
+planned_date: "2026-03-27"
+slot: Jeudi
+concept: "Tunneling Effect"
+concept_level: Intermédiaire
+tags: [Focus, Charge mentale]
+---
+
 # POST 4 — MOIS 3, SEMAINE 4 — Supprimer l'anticipation
 
 **Type** : VISION

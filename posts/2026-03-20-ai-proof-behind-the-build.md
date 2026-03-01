@@ -1,3 +1,16 @@
+---
+title: "AI-Proof Job Scanner — behind the build"
+slug: "2026-03-20-ai-proof-behind-the-build"
+type: RETOUR_EXP
+projet: AI-Proof Job Scanner
+status: Squelette
+planned_date: "2026-03-20"
+slot: Jeudi
+concept: "Build in public"
+concept_level: Simple
+tags: [IA pragmatique]
+---
+
 # Post 2 — Behind the build
 
 **Type** : RETOUR D'EXPÉRIENCE

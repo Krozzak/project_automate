@@ -1,3 +1,16 @@
+---
+title: "Smart Focus — retour d'expérience (23 minutes pour revenir)"
+slug: "2026-03-24-smart-focus-retour"
+type: RETOUR_EXP
+projet: Smart Focus
+status: Squelette
+planned_date: "2026-03-24"
+slot: Lundi
+concept: "Context Switching Cost"
+concept_level: Simple
+tags: [Focus, Charge mentale]
+---
+
 # POST 3 — MOIS 3, SEMAINE 3 — 23 minutes pour revenir
 
 **Type** : RETOUR D'EXPERIENCE

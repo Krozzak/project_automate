@@ -1,3 +1,16 @@
+---
+title: "L'IA génère vite, et c'est le piège (loi de Gall)"
+slug: "2026-02-17-loi-de-gall"
+type: RETOUR_EXP
+projet: Ideas Logger
+status: Publié
+planned_date: "2026-02-17"
+slot: Lundi
+concept: "Loi de Gall"
+concept_level: Simple
+tags: [IA pragmatique, Simplicité]
+---
+
 # POST 3 — MOIS 1, SEMAINE 3 — L'IA génère vite, et c'est le piège (loi de Gall)
 
 **Type** : RETOUR D'EXPÉRIENCE

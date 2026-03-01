@@ -1,3 +1,16 @@
+---
+title: "Mon workflow de publication avec Claude Code"
+slug: "2026-04-28-workflow-publication-claude-code"
+type: MÉTA
+projet: LinkedIn Auto
+status: Squelette
+planned_date: "2026-04-28"
+slot: Lundi
+concept: ""
+concept_level: Intermédiaire
+tags: [Friction, Discipline]
+---
+
 # 2026-04-28 — Mon workflow de publication avec Claude Code
 
 **Type** : MÉTA / BUILD IN PUBLIC

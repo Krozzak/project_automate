@@ -1,3 +1,16 @@
+---
+title: "Un système qui pense pour toi (transition Smart Focus)"
+slug: "2026-03-27-systeme-qui-pense"
+type: MÉTA
+projet: Todo Manager
+status: Brouillon
+planned_date: "2026-03-27"
+slot: Jeudi
+concept: ""
+concept_level: Simple
+tags: [IA pragmatique, Discipline]
+---
+
 # POST 4 — MOIS 2, SEMAINE 4
 **Type** : MÉTA / BUILD IN PUBLIC
 **Sous-thème** : IA pragmatique, Discipline

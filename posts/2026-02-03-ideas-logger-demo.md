@@ -1,3 +1,16 @@
+---
+title: "Mon système capture mes idées pendant que je parle"
+slug: "2026-02-03-ideas-logger-demo"
+type: AUTOMATISATION
+projet: Ideas Logger
+status: Publié
+planned_date: "2026-02-03"
+slot: Lundi
+concept: ""
+concept_level: Simple
+tags: [Capture d'idées, Voice-to-Notion]
+---
+
 # POST 1 — MOIS 1, SEMAINE 1 — Mon système capture mes idées pendant que je parle
 
 **Type** : AUTOMATISATION

@@ -1,3 +1,16 @@
+---
+title: "Publier pour apprendre : chaque post me force à sourcer ce que je crois savoir"
+slug: "2026-04-17-publier-pour-apprendre"
+type: MÉTA
+projet: LinkedIn Auto
+status: Brouillon
+planned_date: "2026-04-17"
+slot: Jeudi
+concept: "Feynman Technique"
+concept_level: Simple
+tags: [Discipline, IA pragmatique]
+---
+
 # Post 4.4 — Publier pour apprendre : chaque post me force à sourcer ce que je crois savoir
 
 ## Metadata
