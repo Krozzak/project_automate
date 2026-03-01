@@ -36,11 +36,14 @@
 
 ### 5. Status
 - **Type** : Status
-- **Options** :
-  - Brouillon (gris)
-  - Prêt (vert)
-  - Publié (bleu)
-  - Archivé (rouge)
+- **Options** (dans l'ordre du cycle de vie) :
+  - Idée (gris clair) — titre défini, pas encore écrit
+  - Squelette (gris) — structure en place, texte à rédiger
+  - Brouillon (orange) — texte rédigé, pas finalisé
+  - Prêt (vert) — texte + images finalisés, prêt à programmer
+  - Programmé (bleu clair) — programmé sur LinkedIn
+  - Publié (bleu) — en ligne, tracking en cours
+  - Archivé (rouge) — abandonné ou archivé
 
 ### 6. PlannedDate
 - **Type** : Date
@@ -116,6 +119,26 @@
 - **Options** : Focus, Charge mentale, IA pragmatique, Simplicité, Discipline, Friction, Éthique IA
 - Sous-thèmes du post
 
+### 21. Projet
+- **Type** : Select
+- **Options** :
+  - Ideas Logger
+  - Todo Manager
+  - Smart Focus
+  - LinkedIn Auto
+  - AI-Proof Job Scanner
+  - No Confort Zone
+  - Should I Buy It
+  - Memory Logger
+  - Finance Suite
+  - Autre
+- Projet auquel le post est rattaché
+
+### 22. Slot
+- **Type** : Select
+- **Options** : Lundi, Jeudi
+- Créneau de publication (Lundi 08:30 = AUTO, Jeudi 08:30 = RÉFLEXION)
+
 ## Créer les vues
 
 ### Vue 1 — Calendrier (par défaut)
@@ -142,7 +165,19 @@
 3. **Filtrer** :
    - Status is Prêt
 4. **Trier par** : PlannedDate (croissant)
-5. **Afficher** : Titre, PlannedDate, Content (pour vérifier le texte)
+5. **Afficher** : Titre, PlannedDate, Slot, Content (pour vérifier le texte)
+
+### Vue 4 — Par semaine
+
+1. Nouvelle vue → Timeline (ou Table si Timeline non dispo)
+2. Nom : **Par semaine**
+3. **Grouper par** : PlannedDate (semaine)
+4. **Trier par** : PlannedDate (croissant)
+5. **Filtrer** : Status is not Archivé
+6. **Afficher** : Titre, Slot, Status, Projet, Type
+7. Cette vue montre d'un coup d'œil combien de semaines d'avance tu as (buffer)
+
+> **Note** : Dans Notion, la vue Timeline groupe automatiquement par semaine si tu sélectionnes "Week" dans les options de la timeline. Si tu préfères une Table, groupe par `Semaine` (select S1/S2...) et trie par `PlannedDate`.
 
 ## Remplir les posts du Mois 4
 
@@ -234,11 +269,34 @@
 3. Passer le Status à "Prêt" quand le post est finalisé
 4. Le workflow Publisher se déclenche automatiquement le lundi
 
-### Workflow automatisé (futur)
+### Workflow avec commande Claude Code
 
-Possibilité d'ajouter un workflow qui :
-- Lit les fichiers `.md` dans le dossier `Mois_X/posts/`
-- Crée ou met à jour automatiquement les entrées Notion
-- Synchronise le contenu entre les fichiers et Notion
+La commande `/sync-notion` (`.claude/commands/sync-notion.md`) lit tous les fichiers `.md` dans `posts/`,
+extrait le frontmatter YAML de chaque post, et génère un tableau récapitulatif à utiliser
+pour créer/vérifier les entrées Notion.
 
-→ V2, pas prioritaire pour l'instant
+**Quand l'utiliser** :
+- Après avoir rédigé ou modifié un post (pour vérifier que Notion est à jour)
+- Pour avoir une vue d'ensemble du buffer courant
+- Pour préparer une entrée Notion à créer manuellement
+
+**Format du frontmatter YAML** (dans chaque fichier `posts/*.md`) :
+
+```yaml
+---
+title: "Titre du post"
+slug: "2026-04-07-linkedin-auto-demo"
+type: AUTOMATISATION
+projet: LinkedIn Auto
+status: Brouillon
+planned_date: "2026-04-07"
+slot: Lundi
+concept: "Goodhart's Law"
+concept_level: Simple
+tags: [Friction, Discipline]
+---
+```
+
+**Source de vérité** : les fichiers `.md` sont la source de vérité. Notion reflète leur contenu.
+Les seules données qui vont dans Notion uniquement (pas dans les `.md`) sont les stats LinkedIn
+(Impressions, Likes, etc.) récupérées automatiquement par le workflow Stats Collector.
