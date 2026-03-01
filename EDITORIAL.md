@@ -75,6 +75,32 @@ STYLE :
 | 1.3 | Loi de Gall | John Gall, 1975 | Simple |
 | 1.4 | Ego Depletion | Roy Baumeister, 1998 | Intermédiaire |
 
+## Frontmatter YAML — obligatoire dans chaque post
+
+Chaque fichier `.md` dans `posts/` commence par un bloc YAML. C'est la source de données
+du Work Profile Analyzer — rempli **avant** de publier, mis à jour à J+7 pour les stats.
+
+```yaml
+---
+date: YYYY-MM-DD
+projet: nom-du-projet          # slug kebab-case (ex: smart-focus, ideas-logger)
+version: vX                    # version du projet au moment du post
+type: demo | reflexion | retour-experience | meta
+temps_redaction: Xh Ym         # durée totale de rédaction + révisions
+energie_redaction: N/10        # ton niveau d'énergie pendant la rédaction (1-10)
+angle_initial: "..."           # ce que tu voulais dire quand tu as commencé
+angle_final: "..."             # ce que le post dit vraiment une fois terminé
+impressions: 0                 # à remplir à J+7
+reactions: 0                   # à remplir à J+7
+commentaires: 0                # à remplir à J+7
+note_perso: "..."              # ce qui a bien marché / ce que tu referais différemment
+---
+```
+
+**Pourquoi `angle_initial` vs `angle_final` ?** Capturer les pivots de réflexion pour
+éviter de tourner en rond sur les prochains posts — on voit quel angle finit toujours
+par l'emporter.
+
 ## Tracking de performance
 
 Chaque post inclut une section "Tracking publication" avec :
