@@ -12,10 +12,7 @@
       },
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.2,
-      "position": [
-        0,
-        0
-      ],
+      "position": [-400, 0],
       "id": "telegram-trigger",
       "name": "Telegram Trigger",
       "webhookId": "YOUR_WEBHOOK_ID",
@@ -27,78 +24,53 @@
       }
     },
     {
+      "parameters": {},
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [-400, 200],
+      "id": "workflow-trigger",
+      "name": "Execute Workflow Trigger"
+    },
+    {
       "parameters": {
         "rules": {
           "values": [
             {
               "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 3
-                },
+                "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
                 "conditions": [
                   {
                     "id": "voice-check",
-                    "leftValue": "={{$json.message.voice ? \"voice\" : \"other\"}}",
+                    "leftValue": "={{ $json.message.voice ? \"voice\" : \"other\" }}",
                     "rightValue": "voice",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
+                    "operator": {"type": "string", "operation": "equals"}
                   }
                 ],
                 "combinator": "and"
-              }
-            },
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 3
-                },
-                "conditions": [
-                  {
-                    "id": "text-check",
-                    "leftValue": "={{$json.message.text ? \"text\" : \"other\"}}",
-                    "rightValue": "text",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
-                  }
-                ],
-                "combinator": "and"
-              }
+              },
+              "renameOutput": true,
+              "outputKey": "VOICE"
             }
           ]
         },
-        "options": {}
+        "options": {
+          "fallbackOutput": "extra"
+        }
       },
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
-      "position": [
-        220,
-        0
-      ],
+      "position": [-180, 0],
       "id": "voice-text-switch",
       "name": "Voice/Text Switch"
     },
     {
       "parameters": {
         "resource": "file",
-        "fileId": "={{$json.message.voice.file_id}}",
-        "additionalFields": {}
+        "fileId": "={{ $json.message.voice.file_id }}"
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [
-        440,
-        -100
-      ],
+      "position": [40, -100],
       "id": "get-voice-file",
       "name": "Get Voice File",
       "credentials": {
@@ -112,20 +84,20 @@
       "parameters": {
         "resource": "audio",
         "operation": "transcribe",
-        "options": {}
+        "binaryPropertyName": "data",
+        "options": {
+          "language": "fr"
+        }
       },
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 2.1,
-      "position": [
-        660,
-        -100
-      ],
+      "position": [260, -100],
       "id": "transcribe-voice",
       "name": "Transcribe Voice",
       "credentials": {
         "openAiApi": {
           "id": "YOUR_OPENAI_CREDENTIAL_ID",
-          "name": "OpenAi Ideas Logger"
+          "name": "OpenAI account"
         }
       }
     },
@@ -133,34 +105,16 @@
       "parameters": {
         "assignments": {
           "assignments": [
-            {
-              "id": "transcript",
-              "name": "transcript",
-              "value": "={{$json.text}}",
-              "type": "string"
-            },
-            {
-              "id": "chatId",
-              "name": "chatId",
-              "value": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
-              "type": "number"
-            },
-            {
-              "id": "messageId",
-              "name": "messageId",
-              "value": "={{ $('Telegram Trigger').item.json.message.message_id }}",
-              "type": "number"
-            }
+            {"id": "transcript-voice", "name": "transcript", "value": "={{ $json.text }}", "type": "string"},
+            {"id": "chatid-voice", "name": "chatId", "value": "={{ $('Telegram Trigger').first().json.message.chat.id }}", "type": "string"},
+            {"id": "source-voice", "name": "source", "value": "telegram_voice", "type": "string"}
           ]
         },
         "options": {}
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        880,
-        -100
-      ],
+      "position": [480, -100],
       "id": "edit-fields-voice",
       "name": "Edit Fields (Voice)"
     },
@@ -168,36 +122,45 @@
       "parameters": {
         "assignments": {
           "assignments": [
-            {
-              "id": "transcript",
-              "name": "transcript",
-              "value": "={{$json.message.text}}",
-              "type": "string"
-            },
-            {
-              "id": "chatId",
-              "name": "chatId",
-              "value": "={{ $json.message.chat.id }}",
-              "type": "number"
-            },
-            {
-              "id": "messageId",
-              "name": "messageId",
-              "value": "={{ $json.message.message_id }}",
-              "type": "number"
-            }
+            {"id": "transcript-text", "name": "transcript", "value": "={{ $json.message.text }}", "type": "string"},
+            {"id": "chatid-text", "name": "chatId", "value": "={{ $json.message.chat.id }}", "type": "string"},
+            {"id": "source-text", "name": "source", "value": "telegram_text", "type": "string"}
           ]
         },
         "options": {}
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        660,
-        100
-      ],
+      "position": [40, 100],
       "id": "edit-fields-text",
       "name": "Edit Fields (Text)"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Normalize input from either Telegram path or Execute Workflow path\nlet transcript, chatId, pageId, ideaReference, source;\n\n// Try Execute Workflow Trigger first (Smart Focus / external call path)\ntry {\n  const wfData = $('Execute Workflow Trigger').first().json;\n  if (wfData && (wfData.pageId || wfData.idea_reference || wfData.transcript)) {\n    transcript = wfData.transcript || '';\n    chatId = wfData.chatId || '';\n    pageId = wfData.pageId || null;\n    ideaReference = wfData.idea_reference || '';\n    source = 'execute_workflow';\n  }\n} catch(e) {}\n\n// If no workflow data, use Telegram path (voice or text)\nif (!source) {\n  try {\n    const voiceData = $('Edit Fields (Voice)').first().json;\n    if (voiceData && voiceData.transcript) {\n      transcript = voiceData.transcript;\n      chatId = voiceData.chatId;\n      source = voiceData.source;\n    }\n  } catch(e) {}\n  \n  if (!source) {\n    try {\n      const textData = $('Edit Fields (Text)').first().json;\n      if (textData && textData.transcript) {\n        transcript = textData.transcript;\n        chatId = textData.chatId;\n        source = textData.source;\n      }\n    } catch(e) {}\n  }\n  \n  // Extract idea reference from transcript (e.g. \"todos pour [nom idée]\")\n  ideaReference = '';\n  if (transcript) {\n    const match = transcript.match(/(?:todos?|tâches?|steps?)\\s+(?:pour|de|of)\\s+[\"']?([^\"'\\n]+?)[\"']?\\s*$/i);\n    ideaReference = match ? match[1].trim() : transcript;\n  }\n}\n\nreturn [{ json: { transcript, chatId, pageId, idea_reference: ideaReference, source } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [700, 0],
+      "id": "normalize-input",
+      "name": "Normalize Input"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
+          "conditions": [
+            {"id": "has-pageid", "leftValue": "={{ $json.pageId ? true : false }}", "rightValue": true, "operator": {"type": "boolean", "operation": "equals"}}
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [920, 0],
+      "id": "has-page-id",
+      "name": "Has PageId?"
     },
     {
       "parameters": {
@@ -205,41 +168,34 @@
         "operation": "getAll",
         "databaseId": {
           "__rl": true,
-          "value": "YOUR_IDEAS_DATABASE_ID",
-          "mode": "list",
-          "cachedResultName": "Ideas Logger"
+          "value": "YOUR_IDEAS_NOTION_DB_ID",
+          "mode": "id"
         },
         "returnAll": false,
         "limit": 10,
         "filterType": "string",
-        "filterJson": "={{ JSON.stringify({ filter: { property: 'Title', title: { contains: $json.transcript || '' } } }) }}",
+        "filterJson": "={{ JSON.stringify({ filter: { property: 'Title', title: { contains: $('Normalize Input').first().json.idea_reference || '' } } }) }}",
         "options": {}
       },
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
-      "position": [
-        1100,
-        100
-      ],
+      "position": [1140, 100],
       "id": "search-idea",
       "name": "Search Idea by Title",
       "credentials": {
         "notionApi": {
           "id": "YOUR_NOTION_CREDENTIAL_ID",
-          "name": "Idea Logger"
+          "name": "Notion account"
         }
       }
     },
     {
       "parameters": {
-        "jsCode": "// Handle search results: 0, 1, or N results\nconst results = $input.all();\n\n// Get chatId and transcript from the Edit Fields nodes\nlet chatId, transcript;\ntry {\n  chatId = $('Edit Fields (Voice)').first().json.chatId;\n  transcript = $('Edit Fields (Voice)').first().json.transcript;\n} catch(e) {\n  chatId = $('Edit Fields (Text)').first().json.chatId;\n  transcript = $('Edit Fields (Text)').first().json.transcript;\n}\n\nconst count = results.length;\n\nif (count === 0) {\n  return [{ json: { found: 'none', chatId } }];\n} else if (count === 1) {\n  return [{ json: { found: 'one', pageId: results[0].json.id, chatId } }];\n} else {\n  const ref = (transcript || '').toLowerCase();\n  const exactMatch = results.find(r => {\n    const title = (r.json.property_title || r.json.name || '').toLowerCase();\n    return title === ref;\n  });\n  if (exactMatch) {\n    return [{ json: { found: 'one', pageId: exactMatch.json.id, chatId } }];\n  }\n  const options = results.slice(0, 5).map(r => ({\n    id: r.json.id,\n    title: r.json.property_title || r.json.name || 'Sans titre'\n  }));\n  return [{ json: { found: 'many', options, chatId } }];\n}"
+        "jsCode": "// Handle search results: 0, 1, or N results\nconst results = $input.all();\nconst inputData = $('Normalize Input').first().json;\nconst count = results.length;\n\nif (count === 0) {\n  return [{ json: { found: 'none', chatId: inputData.chatId } }];\n} else if (count === 1) {\n  return [{ json: { found: 'one', pageId: results[0].json.id, chatId: inputData.chatId } }];\n} else {\n  // Multiple results — pick best match or flag ambiguity\n  const ref = (inputData.idea_reference || '').toLowerCase();\n  const exactMatch = results.find(r => {\n    const title = (r.json.property_title || r.json.name || '').toLowerCase();\n    return title === ref;\n  });\n  if (exactMatch) {\n    return [{ json: { found: 'one', pageId: exactMatch.json.id, chatId: inputData.chatId } }];\n  }\n  // Ambiguous\n  const options = results.slice(0, 5).map(r => ({\n    id: r.json.id,\n    title: r.json.property_title || r.json.name || 'Sans titre'\n  }));\n  return [{ json: { found: 'many', options, chatId: inputData.chatId } }];\n}"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [
-        1320,
-        100
-      ],
+      "position": [1360, 100],
       "id": "handle-results",
       "name": "Handle Results"
     },
@@ -249,23 +205,8 @@
           "values": [
             {
               "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 3
-                },
-                "conditions": [
-                  {
-                    "id": "found-one",
-                    "leftValue": "={{ $json.found }}",
-                    "rightValue": "one",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
-                  }
-                ],
+                "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
+                "conditions": [{"id": "found-one", "leftValue": "={{ $json.found }}", "rightValue": "one", "operator": {"type": "string", "operation": "equals"}}],
                 "combinator": "and"
               },
               "renameOutput": true,
@@ -273,23 +214,8 @@
             },
             {
               "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 3
-                },
-                "conditions": [
-                  {
-                    "id": "found-none",
-                    "leftValue": "={{ $json.found }}",
-                    "rightValue": "none",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    }
-                  }
-                ],
+                "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
+                "conditions": [{"id": "found-none", "leftValue": "={{ $json.found }}", "rightValue": "none", "operator": {"type": "string", "operation": "equals"}}],
                 "combinator": "and"
               },
               "renameOutput": true,
@@ -303,10 +229,7 @@
       },
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
-      "position": [
-        1540,
-        100
-      ],
+      "position": [1580, 100],
       "id": "result-switch",
       "name": "Result Switch"
     },
@@ -318,10 +241,7 @@
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [
-        1760,
-        200
-      ],
+      "position": [1800, 200],
       "id": "send-not-found",
       "name": "Send Not Found",
       "credentials": {
@@ -337,10 +257,7 @@
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [
-        1760,
-        300
-      ],
+      "position": [1800, 300],
       "id": "format-ambiguity",
       "name": "Format Ambiguity"
     },
@@ -352,10 +269,7 @@
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [
-        1980,
-        300
-      ],
+      "position": [2020, 300],
       "id": "send-ambiguity",
       "name": "Send Ambiguity",
       "credentials": {
@@ -367,14 +281,11 @@
     },
     {
       "parameters": {
-        "jsCode": "// Merge pageId from search result + transcript/chatId from Edit Fields\nlet chatId, transcript;\ntry {\n  chatId = $('Edit Fields (Voice)').first().json.chatId;\n  transcript = $('Edit Fields (Voice)').first().json.transcript;\n} catch(e) {\n  chatId = $('Edit Fields (Text)').first().json.chatId;\n  transcript = $('Edit Fields (Text)').first().json.transcript;\n}\n\nlet pageId;\ntry {\n  pageId = $('Handle Results').first().json.pageId;\n} catch(e) {}\n\nreturn [{ json: { pageId, chatId, transcript } }];"
+        "jsCode": "// Merge pageId from either direct input or search result\nconst inputData = $('Normalize Input').first().json;\nlet pageId;\n\ntry {\n  pageId = $('Has PageId?').first().json.pageId;\n} catch(e) {}\n\nif (!pageId) {\n  try {\n    pageId = $('Handle Results').first().json.pageId;\n  } catch(e) {}\n}\n\nreturn [{ json: { pageId, chatId: inputData.chatId, transcript: inputData.transcript || '' } }];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [
-        1760,
-        -100
-      ],
+      "position": [1800, -100],
       "id": "merge-page-id",
       "name": "Merge PageId"
     },
@@ -391,16 +302,13 @@
       },
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
-      "position": [
-        1980,
-        -100
-      ],
+      "position": [2020, -100],
       "id": "fetch-full-idea",
       "name": "Fetch Full Idea",
       "credentials": {
         "notionApi": {
           "id": "YOUR_NOTION_CREDENTIAL_ID",
-          "name": "Idea Logger"
+          "name": "Notion account"
         }
       }
     },
@@ -410,9 +318,8 @@
         "operation": "getAll",
         "databaseId": {
           "__rl": true,
-          "value": "YOUR_TODOS_DATABASE_ID",
-          "mode": "list",
-          "cachedResultName": "Todos"
+          "value": "YOUR_TODOS_NOTION_DB_ID",
+          "mode": "id"
         },
         "returnAll": true,
         "filterType": "string",
@@ -421,16 +328,13 @@
       },
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
-      "position": [
-        2200,
-        -100
-      ],
+      "position": [2240, -100],
       "id": "fetch-existing-todos",
       "name": "Fetch Existing Todos",
       "credentials": {
         "notionApi": {
           "id": "YOUR_NOTION_CREDENTIAL_ID",
-          "name": "Idea Logger"
+          "name": "Notion account"
         }
       }
     },
@@ -440,10 +344,7 @@
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [
-        2420,
-        -100
-      ],
+      "position": [2460, -100],
       "id": "format-for-gpt",
       "name": "Format for GPT"
     },
@@ -471,16 +372,13 @@
       },
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 2.1,
-      "position": [
-        2640,
-        -100
-      ],
+      "position": [2680, -100],
       "id": "gpt-todos",
       "name": "GPT Analyze Todos",
       "credentials": {
         "openAiApi": {
           "id": "YOUR_OPENAI_CREDENTIAL_ID",
-          "name": "OpenAi Ideas Logger"
+          "name": "OpenAI account"
         }
       }
     },
@@ -490,32 +388,16 @@
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [
-        2860,
-        -100
-      ],
+      "position": [2900, -100],
       "id": "parse-response",
       "name": "Parse Response"
     },
     {
       "parameters": {
         "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 3
-          },
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
           "conditions": [
-            {
-              "id": "has-enriched",
-              "leftValue": "={{ $json.enriched_todos?.length > 0 }}",
-              "rightValue": true,
-              "operator": {
-                "type": "boolean",
-                "operation": "equals"
-              }
-            }
+            {"id": "has-enriched", "leftValue": "={{ $json.enriched_todos?.length > 0 }}", "rightValue": true, "operator": {"type": "boolean", "operation": "equals"}}
           ],
           "combinator": "and"
         },
@@ -523,10 +405,7 @@
       },
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
-      "position": [
-        3080,
-        -100
-      ],
+      "position": [3120, -100],
       "id": "has-enriched",
       "name": "Has Enriched?"
     },
@@ -536,10 +415,7 @@
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [
-        3300,
-        -200
-      ],
+      "position": [3340, -200],
       "id": "split-enriched",
       "name": "Split Enriched"
     },
@@ -554,64 +430,33 @@
         },
         "propertiesUi": {
           "propertyValues": [
-            {
-              "key": "EstimatedMinutes|number",
-              "numberValue": "={{ $json.estimatedMinutes }}"
-            },
-            {
-              "key": "Context|select",
-              "selectValue": "={{ $json.context }}"
-            },
-            {
-              "key": "EnergyLevel|select",
-              "selectValue": "={{ $json.energyLevel }}"
-            },
-            {
-              "key": "Order|number",
-              "numberValue": "={{ $json.order }}"
-            },
-            {
-              "key": "ValidationCriteria|rich_text",
-              "textContent": "={{ $json.validation }}"
-            }
+            {"key": "EstimatedMinutes|number", "numberValue": "={{ $json.estimatedMinutes }}"},
+            {"key": "Context|select", "selectValue": "={{ $json.context }}"},
+            {"key": "EnergyLevel|select", "selectValue": "={{ $json.energyLevel }}"},
+            {"key": "Order|number", "numberValue": "={{ $json.order }}"},
+            {"key": "ValidationCriteria|rich_text", "textContent": "={{ $json.validation }}"}
           ]
         },
         "options": {}
       },
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
-      "position": [
-        3520,
-        -200
-      ],
+      "position": [3560, -200],
       "id": "update-todo",
       "name": "Update Todo",
       "credentials": {
         "notionApi": {
           "id": "YOUR_NOTION_CREDENTIAL_ID",
-          "name": "Idea Logger"
+          "name": "Notion account"
         }
       }
     },
     {
       "parameters": {
         "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 3
-          },
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 3},
           "conditions": [
-            {
-              "id": "has-new",
-              "leftValue": "={{ $('Parse Response').first().json.new_todos?.length > 0 }}",
-              "rightValue": true,
-              "operator": {
-                "type": "boolean",
-                "operation": "equals"
-              }
-            }
+            {"id": "has-new", "leftValue": "={{ $('Parse Response').first().json.new_todos?.length > 0 }}", "rightValue": true, "operator": {"type": "boolean", "operation": "equals"}}
           ],
           "combinator": "and"
         },
@@ -619,10 +464,7 @@
       },
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
-      "position": [
-        3080,
-        100
-      ],
+      "position": [3120, 100],
       "id": "has-new-todos",
       "name": "Has New Todos?"
     },
@@ -632,10 +474,7 @@
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [
-        3300,
-        100
-      ],
+      "position": [3340, 100],
       "id": "split-new-todos",
       "name": "Split New Todos"
     },
@@ -644,71 +483,35 @@
         "resource": "databasePage",
         "databaseId": {
           "__rl": true,
-          "value": "YOUR_TODOS_DATABASE_ID",
-          "mode": "list",
-          "cachedResultName": "Todos"
+          "value": "YOUR_TODOS_NOTION_DB_ID",
+          "mode": "id"
         },
         "title": "={{ $json.title }}",
         "propertiesUi": {
           "propertyValues": [
-            {
-              "key": "Ideas Logger|relation",
-              "relationValue": [
-                "={{ $json.parentIdeaId }}"
-              ]
-            },
-            {
-              "key": "Status|status",
-              "statusValue": "={{ $json.status }}"
-            },
-            {
-              "key": "Priority|select",
-              "selectValue": "={{ $json.priority }}"
-            },
-            {
-              "key": "EstimatedMinutes|number",
-              "numberValue": "={{ $json.estimatedMinutes }}"
-            },
-            {
-              "key": "Context|select",
-              "selectValue": "={{ $json.context }}"
-            },
-            {
-              "key": "EnergyLevel|select",
-              "selectValue": "={{ $json.energyLevel }}"
-            },
-            {
-              "key": "Order|number",
-              "numberValue": "={{ $json.order }}"
-            },
-            {
-              "key": "ValidationCriteria|rich_text",
-              "textContent": "={{ $json.validation }}"
-            },
-            {
-              "key": "CreatedAt|date",
-              "date": "={{ $json.createdAt }}"
-            },
-            {
-              "key": "Source|select",
-              "selectValue": "={{ $json.source }}"
-            }
+            {"key": "Ideas Logger|relation", "relationValue": ["={{ $json.parentIdeaId }}"]},
+            {"key": "Status|status", "statusValue": "={{ $json.status }}"},
+            {"key": "Priority|select", "selectValue": "={{ $json.priority }}"},
+            {"key": "EstimatedMinutes|number", "numberValue": "={{ $json.estimatedMinutes }}"},
+            {"key": "Context|select", "selectValue": "={{ $json.context }}"},
+            {"key": "EnergyLevel|select", "selectValue": "={{ $json.energyLevel }}"},
+            {"key": "Order|number", "numberValue": "={{ $json.order }}"},
+            {"key": "ValidationCriteria|rich_text", "textContent": "={{ $json.validation }}"},
+            {"key": "CreatedAt|date", "date": "={{ $json.createdAt }}"},
+            {"key": "Source|select", "selectValue": "={{ $json.source }}"}
           ]
         },
         "options": {}
       },
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
-      "position": [
-        3520,
-        100
-      ],
+      "position": [3560, 100],
       "id": "create-todo",
       "name": "Create Todo",
       "credentials": {
         "notionApi": {
           "id": "YOUR_NOTION_CREDENTIAL_ID",
-          "name": "Idea Logger"
+          "name": "Notion account"
         }
       }
     },
@@ -723,30 +526,21 @@
         },
         "propertiesUi": {
           "propertyValues": [
-            {
-              "key": "TimeBucket|select",
-              "selectValue": "={{ $('Parse Response').first().json.suggested_time_bucket }}"
-            },
-            {
-              "key": "LastUpdated|date",
-              "date": "={{ new Date().toISOString() }}"
-            }
+            {"key": "TimeBucket|select", "selectValue": "={{ $('Parse Response').first().json.suggested_time_bucket }}"},
+            {"key": "LastUpdated|date", "date": "={{ new Date().toISOString() }}"}
           ]
         },
         "options": {}
       },
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
-      "position": [
-        3740,
-        0
-      ],
+      "position": [3780, 0],
       "id": "update-idea",
       "name": "Update Idea",
       "credentials": {
         "notionApi": {
           "id": "YOUR_NOTION_CREDENTIAL_ID",
-          "name": "Idea Logger"
+          "name": "Notion account"
         }
       }
     },
@@ -755,51 +549,30 @@
         "resource": "databasePage",
         "databaseId": {
           "__rl": true,
-          "value": "YOUR_LOGS_DATABASE_ID",
-          "mode": "list",
-          "cachedResultName": "Logs"
+          "value": "YOUR_LOGS_NOTION_DB_ID",
+          "mode": "id"
         },
         "title": "=Todos: {{ $('Parse Response').first().json.ideaTitle }}",
         "propertiesUi": {
           "propertyValues": [
-            {
-              "key": "Ideas Logger|relation",
-              "relationValue": [
-                "={{ $('Parse Response').first().json.pageId }}"
-              ]
-            },
-            {
-              "key": "Timestamp|date",
-              "date": "={{ new Date().toISOString() }}"
-            },
-            {
-              "key": "UpdateType|select",
-              "selectValue": "todo_generation"
-            },
-            {
-              "key": "Content|rich_text",
-              "textContent": "=Validation: {{ $('Parse Response').first().json.validation_criteria }}. Enriched: {{ $('Parse Response').first().json.enriched_todos?.length || 0 }}, New: {{ $('Parse Response').first().json.new_todos?.length || 0 }}. Total: {{ $('Parse Response').first().json.total_estimated_minutes }}min"
-            },
-            {
-              "key": "RawTranscript|rich_text",
-              "textContent": "={{ $('Parse Response').first().json.transcript || '' }}"
-            }
+            {"key": "Ideas Logger|relation", "relationValue": ["={{ $('Parse Response').first().json.pageId }}"]},
+            {"key": "Timestamp|date", "date": "={{ new Date().toISOString() }}"},
+            {"key": "UpdateType|select", "selectValue": "todo_generation"},
+            {"key": "Content|rich_text", "textContent": "=Validation: {{ $('Parse Response').first().json.validation_criteria }}. Enriched: {{ $('Parse Response').first().json.enriched_todos?.length || 0 }}, New: {{ $('Parse Response').first().json.new_todos?.length || 0 }}. Total: {{ $('Parse Response').first().json.total_estimated_minutes }}min"},
+            {"key": "RawTranscript|rich_text", "textContent": "={{ $('Parse Response').first().json.transcript || '' }}"}
           ]
         },
         "options": {}
       },
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
-      "position": [
-        3960,
-        0
-      ],
+      "position": [4000, 0],
       "id": "create-log",
       "name": "Create Log",
       "credentials": {
         "notionApi": {
           "id": "YOUR_NOTION_CREDENTIAL_ID",
-          "name": "Idea Logger"
+          "name": "Notion account"
         }
       }
     },
@@ -813,10 +586,7 @@
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [
-        4180,
-        0
-      ],
+      "position": [4220, 0],
       "id": "send-confirmation",
       "name": "Send Confirmation",
       "credentials": {
@@ -829,311 +599,103 @@
   ],
   "connections": {
     "Telegram Trigger": {
-      "main": [
-        [
-          {
-            "node": "Voice/Text Switch",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Voice/Text Switch", "type": "main", "index": 0}]]
+    },
+    "Execute Workflow Trigger": {
+      "main": [[{"node": "Normalize Input", "type": "main", "index": 0}]]
     },
     "Voice/Text Switch": {
       "main": [
-        [
-          {
-            "node": "Get Voice File",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Edit Fields (Text)",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        [{"node": "Get Voice File", "type": "main", "index": 0}],
+        [{"node": "Edit Fields (Text)", "type": "main", "index": 0}]
       ]
     },
     "Get Voice File": {
-      "main": [
-        [
-          {
-            "node": "Transcribe Voice",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Transcribe Voice", "type": "main", "index": 0}]]
     },
     "Transcribe Voice": {
-      "main": [
-        [
-          {
-            "node": "Edit Fields (Voice)",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Edit Fields (Voice)", "type": "main", "index": 0}]]
     },
     "Edit Fields (Voice)": {
-      "main": [
-        [
-          {
-            "node": "Search Idea by Title",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Normalize Input", "type": "main", "index": 0}]]
     },
     "Edit Fields (Text)": {
+      "main": [[{"node": "Normalize Input", "type": "main", "index": 0}]]
+    },
+    "Normalize Input": {
+      "main": [[{"node": "Has PageId?", "type": "main", "index": 0}]]
+    },
+    "Has PageId?": {
       "main": [
-        [
-          {
-            "node": "Search Idea by Title",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        [{"node": "Merge PageId", "type": "main", "index": 0}],
+        [{"node": "Search Idea by Title", "type": "main", "index": 0}]
       ]
     },
     "Search Idea by Title": {
-      "main": [
-        [
-          {
-            "node": "Handle Results",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Handle Results", "type": "main", "index": 0}]]
     },
     "Handle Results": {
-      "main": [
-        [
-          {
-            "node": "Result Switch",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Result Switch", "type": "main", "index": 0}]]
     },
     "Result Switch": {
       "main": [
-        [
-          {
-            "node": "Merge PageId",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Send Not Found",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Format Ambiguity",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        [{"node": "Merge PageId", "type": "main", "index": 0}],
+        [{"node": "Send Not Found", "type": "main", "index": 0}],
+        [{"node": "Format Ambiguity", "type": "main", "index": 0}]
       ]
     },
     "Format Ambiguity": {
-      "main": [
-        [
-          {
-            "node": "Send Ambiguity",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Send Ambiguity", "type": "main", "index": 0}]]
     },
     "Merge PageId": {
-      "main": [
-        [
-          {
-            "node": "Fetch Full Idea",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Fetch Full Idea", "type": "main", "index": 0}]]
     },
     "Fetch Full Idea": {
-      "main": [
-        [
-          {
-            "node": "Fetch Existing Todos",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Fetch Existing Todos", "type": "main", "index": 0}]]
     },
     "Fetch Existing Todos": {
-      "main": [
-        [
-          {
-            "node": "Format for GPT",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Format for GPT", "type": "main", "index": 0}]]
     },
     "Format for GPT": {
-      "main": [
-        [
-          {
-            "node": "GPT Analyze Todos",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "GPT Analyze Todos", "type": "main", "index": 0}]]
     },
     "GPT Analyze Todos": {
-      "main": [
-        [
-          {
-            "node": "Parse Response",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Parse Response", "type": "main", "index": 0}]]
     },
     "Parse Response": {
-      "main": [
-        [
-          {
-            "node": "Has Enriched?",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Has New Todos?",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Has Enriched?", "type": "main", "index": 0}, {"node": "Has New Todos?", "type": "main", "index": 0}]]
     },
     "Has Enriched?": {
       "main": [
-        [
-          {
-            "node": "Split Enriched",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Update Idea",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        [{"node": "Split Enriched", "type": "main", "index": 0}],
+        [{"node": "Update Idea", "type": "main", "index": 0}]
       ]
     },
     "Split Enriched": {
-      "main": [
-        [
-          {
-            "node": "Update Todo",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Update Todo", "type": "main", "index": 0}]]
     },
     "Update Todo": {
-      "main": [
-        [
-          {
-            "node": "Update Idea",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Update Idea", "type": "main", "index": 0}]]
     },
     "Has New Todos?": {
       "main": [
-        [
-          {
-            "node": "Split New Todos",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Update Idea",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        [{"node": "Split New Todos", "type": "main", "index": 0}],
+        [{"node": "Update Idea", "type": "main", "index": 0}]
       ]
     },
     "Split New Todos": {
-      "main": [
-        [
-          {
-            "node": "Create Todo",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Create Todo", "type": "main", "index": 0}]]
     },
     "Create Todo": {
-      "main": [
-        [
-          {
-            "node": "Update Idea",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Update Idea", "type": "main", "index": 0}]]
     },
     "Update Idea": {
-      "main": [
-        [
-          {
-            "node": "Create Log",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Create Log", "type": "main", "index": 0}]]
     },
     "Create Log": {
-      "main": [
-        [
-          {
-            "node": "Send Confirmation",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
+      "main": [[{"node": "Send Confirmation", "type": "main", "index": 0}]]
     }
   },
-  "active": false,
   "settings": {
     "executionOrder": "v1",
     "availableInMCP": false,
@@ -1141,17 +703,10 @@
     "callerPolicy": "workflowsFromSameOwner",
     "timeSavedPerExecution": 30
   },
-  "versionId": "standalone-1",
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 2,
   "meta": {
-    "templateCredsSetupCompleted": false,
-    "instanceId": "standalone"
-  },
-  "tags": [
-    {
-      "name": "todo-manager"
-    },
-    {
-      "name": "standalone"
-    }
-  ]
+    "templateCredsSetupCompleted": false
+  }
 }
