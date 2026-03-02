@@ -1,10 +1,10 @@
 ---
 title: "De l'idée aux tâches concrètes — le Todo Manager"
-slug: "2026-03-03-todo-manager-demo"
+slug: "2026-03-02-todo-manager-demo"
 type: AUTOMATISATION
 projet: Todo Manager
-status: Brouillon
-planned_date: "2026-03-03"
+status: Programmé
+planned_date: "2026-03-02"
 slot: Lundi
 concept: Definition of Done
 concept_level: Simple
@@ -40,14 +40,15 @@ tags: [Charge mentale, Focus]
 
 L'IA a rendu l'exécution accessible à tout le monde.
 
-Ce qui est rare maintenant,
-c'est pas l'idée —
-c'est la personne qui la réalise.
+Le nouveau problème, c'est pas le manque d'idées.
+C'est qu'on peut tout faire — donc on essaie tout en même temps.
+Et quand on fait tout en même temps, on finit rien.
 
-La capture d'idées, c'est fait — elles sont triées, scorées, dans Notion.
-Mais une idée sans première tâche ne démarre jamais.
+Pour que mes idées voient le jour, il me fallait un système
+qui les découpe en tâches simples, ordonnées,
+avec un critère clair pour savoir quand chacune est terminée.
 
-J'ai construit un workflow n8n pour ça : le Todo Manager.
+J'ai construit ça : le Todo Manager.
 
 Quand une idée entre dans le système,
 il génère automatiquement les premières tâches pour la réaliser.
@@ -143,6 +144,13 @@ Je lis la liste et je fais.
 
 - **Séparation réflexion / exécution** ajoutée en conclusion : deux temps distincts — le système décide en avance, je n'ai plus qu'à exécuter
 - **Phrase punch finale** : "Quand j'exécute, je ne décide plus. Je lis la liste et je fais." — remplace le teaser et la question
+
+### v5 — Accroche et transition réécrites
+
+- **Problème identifié** : accroche v4 ("ce qui est rare c'est la personne qui réalise") incohérente avec le post — on prônait l'exécution humaine mais le post montrait une machine qui organise à ta place
+- **Nouveau fil logique** : L'IA a déplacé le goulot d'étranglement — avant c'était le savoir-faire, maintenant c'est l'organisation. Quand tout est possible, tout en même temps = rien de fini
+- **Accroche réécrite** : "Le nouveau problème c'est pas le manque d'idées. C'est qu'on peut tout faire — donc on essaie tout en même temps."
+- **Transition réécrite** : disparition du "la capture d'idées c'est fait" (auto-référence au mois 1, pas nécessaire) → remplacée par le besoin direct qui justifie le système
 
 ---
 

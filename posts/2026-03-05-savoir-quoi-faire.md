@@ -1,10 +1,10 @@
 ---
 title: "Moins ambitieux sur le papier. Plus satisfaisant dans la pratique."
-slug: "2026-03-06-savoir-quoi-faire"
+slug: "2026-03-05-savoir-quoi-faire"
 type: RÉFLEXION / BILAN
 projet: —
-status: Brouillon
-planned_date: "2026-03-06"
+status: Programmé
+planned_date: "2026-03-05"
 slot: Jeudi
 concept: ""
 concept_level: ""
