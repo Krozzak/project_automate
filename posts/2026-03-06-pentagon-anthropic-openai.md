@@ -291,7 +291,7 @@ Ce n'est pas du cynisme. C'est de l'histoire récente.
 Les outils légaux existent : **CLOUD Act (2018)** qui oblige les entreprises tech américaines à fournir des données à l'étranger sur injonction, **National Security Letters** avec gag orders totaux, **FISA Section 702** pour les accès sans juge.
 
 Anthropic peut refuser un contrat commercial avec le Pentagone.
-Elle ne peut pas refuser un FISA order.
+Ses employés ne peuvent pas refuser un FISA order.
 
 Et tout le monde dans la Silicon Valley le sait — les dirigeants, les ingénieurs seniors, les avocats spécialisés. C'est une réalité structurelle de l'industrie tech américaine depuis au moins 2001.
 
