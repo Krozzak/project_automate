@@ -4,7 +4,7 @@ slug: "2026-04-10-pas-de-viralite"
 type: RÉFLEXION
 projet: LinkedIn Auto
 status: Brouillon
-planned_date: "2026-04-10"
+planned_date: "2026-04-09"
 slot: Jeudi
 concept: "Goodhart's Law"
 concept_level: Simple

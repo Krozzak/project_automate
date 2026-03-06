@@ -4,7 +4,7 @@ slug: "2026-04-17-publier-pour-apprendre"
 type: MÉTA
 projet: LinkedIn Auto
 status: Brouillon
-planned_date: "2026-04-17"
+planned_date: "2026-04-16"
 slot: Jeudi
 concept: "Feynman Technique"
 concept_level: Simple

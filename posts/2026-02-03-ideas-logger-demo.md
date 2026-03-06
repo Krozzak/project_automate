@@ -4,7 +4,7 @@ slug: "2026-02-03-ideas-logger-demo"
 type: AUTOMATISATION
 projet: Ideas Logger
 status: Publié
-planned_date: "2026-02-03"
+planned_date: "2026-02-02"
 slot: Lundi
 concept: ""
 concept_level: Simple

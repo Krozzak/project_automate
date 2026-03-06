@@ -84,14 +84,15 @@
 - Nombre de partages
 - Rempli automatiquement par le workflow Stats Collector
 
-### 14. Clicks
+### 14. Saves
 - **Type** : Number
-- Nombre de clics sur le post
+- Nombre d'enregistrements du post (signal fort de valeur perçue)
 - Rempli automatiquement par le workflow Stats Collector
 
 ### 15. EngagementRate
 - **Type** : Number (formaté en pourcentage)
-- **Formule** : `(Likes + Comments×3 + Shares×5) / Impressions × 100`
+- **Formule** : `(Likes + Comments×3 + Shares×5 + Saves×4) / Impressions × 100`
+- Pondérations : Likes×1 (passif), Comments×3 (effort), Shares×5 (amplification), Saves×4 (intention de revenir)
 - Rempli automatiquement par le workflow Stats Collector
 
 ### 16. Concept

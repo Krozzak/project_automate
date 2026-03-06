@@ -1,10 +1,10 @@
 ---
 title: "Ton job est-il menacé par l'IA ?"
-slug: "2026-03-17-ai-proof-job-scanner"
+slug: "2026-03-16-ai-proof-job-scanner"
 type: AUTOMATISATION
 projet: AI-Proof Job Scanner
 status: Squelette
-planned_date: "2026-03-17"
+planned_date: "2026-03-16"
 slot: Lundi
 concept: "Résilience IA"
 concept_level: Simple

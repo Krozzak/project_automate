@@ -1,10 +1,10 @@
 ---
 title: "Trop de choix tue l'action"
-slug: "2026-03-13-trop-de-choix"
+slug: "2026-03-12-trop-de-choix"
 type: RÉFLEXION
 projet: Smart Focus
 status: Squelette
-planned_date: "2026-03-13"
+planned_date: "2026-03-12"
 slot: Jeudi
 concept: "Choice Overload"
 concept_level: Simple

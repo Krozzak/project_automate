@@ -4,7 +4,7 @@ slug: "2026-04-07-linkedin-auto-demo"
 type: AUTOMATISATION
 projet: LinkedIn Auto
 status: Brouillon
-planned_date: "2026-04-07"
+planned_date: "2026-04-06"
 slot: Lundi
 concept: ""
 concept_level: Simple

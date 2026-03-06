@@ -4,7 +4,7 @@ slug: "2026-02-17-loi-de-gall"
 type: RETOUR_EXP
 projet: Ideas Logger
 status: Publié
-planned_date: "2026-02-17"
+planned_date: "2026-02-16"
 slot: Lundi
 concept: "Loi de Gall"
 concept_level: Simple

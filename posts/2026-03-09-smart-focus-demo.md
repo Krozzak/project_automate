@@ -1,10 +1,10 @@
 ---
 title: "Une seule tâche à l'écran. Le reste est caché."
-slug: "2026-03-10-smart-focus-demo"
+slug: "2026-03-09-smart-focus-demo"
 type: AUTOMATISATION
 projet: Smart Focus
 status: Squelette
-planned_date: "2026-03-10"
+planned_date: "2026-03-09"
 slot: Lundi
 concept: ""
 concept_level: Simple
