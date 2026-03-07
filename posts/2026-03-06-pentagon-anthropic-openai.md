@@ -76,14 +76,13 @@ Dans un marché où les talents IA sont rares, "on fait ce qu'on dit même sous 
 
 ---
 
-Mais il y a une ironie dans tout ça.
+Il y a une ironie là-dedans.
 
-ChatGPT est aujourd'hui l'IA grand public la plus bridée en pratique — filtres, refus fréquents, métaprompts de sécurité empilés, et maintenant des publicités dans le tier gratuit.
+ChatGPT est l'IA grand public la plus bridée en pratique — filtres, refus fréquents, pubs dans le tier gratuit.
+Claude Code tourne directement dans l'éditeur, sans surcouche. C'est l'outil que j'utilise au quotidien pour ça.
 
-Claude Code, lui, tourne directement dans l'éditeur. Pas de surcouche. Pas de blocages au milieu d'une session. C'est l'outil que j'utilise au quotidien précisément pour ça — il n'interrompt pas le travail.
-
-L'IA la plus "ouverte" pour les développeurs vient d'Anthropic — le labo qui a refusé de signer sans garanties sur les armes autonomes.
-L'IA la plus filtrée vient d'OpenAI — qui vient de signer sans ces garanties.
+L'IA la plus "ouverte" pour les développeurs vient d'Anthropic.
+L'IA la plus filtrée vient d'OpenAI — qui vient de signer sans garanties.
 
 Les documents d'éthique ne prédisent pas bien le comportement sous pression réelle.
 
@@ -91,26 +90,22 @@ Les documents d'éthique ne prédisent pas bien le comportement sous pression r�
 
 Sauf que le fond du problème est plus vieux que l'IA.
 
-En 2006, des ingénieurs AT&T ont installé des équipements de surveillance NSA dans leurs nœuds réseau — sous contrainte légale, sans pouvoir en informer leur hiérarchie. FISA Section 702, gag order total. Ni le CEO, ni les collègues. Ce ne sont pas les entreprises qui coopèrent — ce sont les employés, contraints individuellement, sans pouvoir le dire à personne.
+En 2006, des ingénieurs AT&T ont installé des équipements NSA dans leurs nœuds réseau — sous contrainte légale, gag order total. Ni le CEO, ni les collègues. Ce sont les employés, contraints individuellement.
 
 Anthropic peut refuser un contrat commercial.
 Ses employés ne peuvent pas refuser un FISA order.
 
 Et tout le monde dans la Silicon Valley le sait.
 
-Ce qui signifie que les postures éthiques, aussi sincères soient-elles, se jouent dans un cadre qu'elles ne contrôlent pas. Et au-delà de ça, choisir le bon labo ne résout pas la question de fond.
-
-Une IA assez puissante pour accélérer la recherche médicale est assez puissante pour cibler des frappes. Ce n'est pas une question d'intention — c'est une question de capacité. On l'a déjà vu avec la bombe atomique : les physiciens du Projet Manhattan ne construisaient pas une arme, ils construisaient une source d'énergie. Et une capacité qui existe finit toujours par être utilisée, d'une façon ou d'une autre.
+Choisir le bon labo ne résout pas ça. Une IA assez puissante pour accélérer la recherche médicale est assez puissante pour cibler des frappes. On l'a déjà vu avec la bombe atomique : les physiciens du Projet Manhattan ne construisaient pas une arme. Et une capacité qui existe finit toujours par être utilisée.
 
 ---
 
-Derrière les positions Twitter soigneusement rédigées les vrais moteurs sont simples : qui attire les meilleurs ingénieurs, qui achète les chips Nvidia, qui lève les 110 milliards suivants.
+Les vrais moteurs sont simples : qui attire les meilleurs ingénieurs, qui achète les chips Nvidia, qui lève les 110 milliards suivants.
 
-Tout ce qui s'affiche sur les réseaux a une fonction de communication, de recrutement, de capital. Les équipes de ces boîtes savent exactement comment fonctionne la psychologie des foules. Un tweet de CEO n'est jamais spontané.
+Un tweet de CEO n'est jamais spontané.
 
-La question n'est pas vraiment "chez qui travailler pour être du bon côté".
-
-La vraie question est ailleurs : peut-on construire des garde-fous qui tiennent vraiment — pas dans les contrats commerciaux, mais dans la régulation, dans les normes techniques, dans les traités ?
+La vraie question : peut-on construire des garde-fous qui tiennent — pas dans les contrats, mais dans la régulation, dans les traités ?
 
 Pour l'instant, pas vraiment.
 
