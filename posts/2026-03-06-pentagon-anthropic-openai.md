@@ -103,8 +103,6 @@ Choisir le bon labo ne résout pas ça. Une IA assez puissante pour accélérer 
 
 Les vrais moteurs sont simples : qui attire les meilleurs ingénieurs, qui achète les chips Nvidia, qui lève les 110 milliards suivants.
 
-Un tweet de CEO n'est jamais spontané.
-
 La vraie question : peut-on construire des garde-fous qui tiennent — pas dans les contrats, mais dans la régulation, dans les traités ?
 
 Pour l'instant, pas vraiment.
