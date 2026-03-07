@@ -82,9 +82,9 @@ ChatGPT est l'IA grand public la plus bridée en pratique — filtres, refus fr�
 Claude Code tourne directement dans l'éditeur, sans surcouche. C'est l'outil que j'utilise au quotidien pour ça.
 
 L'IA la plus "ouverte" pour les développeurs vient d'Anthropic.
-L'IA la plus filtrée vient d'OpenAI — qui a signé d'abord, et ajouté les garanties après la tempête.
+L'IA la plus filtrée vient d'OpenAI — qui a signé d'abord sans les garanties, et les a ajouté après la tempête.
 
-Les documents d'éthique ne prédisent pas bien le comportement sous pression réelle.
+Les positionnements d'éthique ne prédisent pas bien le comportement sous pression réelle.
 
 ---
 
