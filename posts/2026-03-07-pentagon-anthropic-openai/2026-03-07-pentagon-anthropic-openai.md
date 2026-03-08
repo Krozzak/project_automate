@@ -1,4 +1,6 @@
-# POST SC-A — MARS 2026, SEMAINE 1 (vendredi 06/03)
+# POST SC-A — MARS 2026, SEMAINE 1 (samedi 07/03)
+<!-- newsletter_version: true -->
+<!-- ekenor_slug: 2026-03-07-pentagon-anthropic-openai -->
 
 **Type** : ACTUALITÉ
 **Sous-thème** : Éthique IA, Dilemme technologique
