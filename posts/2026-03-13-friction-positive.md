@@ -24,77 +24,89 @@ tags: [Comportement, Environnement, Auto-contrôle, Architecture de choix]
 2. La friction bien placée n'est pas un obstacle, c'est un espace de décision consciente
 3. Changer l'environnement est plus efficace que changer les intentions
 
-**Concept présenté** : Friction positive (pas de nom d'auteur unique — concept d'architecture comportementale)
+**Concept présenté** : Friction positive + Dark Patterns
 **Niveau de complexité** : Simple, universel
+**Fiche de recherche** : `.private/notes/concepts/Friction_positive_dark_patterns.md`
+
+## Références sourcées
+
+- Amazon 1-Click : brevet US 5,960,411 (1999) — Peri Hartman + Jeff Bezos
+- "Iliad Flow" : nom interne Amazon pour le flow de désabonnement Prime (4 pages, 6 clics, 15 options)
+- Dark patterns : Harry Brignull (2010) — deceptive.design — adopté dans le DSA européen
+- Sludge : Cass Sunstein, *Sludge* (2022) — friction délibérément déployée contre l'utilisateur
+- FTC v. Amazon settlement (2025) : 2,5 milliards de dollars
+- Hooked : Nir Eyal (2014) — réduire la friction = créer l'habitude (Hook Model)
+- BJ Fogg Behavior Model (2007) : B = Motivation × Ability × Prompt
 
 ---
 
 ## Post LinkedIn
 
-On optimise tout pour réduire la friction.
+On passe beaucoup de temps à supprimer la friction.
 
 Un clic pour acheter.
 Un swipe pour confirmer.
-Un tap pour commander.
+Les applications font tout pour réduire le nombre d'étapes.
 
-Sauf que parfois, c'est la friction qui nous protège.
+C'est utile. Jusqu'à ce que ça ne l'est plus.
 
----
+Parce que la friction, c'est aussi ce qui crée l'espace entre l'impulsion et l'action.
+Cet espace, c'est là qu'on décide vraiment.
 
-J'ai longtemps cru que si je procrastinais ou achetais des trucs inutiles,
-c'était un problème de volonté.
+En 1999, Amazon a breveté le bouton "Acheter en 1 clic".
+Le taux de conversion a augmenté.
+Ils avaient très bien compris : moins il y a de friction, plus on achète.
 
-Ce n'est pas faux.
-Mais ce n'est pas toute l'histoire.
+Même logique dans l'autre sens :
+s'abonner à Amazon Prime prend 2 clics.
+Se désabonner ? 4 pages, 6 clics, 15 options.
+Amazon appelait ça en interne l'"Iliad Flow".
+Référence à l'Iliade — pour la longueur.
 
-La recherche montre que la volonté est une ressource limitée.
-Elle s'épuise dans la journée.
-Et à 21h, après une longue journée, elle est à zéro.
+Les chercheurs ont un nom pour ça : les dark patterns.
+De la friction délibérément conçue contre l'utilisateur.
+La FTC a condamné Amazon pour ça en 2025. 2,5 milliards de dollars.
 
-Ce n'est pas le moment d'espérer de la discipline.
-C'est le moment d'avoir des systèmes.
+La friction, ils savent très bien s'en servir.
+Selon que ça les arrange ou pas.
 
----
+La friction positive, c'est la réponse à ça.
+L'ajouter volontairement là où on sait qu'on est faible.
 
-La friction positive, c'est mettre une étape supplémentaire
-entre l'impulsion et l'action.
+Pas pour se punir.
+Pour se donner le temps de réfléchir.
 
-Pas pour empêcher.
-Pour ralentir.
+Carte bancaire dans un autre tiroir.
+Délai de 24h avant tout achat au-dessus d'un certain seuil.
+Réinstaller une app à chaque fois qu'on veut l'utiliser.
 
-Juste assez pour que la décision soit consciente
-plutôt qu'automatique.
+Aucune de ces contraintes n'est compliquée.
+Elles ne demandent pas d'effort continu.
+Elles s'activent une fois, et elles travaillent à ta place après.
 
----
+Eux connaissent nos biais et optimisent pour ça.
+On peut faire pareil — dans l'autre sens.
 
-Exemples concrets :
-- Carte bancaire dans un autre tiroir (pas dans le wallet du téléphone)
-- Délai de 24h avant d'acheter tout ce qui dépasse 50€
-- Overlay qui pose 3 questions avant de valider un achat
-- Supprimer les apps de réseaux sociaux du téléphone (les réinstaller à chaque fois = friction)
+La meilleure friction que j'ai mise en place chez moi, c'est une extension Chrome
+qui s'ouvre avant chaque achat et pose 5 questions.
 
-Aucun de ces trucs n'exige de volonté.
-Ils transforment une mauvaise décision automatique en bonne décision réfléchie.
-
----
-
-Ce que j'ai appris en construisant des outils autour de ça :
-
-La plupart de nos problèmes de discipline ne sont pas des problèmes de caractère.
-Ce sont des problèmes d'architecture.
-
-Changer l'environnement est plus efficace que changer les intentions.
-
----
-
-Est-ce que vous avez des frictions volontaires dans votre quotidien ?
-Des contraintes que vous vous imposez exprès pour vous protéger de vous-même ?
+Pas besoin de discipline.
+Juste une étape de plus — celle qui permet de décider consciemment.
 
 ---
 
 ## Notes pour les images
 
-Aucune image nécessaire — post de réflexion, format texte seul.
+**Option A retenue** — infographie "Le jeu asymétrique" (toboggan vs escalier)
+
+**Slide 1** — Infographie toboggan vs escalier
+
+- Colonne gauche "S'abonner" : personnage glisse sur un toboggan → checkmark Amazon Prime
+- Colonne droite "Se désabonner" : même personnage face à un escalier 6 marches ("Page 1", "Page 2", "Êtes-vous sûr ?", "Offre spéciale", "Vraiment sûr ?", "Bouton annuler")
+- Bas de l'image : "Friction positive — reprendre le contrôle"
+
+**Prompt DALL-E** :
+Minimalist black and white infographic, stick figures style, two columns. Left column titled "S'abonner" : stick figure slides down a smooth slide directly into a checkmark. Right column titled "Se désabonner" : same stick figure faces a steep staircase with 6 labeled steps. Clean white background, thin black lines, one accent color. Bottom label : "Friction positive". Simple, editorial style, no shadows.
 
 ---
 
