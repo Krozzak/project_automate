@@ -1,10 +1,10 @@
 ---
 title: "On optimise tout pour réduire la friction. Sauf que parfois, c'est elle qui nous protège."
-slug: "2026-03-13-friction-positive"
+slug: "2026-03-12-friction-positive"
 type: RÉFLEXION
 projet: Should I Buy It (concept lié)
 status: Prêt
-planned_date: "2026-03-13"
+planned_date: "2026-03-12"
 slot: Jeudi
 concept: "Friction positive / Commitment Device"
 concept_level: Simple
@@ -114,7 +114,7 @@ Minimalist black and white infographic, stick figures style, two columns. Left c
 
 | Champ | Valeur |
 |-------|--------|
-| Date publication | 2026-03-13 |
+| Date publication | 2026-03-12 |
 | Heure publication | 08:30 (jeudi) |
 | Impressions (J+7) | *à remplir* |
 | Likes (J+7) | *à remplir* |
