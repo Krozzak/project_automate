@@ -31,20 +31,23 @@ tags: [Extension Chrome, Comportement, Achats impulsifs]
 
 ## Post LinkedIn
 
-Je suis sur Amazon. Je vois un truc qui me plaît.
+Je suis sur Amazon. Je vois un truc pour mon chat.
+Pas sûr d'en avoir besoin, mais il me plaît.
 J'allais cliquer "Ajouter au panier" 🛒.
-L'extension s'ouvre.
+
+L'extension s'ouvre. Quelques questions s'affichent.
 
 "Ton appareil actuel est cassé, ou juste moins bien ?"
 "Tu l'utiliseras dans les 7 prochains jours ?"
 "C'est un vrai nouveau besoin, ou une mise à jour de confort ?"
 
-Je réponds. Je ferme.
+Je réponds. Je réalise que non, pas vraiment besoin.
+Je ferme.
 
 Des fois j'attends. Des fois j'achète quand même — quand j'en ai vraiment besoin.
 Mais c'est une décision, pas une impulsion.
 
-J'ai construit une extension Chrome pour ça. 🤔 "Should I Buy It."
+J'ai construit une extension Chrome. 🤔 "Should I Buy It."
 
 Elle intercepte les boutons d'achat et affiche un overlay
 avant que tu confirmes.
