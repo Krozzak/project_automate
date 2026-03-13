@@ -3,7 +3,7 @@ title: "J'ai arrêté d'acheter des trucs inutiles. Pas grâce à la volonté."
 slug: "2026-03-09-should-i-buy-it"
 type: AUTOMATISATION
 projet: Should I Buy It
-status: Prêt
+status: Publié
 planned_date: "2026-03-09"
 slot: Lundi
 concept: "Commitment Device"
@@ -85,7 +85,7 @@ Vous l'essaieriez ?
 |-------|--------|
 | Date publication | 2026-03-09 |
 | Heure publication | 08:30 (lundi) |
-| Impressions (J+7) | *à remplir* |
-| Likes (J+7) | *à remplir* |
-| Commentaires (J+7) | *à remplir* |
-| Notes / observations | *à remplir* |
+| Impressions (J+7) | *bilan mensuel* |
+| Likes (J+7) | *bilan mensuel* |
+| Commentaires (J+7) | *bilan mensuel* |
+| Notes / observations | Publié manuellement (sans Claude Code — crédits épuisés) |

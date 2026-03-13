@@ -3,7 +3,7 @@ title: "On optimise tout pour réduire la friction. Sauf que parfois, c'est elle
 slug: "2026-03-12-friction-positive"
 type: RÉFLEXION
 projet: Should I Buy It (concept lié)
-status: Prêt
+status: Publié
 planned_date: "2026-03-12"
 slot: Jeudi
 concept: "Friction positive / Commitment Device"
@@ -42,70 +42,81 @@ tags: [Comportement, Environnement, Auto-contrôle, Architecture de choix]
 
 ## Post LinkedIn
 
-On passe beaucoup de temps à supprimer la friction.
+On passe son temps à supprimer la friction.
 
-Un clic pour acheter.
-Un swipe pour confirmer.
-Les applications font tout pour réduire le nombre d'étapes.
+Pourtant, parfois…
 
-C'est utile. Jusqu'à ce que ça ne l'est plus.
+la friction est ce qui nous protège.
 
-Parce que la friction, c'est aussi ce qui crée l'espace entre l'impulsion et l'action.
-Cet espace, c'est là qu'on décide vraiment.
+Parce que la friction crée quelque chose de précieux :
+
+l'espace entre l'impulsion et l'action.
+
+Et c'est dans cet espace qu'on décide vraiment.
 
 En 1999, Amazon a breveté le bouton "Acheter en 1 clic".
-Le taux de conversion a augmenté.
+
+Le taux de conversion a explosé.
+
 Ils avaient très bien compris : moins il y a de friction, plus on achète.
 
 Même logique dans l'autre sens :
-s'abonner à Amazon Prime prend 2 clics.
-Se désabonner ? 4 pages, 6 clics, 15 options.
-Amazon appelait ça en interne l'"Iliad Flow".
-Référence à l'Iliade — pour la longueur.
 
-Les chercheurs ont un nom pour ça : les dark patterns.
-De la friction délibérément conçue contre l'utilisateur.
+Alors que s'abonner à Amazon Prime prend 2 clics.
+
+Se désabonner ? 4 pages, 6 clics, 15 options.
+
+Amazon appelait ça l'"Iliad Flow" — Référence à l'Iliade pour la longueur.
+
+Les plateformes savent parfaitement utiliser la friction.
+
+- Elles l'enlèvent quand elles veulent qu'on agisse.
+
+- Elles l'ajoutent quand elles veulent qu'on abandonne.
+
+Ce type de manipulation fait partie des dark patterns.
+
+Une interface utilisateur qui a été volontairement conçue pour tromper ou manipuler un utilisateur.
+
 La FTC a condamné Amazon pour ça en 2025. 2,5 milliards de dollars.
 
-La friction, ils savent très bien s'en servir.
-Selon que ça les arrange ou pas.
+La friction positive, c’est l’inverse : volontaire et à notre avantage
 
-La friction positive, c'est la réponse à ça.
-L'ajouter volontairement là où on sait qu'on est faible.
+Exemples simples que j’utilise chez moi :
 
-Pas pour se punir.
-Pour se donner le temps de réfléchir.
+- Carte bancaire dans un autre tiroir.
 
-Carte bancaire dans un autre tiroir.
-Délai de 24h avant tout achat au-dessus d'un certain seuil.
-Réinstaller une app à chaque fois qu'on veut l'utiliser.
+- Délai de 24h avant tout achat au-dessus d'un certain seuil.
 
-Aucune de ces contraintes n'est compliquée.
-Elles ne demandent pas d'effort continu.
-Elles s'activent une fois, et elles travaillent à ta place après.
+- Réinstaller une app à chaque fois qu'on veut l'utiliser.
 
-Eux connaissent nos biais et optimisent pour ça.
-On peut faire pareil — dans l'autre sens.
+Comme Ulysse attaché au mât pour résister aux sirènes,
+
+ces micro-frictions nous protègent de nos propres impulsions.
+
+Et eux, Amazon et autres plateformes, optimisent nos biais pour nous manipuler.
+
+Nous, on peut faire pareil… mais dans l’autre sens.
 
 La meilleure friction que j'ai mise en place chez moi, c'est une extension Chrome
+
 qui s'ouvre avant chaque achat et pose 5 questions.
 
 Pas besoin de discipline.
+
 Juste une étape de plus — celle qui permet de décider consciemment.
 
 ---
 
 ## Notes pour les images
 
-**Option A retenue** — infographie "Le jeu asymétrique" (toboggan vs escalier)
+**Image publiée** : `acheter-1-clic-vs-illiad-flow.PNG` — visuel Amazon 1-Click vs Iliad Flow (déjà dans le dossier)
 
-**Slide 1** — Infographie toboggan vs escalier
+*Note : l'infographie toboggan vs escalier (Option A) n'a pas été générée — l'image existante a été utilisée à la place.*
 
-- Colonne gauche "S'abonner" : personnage glisse sur un toboggan → checkmark Amazon Prime
-- Colonne droite "Se désabonner" : même personnage face à un escalier 6 marches ("Page 1", "Page 2", "Êtes-vous sûr ?", "Offre spéciale", "Vraiment sûr ?", "Bouton annuler")
-- Bas de l'image : "Friction positive — reprendre le contrôle"
+**Option A (non retenue)** — infographie "Le jeu asymétrique" (toboggan vs escalier)
 
-**Prompt DALL-E** :
+**Prompt DALL-E (conservé pour usage futur)** :
 Minimalist black and white infographic, stick figures style, two columns. Left column titled "S'abonner" : stick figure slides down a smooth slide directly into a checkmark. Right column titled "Se désabonner" : same stick figure faces a steep staircase with 6 labeled steps. Clean white background, thin black lines, one accent color. Bottom label : "Friction positive". Simple, editorial style, no shadows.
 
 ---
@@ -116,7 +127,7 @@ Minimalist black and white infographic, stick figures style, two columns. Left c
 |-------|--------|
 | Date publication | 2026-03-12 |
 | Heure publication | 08:30 (jeudi) |
-| Impressions (J+7) | *à remplir* |
-| Likes (J+7) | *à remplir* |
-| Commentaires (J+7) | *à remplir* |
-| Notes / observations | *à remplir* |
+| Impressions (J+7) | *bilan mensuel* |
+| Likes (J+7) | *bilan mensuel* |
+| Commentaires (J+7) | *bilan mensuel* |
+| Notes / observations | Publié manuellement — image utilisée : acheter-1-clic-vs-illiad-flow.PNG |
