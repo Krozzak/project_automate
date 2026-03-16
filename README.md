@@ -35,19 +35,18 @@ projects/memory-logger/        ← À venir
 
 ### Posts
 
-Archive chronologique des publications LinkedIn. Format : `YYYY-MM-DD-slug.md`
+Archive chronologique des publications LinkedIn. Format : `YYYY-MM-DD-slug/`
 
-Chaque fichier contient : texte publié + images utilisées + stats de performance.
+Chaque dossier contient : texte publié + images utilisées + stats de performance. Les posts planifiés sans visuels peuvent rester un fichier `.md` à plat.
 
 ```
 posts/
-├── images/                         ← Images classées par projet
-│   └── ideas-logger/
-├── 2026-02-03-ideas-logger-demo.md
-├── 2026-02-10-score-ice.md
-├── 2026-02-17-loi-de-gall.md
-├── 2026-02-23-ego-depletion.md
-└── ...
+├── 2026-02-03-ideas-logger-demo/   ← dossier : texte + images
+│   ├── 2026-02-03-ideas-logger-demo.md
+│   └── images/
+├── 2026-03-09-should-i-buy-it/
+├── 2026-03-16-ai-proof-job-scanner/
+└── 2026-03-26-ai-proof-behind-the-build.md  ← fichier seul (pas encore publié)
 ```
 
 ## Automatisations disponibles
@@ -58,7 +57,9 @@ posts/
 | [Todo Manager](projects/todo-manager/) | Transforme une idée en tâches actionnables avec métadonnées | n8n workflow | Launched ✅ |
 | [Smart Focus](projects/smart-focus/) | App desktop : une seule tâche visible, overlay focus | Tauri (Windows) | Beta 🔄 |
 | [LinkedIn Auto](projects/linkedin-auto/) | Automatise la publication LinkedIn | n8n workflow | Build 🔧 |
-| [AI-Proof Job Scanner](projects/ai-proof-job-scanner/) | Analyse la résilience IA d'un métier | Site web | MVP 🧪 |
+| [AI-Proof Job Scanner](projects/ai-proof-job-scanner/) | Analyse la résilience IA d'un métier — live sur ekenor.com/tools/ai-proof | Site web (Ekenor) | Launched ✅ |
+| [Should I Buy It](projects/should-i-buy-it/) | Extension Chrome : friction avant un achat impulsif | Extension Chrome | Launched ✅ |
+| [Memory Logger](projects/memory-logger/) | Journal de voyage vocal → Notion, récit automatique | n8n workflow | Launched ✅ |
 
 ## Utiliser un workflow n8n
 
