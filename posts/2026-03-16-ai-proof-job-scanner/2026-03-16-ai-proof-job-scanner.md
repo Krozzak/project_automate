@@ -16,7 +16,7 @@ tags: [IA pragmatique, outils]
 **Type** : AUTOMATISATION (lancement outil)
 **Sous-thème** : Résilience IA, reconversion, plan d'action
 **Projet** : AI-Proof Job Scanner
-**Visuel** : 2-3 screenshots de l'outil sur Ekenor
+**Visuel** : 4 screenshots de l'outil (voir dossier)
 
 ---
 
@@ -63,17 +63,25 @@ Il est sur mon site Ekenor — lien en commentaire.
 
 Postez votre scorecard en commentaire — je suis curieux de voir vos métiers.
 
+## Post LinkedIn en commentaire
+
+Testez votre score ici :
+🇫🇷 <https://www.ekenor.com/fr/tools/ai-proof>
+🇬🇧 <https://www.ekenor.com/en/tools/ai-proof>
+
+Je suis curieux, quel score obtient votre métier ?
+Postez votre scorecard en commentaire 👇
+
 ---
 
 ## Notes pour les images
 
-| Slide | Contenu | Ce qu'on montre |
+| Slide | Fichier | Ce qu'on montre |
 |-------|---------|-----------------|
-| 1 | Ta scorecard complète (ton propre métier) | Score + timeline + takeaways visibles — résultat réel, pas fictif |
-| 2 | Section takeaways zoomée | 2-3 actions concrètes — le vrai intérêt de l'outil |
-| 3 | Formulaire (optionnel) | Montrer la simplicité d'entrée si slide 1 suffit pas |
-
-**Ce qu'on NE montre PAS** : credentials, variables d'env, code, architecture interne
+| 1 | `Capture d'écran 2026-03-16 080915.png` | — |
+| 2 | `Capture d'écran 2026-03-16 081029.png` | — |
+| 3 | `Capture d'écran 2026-03-16 081046.png` | — |
+| 4 | `Capture d'écran 2026-03-16 081138.png` | — |
 
 **Mode** : UI Ekenor telle quelle — pas d'annotations, pas de flèches, pas de texte ajouté
 
