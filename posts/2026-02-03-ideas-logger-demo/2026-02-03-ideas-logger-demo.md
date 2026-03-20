@@ -9,6 +9,10 @@ slot: Lundi
 concept: ""
 concept_level: Simple
 tags: [Capture d'idées, Voice-to-Notion]
+lesson: "Premier post — accroche descriptive (pas polarisante) suffit sur une démo directe. Le carousel 3 slides input→output→résultat a fonctionné. 772 impressions = meilleur post du mois. Le récit personnel spécifique (perte d'idées sur carnet/téléphone/feuille) crée l'identification."
+rules_applied: [structure-3-actes, max-2-takeaways, récit-personnel-spécifique, accroche-3-lignes, pas-de-teasing]
+rule_added: "structure-3-actes, max-2-takeaways, récit-personnel-spécifique, accroche-3-lignes"
+rule_hypothesis: ""
 ---
 
 # POST 1 — MOIS 1, SEMAINE 1 — Mon système capture mes idées pendant que je parle

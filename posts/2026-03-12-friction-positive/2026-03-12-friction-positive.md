@@ -1,5 +1,5 @@
 ---
-title: "On optimise tout pour réduire la friction. Sauf que parfois, c'est elle qui nous protège."
+title: "On optimise tout pour réduire la fiction. Sauf que parfois, c'est elle qui nous protège."
 slug: "2026-03-12-friction-positive"
 type: RÉFLEXION
 projet: Should I Buy It (concept lié)
@@ -9,6 +9,10 @@ slot: Jeudi
 concept: "Friction positive / Commitment Device"
 concept_level: Simple
 tags: [Comportement, Environnement, Auto-contrôle, Architecture de choix]
+lesson: "3ème test accroche polarisante (On passe son temps à supprimer la friction. Pourtant parfois c'est elle qui nous protège.) — tension cognitive immédiate. Référence Amazon 1-Click brevet 1999 + Iliad Flow = sourcing vérifiable en 2 lignes. Dark patterns (Harry Brignull 2010) cité + FTC settlement 2025 = crédibilité factuelle. Concept Ulysse et les sirènes = image universelle sans développement long."
+rules_applied: [structure-3-actes, max-2-takeaways, récit-personnel-spécifique, accroche-3-lignes, sourcing-naturalisé, pas-de-teasing, accroche-polarisante, concept-seulement-si-il-colle]
+rule_added: ""
+rule_hypothesis: ""
 ---
 
 # POST — MOIS 3, SEMAINE 2 — Friction positive

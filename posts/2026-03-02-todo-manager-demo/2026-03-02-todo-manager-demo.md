@@ -9,6 +9,10 @@ slot: Lundi
 concept: Definition of Done
 concept_level: Simple
 tags: [Charge mentale, Focus]
+lesson: "Premier post sans question finale — phrase punch testée à la place (Quand j'exécute, je ne décide plus. Je lis la liste et je fais.). Exemples quotidiens ultra-concrets (machine à laver, devis, virement) = sourcing de l'expérience universelle sans jargon. Accroche sur l'exécution (L'IA a rendu l'exécution accessible) — pas polarisante mais provocation directe."
+rules_applied: [structure-3-actes, max-2-takeaways, récit-personnel-spécifique, accroche-3-lignes, sourcing-naturalisé, pas-de-teasing, phrase-punch-finale]
+rule_added: "phrase-punch-finale (EN TEST)"
+rule_hypothesis: "phrase-punch-finale : terminer par une formule distillée plutôt qu'une question ouverte génère plus de partages"
 ---
 
 # POST 1 — MOIS 2, SEMAINE 1

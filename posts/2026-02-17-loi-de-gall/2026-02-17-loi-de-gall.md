@@ -9,6 +9,10 @@ slot: Lundi
 concept: "Loi de Gall"
 concept_level: Simple
 tags: [IA pragmatique, Simplicité]
+lesson: "Premier test accroche polarisante (⚡ L'IA génère vite. Et c'est le piège.) — stats J+11 seulement (300 imp). Teasing supprimé au rewriting → valide pas-de-teasing. Carousel 3 slides annoté (avant/après workflow) efficace pour montrer la progression V1→V3."
+rules_applied: [structure-3-actes, max-2-takeaways, récit-personnel-spécifique, accroche-3-lignes, sourcing-naturalisé, pas-de-teasing, accroche-polarisante]
+rule_added: "pas-de-teasing, accroche-polarisante (EN TEST)"
+rule_hypothesis: "accroche-polarisante : si l'accroche crée une tension cognitive, le taux de lecture complète augmente"
 ---
 
 # POST 3 — MOIS 1, SEMAINE 3 — L'IA génère vite, et c'est le piège (loi de Gall)

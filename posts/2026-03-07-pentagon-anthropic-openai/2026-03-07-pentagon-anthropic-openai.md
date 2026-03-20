@@ -1,3 +1,22 @@
+---
+title: "Pentagone. Anthropic a dit non. OpenAI a dit oui. Ça ne change probablement rien."
+slug: "2026-03-07-pentagon-anthropic-openai"
+type: ACTUALITÉ
+projet: Silicon Carne
+status: Publié
+planned_date: "2026-03-07"
+slot: Samedi
+concept: "Dilemme du créateur / AT&T FISA"
+concept_level: Avancé
+tags: [IA pragmatique, Éthique IA, Dilemme technologique]
+newsletter_version: true
+ekenor_slug: "2026-03-07-pentagon-anthropic-openai"
+lesson: "Post ACTUALITÉ long — structure chronologique (Acte 1→4) puis lectures complémentaires. La narration dominante (duel éthique) déconstruite par 4 lectures de second ordre. Référence historique AT&T/NSA comme image universelle sans développement. L'ironie des garde-fous (Claude Code plus ouvert que ChatGPT) = insight mémorable. Post sans 'je' quasi-total — analytique pur."
+rules_applied: [structure-3-actes, max-2-takeaways, accroche-3-lignes, sourcing-naturalisé, pas-de-teasing]
+rule_added: ""
+rule_hypothesis: ""
+---
+
 # POST SC-A — MARS 2026, SEMAINE 1 (samedi 07/03)
 <!-- newsletter_version: true -->
 <!-- ekenor_slug: 2026-03-07-pentagon-anthropic-openai -->

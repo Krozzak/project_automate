@@ -9,6 +9,10 @@ slot: Lundi
 concept: "Résilience IA"
 concept_level: Simple
 tags: [IA pragmatique, outils]
+lesson: "Premier post qui lance un outil sur Ekenor — structure : accroche tension (pas si, mais quand) + 3 outputs nommés clairement + insight (pas le score, le plan d'action) + lien commentaire épinglé. Pas de concept théorique — démo pure. Question finale orientée participation (Postez votre scorecard en commentaire)."
+rules_applied: [structure-3-actes, max-2-takeaways, accroche-3-lignes, pas-de-teasing, concept-seulement-si-il-colle]
+rule_added: ""
+rule_hypothesis: ""
 ---
 
 # POST 5.1 — MOIS 2, SEMAINE 3

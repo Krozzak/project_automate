@@ -9,6 +9,11 @@ slot: Jeudi
 concept: "Utility vs Meaning"
 concept_level: Avancé
 tags: [IA pragmatique, travail, résilience]
+linkedin_url: ""
+lesson: "Post RÉFLEXION sur sujet ouvert (IA + emploi) — question finale plus forte que phrase punch. La phrase punch aurait clôturé un débat qui doit rester ouvert. L'accroche chiffres (Klarna/WEF) établit la crédibilité sans affirmation polarisante directe."
+rules_applied: [structure-3-actes, max-2-takeaways, récit-personnel-spécifique, accroche-3-lignes, sourcing-naturalisé, concept-seulement-si-il-colle, pas-de-teasing, accroche-chiffre-contraste]
+rule_added: ""
+rule_hypothesis: ""
 ---
 
 # POST 5.2 — MOIS 2, SEMAINE 3

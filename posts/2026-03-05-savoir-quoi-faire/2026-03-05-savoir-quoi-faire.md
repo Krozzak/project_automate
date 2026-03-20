@@ -9,6 +9,10 @@ slot: Jeudi
 concept: ""
 concept_level: ""
 tags: [Build in public, IA pragmatique, Exploration]
+lesson: "Gollwitzer testé puis retiré car lien forcé — valide concept-seulement-si-il-colle. Accroche bilan chiffré introduite (En 2025 j'avais 1 projet / en 2026 j'en ai 6 en 3 mois). Récit de pivot personnel (app Twerk, publiée et jamais utilisée) = plus mémorable qu'un exemple construit. Phrase punch finale (C'est moins ambitieux sur le papier. C'est plus satisfaisant dans la pratique.) = 2ème test."
+rules_applied: [structure-3-actes, max-2-takeaways, récit-personnel-spécifique, accroche-3-lignes, pas-de-teasing, concept-seulement-si-il-colle, accroche-chiffre-contraste, phrase-punch-finale]
+rule_added: "concept-seulement-si-il-colle (EN TEST → validé), accroche-chiffre-contraste (EN TEST)"
+rule_hypothesis: "accroche-chiffre-contraste : un contraste chiffré vérifiable en ouverture établit la crédibilité sans affirmation polarisante"
 ---
 
 # POST 2 — MOIS 2, SEMAINE 1

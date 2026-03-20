@@ -9,6 +9,10 @@ slot: Lundi
 concept: "Ego Depletion"
 concept_level: Intermédiaire
 tags: [Discipline, Friction]
+lesson: "2ème test accroche polarisante (La discipline c'est surfait.) — stats J+5 très partielles (187 imp). Phrase punch introduite en v7 (Un bon système ne fatigue pas.) — premier post avec les deux techniques en même temps. 7 versions de rédaction = le processus d'affinement visible ici. La question finale active (C'est quoi la vôtre ?) conçue pour récupérer des use cases."
+rules_applied: [structure-3-actes, max-2-takeaways, récit-personnel-spécifique, accroche-3-lignes, sourcing-naturalisé, pas-de-teasing, accroche-polarisante, phrase-punch-finale]
+rule_added: ""
+rule_hypothesis: "phrase-punch-finale : si la fin est une formule mémorable, le lecteur la partage ou y revient"
 ---
 
 # POST 4 — MOIS 1, SEMAINE 4
