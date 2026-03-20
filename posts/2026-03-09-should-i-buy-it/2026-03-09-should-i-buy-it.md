@@ -9,6 +9,10 @@ slot: Lundi
 concept: "Commitment Device"
 concept_level: Simple
 tags: [Extension Chrome, Comportement, Achats impulsifs]
+lesson: "Accroche scène immersive (Je suis sur Amazon, truc pour mon chat) — identification immédiate, pas polarisante. Concept Commitment Device (Schelling 1978) non cité explicitement dans le post — intégré via les 3 questions. Question finale directe (Vous l'essaieriez ?) = moins classique-LinkedIn. Publié manuellement sans Claude Code."
+rules_applied: [structure-3-actes, max-2-takeaways, récit-personnel-spécifique, accroche-3-lignes, sourcing-naturalisé, pas-de-teasing, concept-seulement-si-il-colle]
+rule_added: ""
+rule_hypothesis: ""
 ---
 
 # POST — MOIS 3, SEMAINE 2 — Should I Buy It
@@ -76,6 +80,16 @@ Vous l'essaieriez ?
 
 **Mode** : Screenshots réels de l'extension — pas d'annotations, pas de flèches
 **À ne pas montrer** : Le code, les URLs personnelles
+
+---
+
+## Commentaire épinglé
+
+🔗 L'extension est dispo sur le Chrome Web Store (gratuit, zéro compte) :
+👉 https://chromewebstore.google.com/detail/should-i-buy-it/hlagnklbabboiimndbmakkkbmehamaal
+
+Fonctionne sur Amazon et la plupart des sites e-commerce.
+Aucune donnée envoyée — tout reste en local sur ton appareil.
 
 ---
 
