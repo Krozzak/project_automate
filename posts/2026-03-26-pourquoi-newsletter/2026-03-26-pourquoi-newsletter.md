@@ -34,20 +34,35 @@ rule_hypothesis: "Si le post part d'une tension personnelle vécue plutôt que d
 
 ## Post LinkedIn
 
-Je passe mes dimanches matin à discuter de philosophie grecque avec une IA.
-Après ça, l'IA structure la connaissance, fait des fiches, génère du contenu, publie sur les réseaux.
+Je passe mes dimanches matin à discuter de philosophie grecque avec une IA.🧠
 
-Ça peut venir d'un article, d'un podcast, d'une vidéo YouTube — ou d'un débat qui finit à 5h du mat sans qu'on sache vraiment comment on en est arrivé là. Ce qu'on appellerait aujourd'hui de l'errance intellectuelle : se promener dans les idées sans savoir ce qu'on va y trouver, et parfois tomber sur un sujet qui mérite qu'on s'arrête pour le contempler. Aristote appelait ça la *theoria*. Je me suis rendu compte que c'est ma façon naturelle d'apprendre.
+Après ça, l'IA structure la connaissance, fait des fiches, génère du contenu, publie sur les réseaux.✨
+
+Ça peut venir d'un article, d'un podcast, d'une vidéo YouTube — ou d'un débat qui finit à 5h du mat sans qu'on sache vraiment comment on en est arrivé là. Ce qu'on appellerait aujourd'hui de l'errance intellectuelle : se promener dans les idées sans savoir ce qu'on va y trouver, et parfois tomber sur un sujet qui mérite qu'on s'arrête pour le contempler. 🌅
+
+Aristote appelait ça la 𝒕𝒉𝒆𝒐𝒓𝒊𝒂. Je me suis rendu compte que c'est ma façon naturelle d'apprendre.
 
 À l'école on avait ça en abondance. Beaucoup de temps, beaucoup de gens, des soirées entières à dériver sur des sujets qu'on maîtrisait à moitié mais qu'on débattait avec conviction. La vie active te l'enlève doucement — moins de temps, moins de rencontres, et quand tu en as l'occasion tu le fais avec les gens qui comptent, mais ça reste rare.
 
-Alors j'ai trouvé une autre façon. Avec l'IA je peux creuser, sourcer, générer des angles que je n'aurais pas trouvés seul. Et il en ressort quelque chose : un article de fond, des posts, des fiches de concepts, des projets concrets. L'errance intellectuelle ne disparaît pas, elle devient utile.
+Alors j'ai trouvé une autre façon. Avec l'IA je peux creuser, sourcer, générer des angles que je n'aurais pas trouvés seul. Et il en ressort quelque chose : un article de fond, des posts, des fiches de concepts, des projets concrets.
 
-LinkedIn ne montre qu'un fragment de ce cycle. Ekenor c'est l'endroit où le reste existe.
+L'errance intellectuelle ne disparaît pas, elle devient utile.
+
+                    →📰  (articles)
+
+💡(outils) → Ekenor → 📚 (concepts)
+
+                    → 🛠️ (outils)
+
+LinkedIn ne montre qu'un fragment de ce cycle.
+
+Ekenor c'est l'endroit où le reste existe.
 
 Si vous passez sur le site, je suis curieux d'avoir vos retours — en commentaire ou en MP.
 
 Lien en commentaire.
+
+𝐼𝑚𝑎𝑔𝑒 𝑔𝑒́𝑛𝑒́𝑟𝑒́𝑒 𝑝𝑎𝑟 𝑁𝑎𝑛𝑜-𝐵𝑎𝑛𝑎𝑛𝑎 2
 
 ---
 
