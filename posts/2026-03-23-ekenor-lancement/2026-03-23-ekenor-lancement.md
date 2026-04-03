@@ -9,7 +9,7 @@ slot: Lundi
 concept: ""
 concept_level: Simple
 tags: [Build in public, Ekenor, newsletter, hub]
-linkedin_url: ""
+linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7441823643233435648"
 lesson: "Le post catalogue (liste de features) est moins fort qu'un post qui ancre dans du concret nommé — remplacer 'projets documentés' par les vrais noms (Ideas Logger, ICE...) change la perception immédiatement."
 rules_applied: [structure-3-actes, max-2-takeaways, récit-personnel-spécifique, accroche-3-lignes, pas-de-teasing]
 rule_added: "angle-personnel-narratif"

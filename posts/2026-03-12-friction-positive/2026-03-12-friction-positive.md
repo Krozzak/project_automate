@@ -6,6 +6,7 @@ projet: Should I Buy It (concept lié)
 status: Publié
 planned_date: "2026-03-12"
 slot: Jeudi
+linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7437837330511679489"
 concept: "Friction positive / Commitment Device"
 concept_level: Simple
 tags: [Comportement, Environnement, Auto-contrôle, Architecture de choix]

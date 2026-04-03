@@ -6,6 +6,7 @@ projet: Ideas Logger
 status: Publié
 planned_date: "2026-02-23"
 slot: Lundi
+linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7431691855224008704"
 concept: "Ego Depletion"
 concept_level: Intermédiaire
 tags: [Discipline, Friction]

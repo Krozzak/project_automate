@@ -6,6 +6,7 @@ projet: Should I Buy It
 status: Publié
 planned_date: "2026-03-09"
 slot: Lundi
+linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7436750197331963904"
 concept: "Commitment Device"
 concept_level: Simple
 tags: [Extension Chrome, Comportement, Achats impulsifs]

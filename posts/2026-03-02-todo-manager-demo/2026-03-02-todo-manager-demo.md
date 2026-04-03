@@ -6,6 +6,7 @@ projet: Todo Manager
 status: Programmé
 planned_date: "2026-03-02"
 slot: Lundi
+linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7434228527006277632"
 concept: Definition of Done
 concept_level: Simple
 tags: [Charge mentale, Focus]

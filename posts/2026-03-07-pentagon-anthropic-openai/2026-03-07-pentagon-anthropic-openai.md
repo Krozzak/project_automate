@@ -6,6 +6,7 @@ projet: Silicon Carne
 status: Publié
 planned_date: "2026-03-07"
 slot: Samedi
+linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7436063141509091328"
 concept: "Dilemme du créateur / AT&T FISA"
 concept_level: Avancé
 tags: [IA pragmatique, Éthique IA, Dilemme technologique]

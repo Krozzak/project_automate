@@ -6,6 +6,7 @@ projet: Ideas Logger
 status: Publié
 planned_date: "2026-02-02"
 slot: Lundi
+linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7424081686419857408"
 concept: ""
 concept_level: Simple
 tags: [Capture d'idées, Voice-to-Notion]

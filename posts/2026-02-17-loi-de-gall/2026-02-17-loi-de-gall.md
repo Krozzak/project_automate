@@ -6,6 +6,7 @@ projet: Ideas Logger
 status: Publié
 planned_date: "2026-02-16"
 slot: Lundi
+linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7429155092739690497"
 concept: "Loi de Gall"
 concept_level: Simple
 tags: [IA pragmatique, Simplicité]

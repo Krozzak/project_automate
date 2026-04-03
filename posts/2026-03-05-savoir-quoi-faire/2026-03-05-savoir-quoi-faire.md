@@ -6,6 +6,7 @@ projet: —
 status: Programmé
 planned_date: "2026-03-05"
 slot: Jeudi
+linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7435315757825024001"
 concept: ""
 concept_level: ""
 tags: [Build in public, IA pragmatique, Exploration]

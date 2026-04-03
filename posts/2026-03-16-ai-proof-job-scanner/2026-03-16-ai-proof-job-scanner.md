@@ -6,6 +6,7 @@ projet: AI-Proof Job Scanner
 status: Prêt
 planned_date: "2026-03-16"
 slot: Lundi
+linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7439290652489740288"
 concept: "Résilience IA"
 concept_level: Simple
 tags: [IA pragmatique, outils]

@@ -9,7 +9,7 @@ slot: Lundi
 concept: "Retrieval Practice (Roediger, 2006) + Tradition orale (Parry/Ong)"
 concept_level: Simple
 tags: [mémoire, voyage, capture, Telegram, Notion]
-linkedin_url: ""
+linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7444364062630703104"
 lesson: "Le post AUTOMATISATION gagne à partir d'un contraste chiffré sur 3 lignes (avant/intermédiaire/maintenant) plutôt qu'une accroche descriptive — la progression crée l'identification avant même de présenter le projet."
 rules_applied: [structure-3-actes, max-2-takeaways, sourcing-naturalisé, récit-personnel-spécifique, accroche-3-lignes, concept-seulement-si-il-colle, pas-de-teasing, angle-personnel-narratif, accroche-chiffre-contraste]
 rule_added: ""
