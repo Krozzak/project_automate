@@ -3,7 +3,7 @@ title: "Utility vs Meaning : deux économies se séparent"
 slug: "2026-03-19-utility-vs-meaning"
 type: RÉFLEXION
 projet: AI-Proof Job Scanner
-status: Prêt
+status: Publié
 planned_date: "2026-03-19"
 slot: Jeudi
 concept: "Utility vs Meaning"

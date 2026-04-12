@@ -3,7 +3,7 @@ title: "LinkedIn, c'est louer. La newsletter, c'est posséder."
 slug: "2026-03-26-pourquoi-newsletter"
 type: OPINION
 projet: Ekenor
-status: Prêt
+status: Publié
 planned_date: "2026-03-26"
 slot: Jeudi
 concept: "Permissionless Leverage (Naval Ravikant)"

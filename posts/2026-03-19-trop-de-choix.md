@@ -4,7 +4,7 @@ slug: "2026-03-19-trop-de-choix"
 type: RÉFLEXION
 projet: Smart Focus
 status: Squelette
-planned_date: "2026-03-19"
+planned_date: ""
 slot: Jeudi
 concept: "Choice Overload"
 concept_level: Simple

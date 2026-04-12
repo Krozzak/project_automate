@@ -9,7 +9,7 @@ slot: Lundi
 concept: "Planning Fallacy"
 concept_level: Simple
 tags: [time-tracker, estimation, planning-fallacy, productivité]
-linkedin_url: ""
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_mon-manager-ma-dit-que-jestimais-toujours-ugcPost-7446595075729649664-Hezd"
 lesson: ""
 rules_applied: [structure-3-actes, récit-personnel-spécifique, accroche-3-lignes, concept-seulement-si-il-colle, phrase-punch-finale, lien-site-dans-post]
 rule_added: "lien-site-dans-post"

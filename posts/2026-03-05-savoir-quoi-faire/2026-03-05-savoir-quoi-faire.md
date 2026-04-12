@@ -3,7 +3,7 @@ title: "Moins ambitieux sur le papier. Plus satisfaisant dans la pratique."
 slug: "2026-03-05-savoir-quoi-faire"
 type: RÉFLEXION / BILAN
 projet: —
-status: Programmé
+status: Publié
 planned_date: "2026-03-05"
 slot: Jeudi
 linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7435315757825024001"

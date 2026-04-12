@@ -4,7 +4,7 @@ slug: "2026-03-16-smart-focus-demo"
 type: AUTOMATISATION
 projet: Smart Focus
 status: Squelette
-planned_date: "2026-03-16"
+planned_date: ""
 slot: Lundi
 concept: ""
 concept_level: Simple

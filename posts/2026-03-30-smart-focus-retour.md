@@ -4,7 +4,7 @@ slug: "2026-03-30-smart-focus-retour"
 type: RETOUR_EXP
 projet: Smart Focus
 status: Squelette
-planned_date: "2026-03-30"
+planned_date: ""
 slot: Lundi
 concept: "Context Switching Cost + Wrap Complexity"
 concept_level: Simple

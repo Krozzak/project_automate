@@ -3,13 +3,13 @@ title: "J'ai utilisé mon Time Tracker toute la semaine. Voilà ce que les donn�
 slug: "2026-04-10-time-tracker-dashboard"
 type: AUTOMATISATION
 projet: "Time Tracker"
-status: Programmé
+status: Publié
 planned_date: "2026-04-09"
 slot: Vendredi (exception semaine 1 — screenshots nécessitent une semaine complète de données)
 concept: ""
 concept_level: ""
 tags: [time-tracker, dashboard, stats, semaine, heatmap]
-linkedin_url: ""
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_dapr%C3%A8s-mon-time-tracker-je-sous-estime-ugcPost-7447625403311095808-HXhZ"
 lesson: ""
 rules_applied: [structure-3-actes, récit-personnel-spécifique, accroche-3-lignes, phrase-punch-finale]
 rule_added: ""

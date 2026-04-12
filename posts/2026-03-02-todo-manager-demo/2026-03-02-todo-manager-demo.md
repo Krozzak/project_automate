@@ -3,7 +3,7 @@ title: "De l'idée aux tâches concrètes — le Todo Manager"
 slug: "2026-03-02-todo-manager-demo"
 type: AUTOMATISATION
 projet: Todo Manager
-status: Programmé
+status: Publié
 planned_date: "2026-03-02"
 slot: Lundi
 linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7434228527006277632"

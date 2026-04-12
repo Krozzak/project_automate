@@ -3,7 +3,7 @@ title: "J'ai lancé un site. Ce n'est pas un blog. C'est un laboratoire public."
 slug: "2026-03-23-ekenor-lancement"
 type: AUTOMATISATION
 projet: Ekenor
-status: Prêt
+status: Publié
 planned_date: "2026-03-23"
 slot: Lundi
 concept: ""
