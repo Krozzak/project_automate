@@ -293,7 +293,9 @@ def match_posts_to_slugs(xlsx_posts, frontmatters):
 # ─── Metrics ──────────────────────────────────────────────────────────────────
 
 def compute_metrics(posts, snapshot_date):
-    """Add age_days, ImpAdj7j, engagement_rate to each post"""
+    """Add age_days, ImpAdj7j, engagement_rate, tier to each post"""
+    import math
+
     for p in posts:
         pub = p.get("date")
         if pub:
@@ -319,6 +321,34 @@ def compute_metrics(posts, snapshot_date):
             p["engagement_rate"] = round(inter / imp * 100, 2)
         else:
             p["engagement_rate"] = 0.0
+
+    # Compute tiers based on ImpAdj7j distribution (eligible posts only)
+    eligible = [p for p in posts if p.get("adj_flag") != "provisoire" and p.get("imp_adj7j", 0) > 0]
+    if len(eligible) >= 3:
+        vals = [p["imp_adj7j"] for p in eligible]
+        mean = sum(vals) / len(vals)
+        variance = sum((v - mean) ** 2 for v in vals) / len(vals)
+        sigma = math.sqrt(variance)
+        tier_a = mean + 0.5 * sigma
+        tier_c = mean - 0.5 * sigma
+        tier_d = mean - 1.5 * sigma
+
+        for p in posts:
+            if p.get("adj_flag") == "provisoire":
+                p["tier"] = ""
+                continue
+            adj = p.get("imp_adj7j", 0)
+            if adj >= tier_a:
+                p["tier"] = "A"
+            elif adj >= tier_c:
+                p["tier"] = "B"
+            elif adj >= tier_d:
+                p["tier"] = "C"
+            else:
+                p["tier"] = "D"
+    else:
+        for p in posts:
+            p["tier"] = ""
 
     return posts
 
@@ -354,6 +384,13 @@ def generate_report(global_stats, posts, followers, demographics, snapshot_date)
     lines.append(f"| Followers au {snapshot_date.strftime('%d/%m/%Y')} | {followers.get('total', '—')} |")
     matched = [p for p in posts if p.get("match") in ("HIGH", "MEDIUM")]
     lines.append(f"| Posts matchés | {len(matched)} |")
+    # Computed averages from eligible posts
+    eligible = [p for p in posts if p.get("adj_flag") != "provisoire" and p.get("imp_adj7j", 0) > 0]
+    if eligible:
+        er_moy = round(sum(p.get("engagement_rate", 0) for p in eligible) / len(eligible), 2)
+        imp_moy = round(sum(p.get("imp_adj7j", 0) for p in eligible) / len(eligible))
+        lines.append(f"| EngagementRate moyen | {er_moy}% |")
+        lines.append(f"| Impressions moyennes / post | {imp_moy} |")
     lines.append(f"| Dernière sync | {snapshot_date.strftime('%Y-%m-%d')} (XLSX manuel) |")
     lines.append(f"| Prochaine sync | via Workflow A dès API approuvée |")
     lines.append(f"")
