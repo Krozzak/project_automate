@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
 """
-import_xlsx_stats.py — Import LinkedIn Analytics XLSX into analytics-data.md
+import_xlsx_stats.py — Import LinkedIn Analytics XLSX into dated snapshot files
 
 Usage:
-    python import_xlsx_stats.py [path_to_xlsx] [--snapshot-date YYYY-MM-DD] [--print] [--write] [--update-frontmatters]
+    python import_xlsx_stats.py [path_to_xlsx] [--snapshot-date YYYY-MM-DD] [--print] [--snapshot] [--update-frontmatters]
 
 Options:
     path_to_xlsx         Path to LinkedIn XLSX export (default: most recent in Downloads)
     --snapshot-date      Date de l'export (default: today)
-    --print              Affiche le rapport markdown (défaut si aucun flag write)
-    --write              Met à jour posts/analytics-data.md directement
+    --print              Affiche le rapport markdown (défaut si aucun flag)
+    --snapshot           Crée posts/analytics-YYYY-MM-DD.md (snapshot daté, non écrasé)
+    --write              Alias legacy pour --snapshot (compatibilité)
     --update-frontmatters  Met à jour linkedin_url dans les frontmatters des posts
 
 Examples:
-    python import_xlsx_stats.py "C:/Users/silli/Downloads/Contenu_2026-01-04_2026-04-03_ThomasSilliard.xlsx" --print
-    python import_xlsx_stats.py "C:/Users/silli/Downloads/Contenu_2026-01-04_2026-04-03_ThomasSilliard.xlsx" --write --update-frontmatters
+    python import_xlsx_stats.py --print
+    python import_xlsx_stats.py --snapshot --update-frontmatters
+    python import_xlsx_stats.py "C:/Users/silli/Downloads/Contenu_2026-01-04_2026-04-03_ThomasSilliard.xlsx" --snapshot
 """
 
 import sys
@@ -30,7 +32,7 @@ import argparse
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 POSTS_DIR = os.path.join(REPO_ROOT, "posts")
-ANALYTICS_FILE = os.path.join(POSTS_DIR, "analytics-data.md")
+ANALYTICS_FILE = os.path.join(POSTS_DIR, "analytics-data.md")  # legacy
 
 NS = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
 
@@ -331,10 +333,10 @@ def get_follower_spikes(daily, top_n=5):
 
 def generate_report(global_stats, posts, followers, demographics, snapshot_date):
     lines = []
-    lines.append(f"# LinkedIn Analytics — Source de vérité")
+    lines.append(f"# LinkedIn Analytics — Snapshot {snapshot_date.strftime('%Y-%m-%d')}")
     lines.append(f"")
-    lines.append(f"> Généré le {snapshot_date.strftime('%Y-%m-%d')} via export XLSX LinkedIn.")
-    lines.append(f"> Ce fichier servira à construire la page /analytics sur Ekenor.")
+    lines.append(f"> Snapshot généré le {snapshot_date.strftime('%Y-%m-%d')} via export XLSX LinkedIn.")
+    lines.append(f"> Fichier en lecture seule — ne pas modifier manuellement.")
     lines.append(f"> API LinkedIn Community Management : **en attente d'approbation** — sync automatique disponible dès approbation.")
     lines.append(f"")
     lines.append(f"---")
@@ -381,8 +383,8 @@ def generate_report(global_stats, posts, followers, demographics, snapshot_date)
     # ── Posts table ──
     lines.append(f"## Posts (chronologique)")
     lines.append(f"")
-    lines.append(f"| Date pub | Slug | Type | Rules appliquées | Impressions | Interactions | EngRate% | ImpAdj7j | Flag | linkedin_url | Source |")
-    lines.append(f"| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |")
+    lines.append(f"| Date pub | Slug | Type | Impressions | Interactions | EngRate% | ImpAdj7j | Flag | Tier | linkedin_url |")
+    lines.append(f"| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |")
 
     # Sort by publication date
     sorted_posts = sorted(posts, key=lambda p: p.get("date") or date.min)
@@ -392,14 +394,12 @@ def generate_report(global_stats, posts, followers, demographics, snapshot_date)
         fm = p.get("fm") or {}
         pub_date = p["date"].strftime("%Y-%m-%d") if p.get("date") else "—"
         ptype = fm.get("type", "—")
-        rules = fm.get("rules_applied", "—") if "rules_applied" in fm else "—"
         imp = p.get("impressions", "—")
         inter = p.get("interactions", "—")
         er = p.get("engagement_rate", "—")
         adj = p.get("imp_adj7j", "—")
         flag = p.get("adj_flag", "—")
         url = p.get("url", "")
-        match = p.get("match", "—")
 
         if slug == "MANUAL_CHECK":
             candidates = p.get("candidates", [])
@@ -407,7 +407,7 @@ def generate_report(global_stats, posts, followers, demographics, snapshot_date)
         else:
             slug_display = slug
 
-        lines.append(f"| {pub_date} | {slug_display} | {ptype} | {rules} | {imp} | {inter} | {er} | {adj} | {flag} | {url} | XLSX |")
+        lines.append(f"| {pub_date} | {slug_display} | {ptype} | {imp} | {inter} | {er} | {adj} | {flag} |  | {url} |")
 
     lines.append(f"")
 
@@ -492,12 +492,17 @@ def main():
     parser.add_argument("xlsx_path", nargs="?", help="Path to XLSX file")
     parser.add_argument("--snapshot-date", help="Snapshot date YYYY-MM-DD (default: today)")
     parser.add_argument("--print", action="store_true", dest="do_print", help="Print report")
-    parser.add_argument("--write", action="store_true", help="Write analytics-data.md")
+    parser.add_argument("--snapshot", action="store_true", help="Write posts/analytics-YYYY-MM-DD.md (dated snapshot)")
+    parser.add_argument("--write", action="store_true", help="Alias for --snapshot (legacy)")
     parser.add_argument("--update-frontmatters", action="store_true", help="Update linkedin_url in post frontmatters")
     args = parser.parse_args()
 
-    # Default: print if no write flag
-    if not args.write and not args.update_frontmatters:
+    # --write is now an alias for --snapshot
+    if args.write:
+        args.snapshot = True
+
+    # Default: print if no write/snapshot flag
+    if not args.snapshot and not args.update_frontmatters:
         args.do_print = True
 
     # Snapshot date
@@ -573,13 +578,19 @@ def main():
     report = generate_report(global_stats, matched_posts, followers, demographics, snapshot_date)
 
     if args.do_print:
-        print("\n=== RAPPORT ANALYTICS-DATA.MD ===\n")
+        print("\n=== RAPPORT ANALYTICS ===\n")
         print(report)
 
-    if args.write:
-        with open(ANALYTICS_FILE, "w", encoding="utf-8") as f:
-            f.write(report)
-        print(f"OK analytics-data.md mis a jour : {ANALYTICS_FILE}")
+    if args.snapshot:
+        snapshot_filename = f"analytics-{snapshot_date.strftime('%Y-%m-%d')}.md"
+        snapshot_path = os.path.join(POSTS_DIR, snapshot_filename)
+        if os.path.exists(snapshot_path):
+            print(f"/!\\ Snapshot existant : {snapshot_path}")
+            print("    Utilise --snapshot-date pour spécifier une autre date, ou supprime le fichier manuellement.")
+        else:
+            with open(snapshot_path, "w", encoding="utf-8") as f:
+                f.write(report)
+            print(f"OK snapshot créé : {snapshot_path}")
 
     if args.update_frontmatters:
         updated = 0
