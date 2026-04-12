@@ -9,7 +9,7 @@ slot: Jeudi
 concept: "Permissionless Leverage (Naval Ravikant)"
 concept_level: Simple
 tags: [newsletter, LinkedIn, ownership, leviers, écriture]
-linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7442910753302548481"
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_je-passe-mes-dimanches-matin-%C3%A0-discuter-de-share-7442545205934854144-ge-G"
 lesson: "Le bon signal : pouvoir dire le post à voix haute sans se sentir bizarre. Quand le concept (theoria/errance) émerge naturellement du récit au lieu d'être plaqué dessus, il renforce sans alourdir. Ne pas nommer ce qui est déjà montré — le compounding est dans le cycle, pas besoin de le dire."
 rules_applied: [structure-3-actes, max-2-takeaways, récit-personnel-spécifique, accroche-3-lignes, pas-de-teasing, concept-seulement-si-il-colle, sourcing-naturalisé]
 rule_added: "angle-personnel-narratif"

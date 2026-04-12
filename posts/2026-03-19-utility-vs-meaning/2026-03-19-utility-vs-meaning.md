@@ -9,7 +9,7 @@ slot: Jeudi
 concept: "Utility vs Meaning"
 concept_level: Avancé
 tags: [IA pragmatique, travail, résilience]
-linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7440374086372929536"
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_jai-automatis%C3%A9-une-partie-de-mes-t%C3%A2ches-share-7440216527011770368--qdn"
 lesson: "Post RÉFLEXION sur sujet ouvert (IA + emploi) — question finale plus forte que phrase punch. La phrase punch aurait clôturé un débat qui doit rester ouvert. L'accroche chiffres (Klarna/WEF) établit la crédibilité sans affirmation polarisante directe."
 rules_applied: [structure-3-actes, max-2-takeaways, récit-personnel-spécifique, accroche-3-lignes, sourcing-naturalisé, concept-seulement-si-il-colle, pas-de-teasing, accroche-chiffre-contraste]
 rule_added: ""

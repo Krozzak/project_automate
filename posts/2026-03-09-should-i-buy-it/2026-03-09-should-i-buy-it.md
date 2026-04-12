@@ -6,7 +6,7 @@ projet: Should I Buy It
 status: Publié
 planned_date: "2026-03-09"
 slot: Lundi
-linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7436750197331963904"
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_je-suis-sur-amazon-je-vois-un-truc-pour-ugcPost-7436539538065215488-Nj7b"
 concept: "Commitment Device"
 concept_level: Simple
 tags: [Extension Chrome, Comportement, Achats impulsifs]

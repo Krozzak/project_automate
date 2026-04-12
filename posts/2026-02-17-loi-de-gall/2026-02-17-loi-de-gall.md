@@ -6,7 +6,7 @@ projet: Ideas Logger
 status: Publié
 planned_date: "2026-02-16"
 slot: Lundi
-linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7429155092739690497"
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_lia-g%C3%A9n%C3%A8re-vite-et-cest-le-pi%C3%A8ge-mon-ugcPost-7428966489354895360-5DCQ"
 concept: "Loi de Gall"
 concept_level: Simple
 tags: [IA pragmatique, Simplicité]

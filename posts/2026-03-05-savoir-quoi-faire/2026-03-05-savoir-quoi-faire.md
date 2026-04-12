@@ -6,7 +6,7 @@ projet: —
 status: Publié
 planned_date: "2026-03-05"
 slot: Jeudi
-linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7435315757825024001"
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_en-2025-javais-un-seul-projet-en-cours-share-7434073946594902016-QrTf"
 concept: ""
 concept_level: ""
 tags: [Build in public, IA pragmatique, Exploration]

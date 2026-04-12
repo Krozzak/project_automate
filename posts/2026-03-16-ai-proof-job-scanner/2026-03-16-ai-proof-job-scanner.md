@@ -6,7 +6,7 @@ projet: AI-Proof Job Scanner
 status: Publié
 planned_date: "2026-03-16"
 slot: Lundi
-linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7439290652489740288"
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_lia-va-transformer-ton-poste-la-question-ugcPost-7439285332115836929-n0yz"
 concept: "Résilience IA"
 concept_level: Simple
 tags: [IA pragmatique, outils]

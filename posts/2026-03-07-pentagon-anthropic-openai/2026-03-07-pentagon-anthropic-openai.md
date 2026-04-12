@@ -6,7 +6,7 @@ projet: Silicon Carne
 status: Publié
 planned_date: "2026-03-07"
 slot: Samedi
-linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7436063141509091328"
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_quitgpt-share-7436057673466347520-FaCG"
 concept: "Dilemme du créateur / AT&T FISA"
 concept_level: Avancé
 tags: [IA pragmatique, Éthique IA, Dilemme technologique]

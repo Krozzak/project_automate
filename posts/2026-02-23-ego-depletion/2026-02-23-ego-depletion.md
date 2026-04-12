@@ -6,7 +6,7 @@ projet: Ideas Logger
 status: Publié
 planned_date: "2026-02-23"
 slot: Lundi
-linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7431691855224008704"
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_la-discipline-cest-surfait-en-vrai-chaque-share-7431529416373014528-0smn"
 concept: "Ego Depletion"
 concept_level: Intermédiaire
 tags: [Discipline, Friction]

@@ -6,7 +6,7 @@ projet: Todo Manager
 status: Publié
 planned_date: "2026-03-02"
 slot: Lundi
-linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7434228527006277632"
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_lia-a-rendu-lex%C3%A9cution-accessible-%C3%A0-tout-ugcPost-7434071525500235776-wr0a"
 concept: Definition of Done
 concept_level: Simple
 tags: [Charge mentale, Focus]

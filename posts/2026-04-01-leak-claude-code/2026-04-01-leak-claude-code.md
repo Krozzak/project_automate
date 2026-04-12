@@ -9,7 +9,7 @@ slot: Hors-calendrier
 concept: ""
 concept_level: Simple
 tags: [Claude Code, IA agents, Leak, Multi-agents]
-linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7445098597164945409"
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_r%C3%A9sum%C3%A9-des-meilleures-features-leaked-share-7445098596074524672-vUg7"
 lesson: "Post spontané fait dans les transports en commun après avoir vu les news le matin sur X avec Grok. Image générée avec Nano Banana 2 (prompt via Grok) + logo ajouté sur Canva. Résultat satisfaisant pour un post de ce type. Preuve que le format ACTUALITÉ peut être exécuté entièrement en mobilité."
 rules_applied: [accroche-3-lignes, structure-3-actes]
 rule_added: ""

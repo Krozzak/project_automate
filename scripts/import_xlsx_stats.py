@@ -306,7 +306,7 @@ def compute_metrics(posts, snapshot_date):
         imp = p.get("impressions", 0)
         age = max(p["age_days"], 1)
 
-        if age >= 56:
+        if age >= 28:
             p["imp_adj7j"] = imp
             p["adj_flag"] = "mature"
         elif age < 7:

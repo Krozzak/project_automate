@@ -6,7 +6,7 @@ projet: Ideas Logger
 status: Publié
 planned_date: "2026-02-02"
 slot: Lundi
-linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7424081686419857408"
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_pendant-longtemps-je-navais-pas-un-probl%C3%A8me-ugcPost-7423871838407106560-K930"
 concept: ""
 concept_level: Simple
 tags: [Capture d'idées, Voice-to-Notion]

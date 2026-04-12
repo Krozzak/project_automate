@@ -6,7 +6,7 @@ projet: Should I Buy It (concept lié)
 status: Publié
 planned_date: "2026-03-12"
 slot: Jeudi
-linkedin_url: "https://www.linkedin.com/feed/update/urn:li:activity:7437837330511679489"
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_on-passe-son-temps-%C3%A0-supprimer-la-friction-share-7437685334953574401-qwW7"
 concept: "Friction positive / Commitment Device"
 concept_level: Simple
 tags: [Comportement, Environnement, Auto-contrôle, Architecture de choix]
