@@ -322,7 +322,9 @@ def compute_metrics(posts, snapshot_date):
         else:
             p["engagement_rate"] = 0.0
 
-    # Compute tiers based on ImpAdj7j distribution (eligible posts only)
+    # Compute tiers based on ImpAdj7j distribution
+    # Reference = mature + actif posts (age >= 7j). Provisoires included in tier
+    # assignment using same thresholds — ImpAdj7j already normalizes for time.
     eligible = [p for p in posts if p.get("adj_flag") != "provisoire" and p.get("imp_adj7j", 0) > 0]
     if len(eligible) >= 3:
         vals = [p["imp_adj7j"] for p in eligible]
@@ -333,19 +335,18 @@ def compute_metrics(posts, snapshot_date):
         tier_c = mean - 0.5 * sigma
         tier_d = mean - 1.5 * sigma
 
+        def assign_tier(adj):
+            if adj >= tier_a: return "A"
+            elif adj >= tier_c: return "B"
+            elif adj >= tier_d: return "C"
+            else: return "D"
+
         for p in posts:
-            if p.get("adj_flag") == "provisoire":
-                p["tier"] = ""
-                continue
             adj = p.get("imp_adj7j", 0)
-            if adj >= tier_a:
-                p["tier"] = "A"
-            elif adj >= tier_c:
-                p["tier"] = "B"
-            elif adj >= tier_d:
-                p["tier"] = "C"
+            if adj > 0:
+                p["tier"] = assign_tier(adj)
             else:
-                p["tier"] = "D"
+                p["tier"] = ""
     else:
         for p in posts:
             p["tier"] = ""
