@@ -1,6 +1,6 @@
 ---
 title: "J'ai automatisé la publication (pas l'écriture)"
-slug: "2026-04-07-linkedin-auto-demo"
+slug: "2026-04-02-linkedin-auto-demo"
 type: AUTOMATISATION
 projet: LinkedIn Auto
 status: Brouillon

@@ -1,6 +1,6 @@
 ---
 title: "AI-Proof Job Scanner — behind the build"
-slug: "2026-03-19-ai-proof-behind-the-build"
+slug: "2026-03-26-ai-proof-behind-the-build"
 type: RETOUR_EXP
 projet: AI-Proof Job Scanner
 status: Squelette
