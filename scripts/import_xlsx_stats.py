@@ -445,7 +445,8 @@ def generate_report(global_stats, posts, followers, demographics, snapshot_date)
         else:
             slug_display = slug
 
-        lines.append(f"| {pub_date} | {slug_display} | {ptype} | {imp} | {inter} | {er} | {adj} | {flag} |  | {url} |")
+        tier = p.get("tier", "")
+        lines.append(f"| {pub_date} | {slug_display} | {ptype} | {imp} | {inter} | {er} | {adj} | {flag} | {tier} | {url} |")
 
     lines.append(f"")
 
