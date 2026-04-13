@@ -32,6 +32,7 @@ import argparse
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 POSTS_DIR = os.path.join(REPO_ROOT, "posts")
+ANALYTICS_DIR = os.path.join(POSTS_DIR, "analytics")
 ANALYTICS_FILE = os.path.join(POSTS_DIR, "analytics-data.md")  # legacy
 
 NS = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
@@ -335,8 +336,11 @@ def compute_metrics(posts, snapshot_date):
         tier_c = mean - 0.5 * sigma
         tier_d = mean - 1.5 * sigma
 
+        tier_s = mean + 1.5 * sigma
+
         def assign_tier(adj):
-            if adj >= tier_a: return "A"
+            if adj >= tier_s: return "S"
+            elif adj >= tier_a: return "A"
             elif adj >= tier_c: return "B"
             elif adj >= tier_d: return "C"
             else: return "D"
@@ -621,8 +625,9 @@ def main():
         print(report)
 
     if args.snapshot:
-        snapshot_filename = f"analytics-{snapshot_date.strftime('%Y-%m-%d')}.md"
-        snapshot_path = os.path.join(POSTS_DIR, snapshot_filename)
+        os.makedirs(ANALYTICS_DIR, exist_ok=True)
+        snapshot_filename = f"{snapshot_date.strftime('%Y-%m-%d')}.md"
+        snapshot_path = os.path.join(ANALYTICS_DIR, snapshot_filename)
         if os.path.exists(snapshot_path):
             print(f"/!\\ Snapshot existant : {snapshot_path}")
             print("    Utilise --snapshot-date pour spécifier une autre date, ou supprime le fichier manuellement.")
