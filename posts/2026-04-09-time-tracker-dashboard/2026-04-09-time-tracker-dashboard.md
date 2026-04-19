@@ -5,7 +5,7 @@ type: AUTOMATISATION
 projet: "Time Tracker"
 status: Publié
 planned_date: "2026-04-09"
-slot: Vendredi (exception semaine 1 — screenshots nécessitent une semaine complète de données)
+slot: Jeudi
 concept: ""
 concept_level: ""
 tags: [time-tracker, dashboard, stats, semaine, heatmap]

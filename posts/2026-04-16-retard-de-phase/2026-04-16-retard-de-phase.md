@@ -53,7 +53,7 @@ Mais avant d'y arriver, il faut :
 - trouver un prestataire externe (les outils pas whitelistés, c'est dehors)
 - passer la sécurité informatique
 - attendre le prochain cycle de priorisation
-- gérer les managers qui rejoignent le projet une fois que tout est validé
+- gérer la politique interne une fois que le projet devient visible
 
 Six mois plus tard, on en est au même point.
 
