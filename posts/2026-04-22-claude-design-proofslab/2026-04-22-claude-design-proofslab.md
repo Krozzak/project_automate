@@ -143,7 +143,25 @@ Rectangle fond `#C97B3A` (cuivre) — texte Inter Bold `#FFFFFF` — coins arron
 
 **Logo** : `ekenor.com` — bas gauche, marge 40px, largeur ~200px — version dark (texte `#0f1117` ou logo SVG)
 
-**Règles visuelles** :
+**Formes & éléments graphiques**
+
+| Élément | Forme | Fond | Bordure | Coins |
+|---------|-------|------|---------|-------|
+| Titre slide | Rectangle | `#C97B3A` cuivre | Aucune | 8px |
+| Card / bloc contenu | Rectangle | `#FFFFFF` | `#E0E4EA` 1px | 12px |
+| Flèche de transition (ex: Before→After) | Flèche pleine | `#C97B3A` cuivre | `#0f1117` noir 1.5px | — |
+| Flèche de process (étape→étape) | Flèche fine / chevron | `#4A9EBB` bleu glacier | Aucune | — |
+| Badge / label | Pill | `#4A9EBB` bleu glacier | Aucune | 999px (full round) |
+| Séparateur horizontal | Ligne | — | `#E0E4EA` 1px | — |
+| Highlight cellule tableau | Rectangle | `#EAF5FA` (bleu glacier très clair) | `#4A9EBB` 1px | 6px |
+
+**Règle générale formes :**
+- Coins arrondis partout — jamais d'angle droit sec (sauf les séparateurs)
+- Cuivre `#C97B3A` = action, transition, titre → réservé aux éléments qui guident l'œil
+- Bleu `#4A9EBB` = information, highlight, label → réservé aux éléments qui qualifient
+- Bordure noire `#0f1117` uniquement sur les flèches cuivre — crée le contraste sans alourdir
+
+**Règles visuelles**
 - Cards blanches `#FFFFFF` sur fond `#F8F8F6`, bordure `#E0E4EA`, coins arrondis 12px
 - Drop shadow légère : `0 2px 8px rgba(0,0,0,0.06)`
 - Padding interne 48–60px sur les bords de slide
