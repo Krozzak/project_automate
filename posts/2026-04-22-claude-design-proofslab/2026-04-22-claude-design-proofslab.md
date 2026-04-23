@@ -214,20 +214,21 @@ Rectangle fond `#C97B3A` (cuivre) — texte Inter Bold `#FFFFFF` — coins arron
 
 ### Matrice résumée — Slide 5
 
-> Source : support.claude.com + recherches web avril 2026.
-> Note coût designer freelance : tarif pour un redesign de site complet (landing + pages internes). Pour un simple logo ou une page unique, peut descendre sous $500.
+> Sources vérifiées : support.claude.com, WebFX, Cybernews, NxCode, BoostWithAiTools — avril 2026.
+> Note délai freelance : 4–8 semaines pour un redesign complet (site 5–10 pages). 1–2 semaines = landing page simple uniquement.
+> Note coût freelance : $500–$5 000 = freelance junior / petit projet. Agences établies : $15 000–$50 000+.
 
 | | Claude Design | Canva AI | Bolt.new | Lovable | Designer freelance |
 |--|--|--|--|--|--|
-| **Temps résultat** | ~1h | Quelques minutes | Quelques heures | Quelques heures | 1–2 semaines |
-| **Coût** | Inclus abo ($20+/mois) | $13/mois | Gratuit (limité) | $25/mois | $500–$5 000+ (selon livrable) |
+| **Temps résultat** | ~1–2h | Quelques minutes | Quelques heures | Quelques heures | 4–8 semaines |
+| **Coût** | Inclus abo ($20+/mois) | $13/mois | Gratuit (limité) | $25/mois | $1 000–$15 000+ (selon livrable) |
 | **Niveau requis pour démarrer** | Aucun — prompting naturel | Aucun — templates guidés | Aucun | Aucun | Savoir briefer un designer |
 | **Courbe d'apprentissage** | Faible — plus tu es précis, meilleur le résultat | Très faible | Faible | Faible | Nulle (tu délègues) |
-| **Output + Qualité** | Site, app, deck, PDF, assets marketing, vidéo — ★★★★ | Assets marketing, réseaux sociaux — ★★★ | Site/app fonctionnel — ★★★ | Site/app fonctionnel — ★★★ | Tout type (wireframe, site, branding…) — ★★★★★ |
-| **Design → Code** | ★★★★★ (export Claude Code) | ★ | ★★★★★ | ★★★★★ | ★★★ |
+| **Output + Qualité** | Prototype, deck, PDF, assets marketing, vidéo — ★★★★ | Assets marketing, réseaux sociaux — ★★★ | Site/app fonctionnel (code) — ★★★ | Site/app fonctionnel (code, UI soignée) — ★★★★ | Tout type (wireframe, site, branding…) — ★★★★★ |
+| **Design → Code** | ★★★★★ (handoff Claude Code) | ★ | ★★★★★ | ★★★★★ | ★★★ |
 
-**Pourquoi Claude Design remplace Bolt et Lovable :**
-Bolt et Lovable aident à générer du code de site, mais sans vrai process de design (pas de brief visuel, pas de directions multiples, pas de design system). Claude Design fait le design + exporte vers Claude Code pour l'implémentation — tout en un seul abonnement, avec une qualité visuelle supérieure. Ce n'est pas complémentaire : c'est un remplacement direct pour les non-designers qui voulaient utiliser Bolt/Lovable pour faire un site propre.
+**Différence clé — usages distincts :**
+Lovable et Bolt livrent une **app en production** directement (URL live, full-stack). Claude Design livre un **prototype visuel + design system** — il faut ensuite Claude Code pour l'implémentation. Ce sont trois cas d'usage différents qui coexistent : Lovable pour shipper vite, Bolt pour le contrôle dev, Claude Design pour itérer visuellement avec le meilleur modèle de design du marché. Lovable a une UI plus soignée que Bolt (8/10 vs 5/10 selon les retours utilisateurs).
 
 ---
 
