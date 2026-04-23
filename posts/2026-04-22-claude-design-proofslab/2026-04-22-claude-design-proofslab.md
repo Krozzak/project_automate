@@ -112,31 +112,42 @@ Une session aussi complète (6 pages, 3 directions, dark mode, logo redesigné) 
 
 ## Charte graphique — à appliquer sur toutes les slides
 
+> Source : BRAND.md + tailwind.config.mjs du site Ekenor. Palette "Forge & Nord" adaptée en thème light pour LinkedIn.
+
 **Format** : 1080 × 1440 px (portrait 3:4) — taille personnalisée dans Canva
 
-**Fond** : `#f5f5f5` (gris très clair, ton standard)
+**Police** : **Inter** (ou Manrope si Inter indisponible) — les deux sont dans Canva
 
-**Polices** :
-- Titres : **Inter Bold** (ou Poppins Bold si Inter indisponible) — taille 48-64px
-- Sous-titres / labels : Inter SemiBold — 28-36px
-- Corps / données tableau : Inter Regular — 22-26px
+| Rôle | Style | Taille | Couleur |
+|------|-------|--------|---------|
+| Titre slide | Inter Bold | 52–60px | `#0f1117` |
+| Label / sous-titre | Inter SemiBold | 28–34px | `#1A1F2E` |
+| Corps / tableau | Inter Regular | 22–26px | `#3A3A4A` |
 
-**Couleurs accent** :
-- Bleu pastel (highlight) : `#C7DCFF` — fond des cellules mises en avant
-- Texte principal : `#1A1A1A`
-- Texte secondaire / muted : `#6B6B6B`
-- Séparateur / bordures : `#E0E0E0`
-- Vert confirmation (✅ pour / avantages) : `#D4EDDA`
-- Rouge doux (❌ contre / limites) : `#F8D7DA`
+**Couleurs — thème light LinkedIn**
 
-**Logo** : `ekenor.com` — bas gauche, marge ~40px, largeur ~200px (template Canva habituel)
+| Rôle | Couleur | Usage |
+|------|---------|-------|
+| Fond slide | `#F8F8F6` | Blanc cassé — propre, pas agressif |
+| Cards / blocs | `#FFFFFF` | Sur le fond F8F8F6, les cards ressortent |
+| Bordures | `#E0E4EA` | Séparateurs discrets |
+| **Bleu glacier** (accent principal) | `#4A9EBB` | Highlights, cellule Claude Design dans le comparatif, liens |
+| **Cuivre** (accent chaud) | `#C97B3A` | Titre principal de chaque slide — fond cuivre + texte blanc |
+| Texte principal | `#0f1117` | Corps |
+| Texte secondaire | `#6B6B7B` | Labels, notes |
+| Pour / avantages | `#E8F5F0` fond + `#1A6B4A` texte | Colonne verte slide 4 |
+| Contre / limites | `#FDF0EC` fond + `#C0440E` texte | Colonne orange-rouge slide 4 |
+
+**Élément signature — titre de chaque slide :**
+Rectangle fond `#C97B3A` (cuivre) — texte Inter Bold `#FFFFFF` — coins arrondis 8px — padding 12px 24px. Même traitement sur toutes les slides pour la cohérence.
+
+**Logo** : `ekenor.com` — bas gauche, marge 40px, largeur ~200px — version dark (texte `#0f1117` ou logo SVG)
 
 **Règles visuelles** :
-- Coins arrondis sur tous les blocs (radius 12-16px)
-- Drop shadow légère sur les cards (`0 2px 8px rgba(0,0,0,0.08)`)
+- Cards blanches `#FFFFFF` sur fond `#F8F8F6`, bordure `#E0E4EA`, coins arrondis 12px
+- Drop shadow légère : `0 2px 8px rgba(0,0,0,0.06)`
+- Padding interne 48–60px sur les bords de slide
 - Pas de texte superposé sur les screenshots
-- Padding interne généreux (40-60px sur les bords)
-- 1 titre par slide en haut, bien aéré
 
 ---
 
