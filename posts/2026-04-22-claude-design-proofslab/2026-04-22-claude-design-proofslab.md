@@ -220,12 +220,12 @@ Rectangle fond `#C97B3A` (cuivre) — texte Inter Bold `#FFFFFF` — coins arron
 
 | | Claude Design + Claude Code | Canva AI | Bolt.new | Lovable | Designer freelance |
 |--|--|--|--|--|--|
-| **Temps résultat** | ~1–2h (design) + implémentation | ❌ Pas adapté au redesign site | Quelques heures | Quelques heures | 4–8 semaines |
+| **Temps résultat** | ~1–2h (design) + implémentation | Quelques heures (maquette) | Quelques heures | Quelques heures | 4–8 semaines |
 | **Coût** | Inclus abo ($20+/mois) | $13/mois | Gratuit (limité) | $25/mois | $1 000–$15 000+ |
-| **Niveau requis pour démarrer** | Aucun — prompting naturel | Templates, goût marketing utile | Aucun | Aucun | Savoir briefer |
+| **Niveau requis pour démarrer** | Aucun — prompting naturel | Goût design utile | Aucun | Aucun | Savoir briefer |
 | **Courbe d'apprentissage** | Faible — plus tu es précis, meilleur le résultat | Très faible | Faible | Faible | Nulle (tu délègues) |
-| **Qualité redesign site** | ★★★★ | ★★ (pas fait pour ça) | ★★★ | ★★★★ | ★★★★★ |
-| **Site en production** | ✅ (via Claude Code) | ❌ | ✅ | ✅ | ✅ |
+| **Qualité redesign site** | ★★★★ | ★★★ (maquette statique) | ★★★ | ★★★★ | ★★★★★ |
+| **Site en production** | ✅ (via Claude Code) | ❌ (export manuel à recoder) | ✅ | ✅ | ✅ |
 
 **Différence clé — usages distincts :**
 Lovable et Bolt livrent une **app en production** directement (URL live, full-stack). Claude Design livre un **prototype visuel + design system** — il faut ensuite Claude Code pour l'implémentation. Ce sont trois cas d'usage différents qui coexistent : Lovable pour shipper vite, Bolt pour le contrôle dev, Claude Design pour itérer visuellement avec le meilleur modèle de design du marché. Lovable a une UI plus soignée que Bolt (8/10 vs 5/10 selon les retours utilisateurs).
