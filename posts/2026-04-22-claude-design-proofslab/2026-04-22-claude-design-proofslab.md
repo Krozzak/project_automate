@@ -52,8 +52,10 @@ En quelques heures, j'avais un prototype complet — landing, workspace, dashboa
 Ce qui le distingue vraiment des alternatives :
 
 Bolt et Lovable livrent du code directement — mais sans vrai process de design, pas de directions multiples, pas de design system.
-Canva produit des maquettes statiques — tu dois recoder le site à la main après.
+Figma a des fonctionnalités IA, mais c'est un outil pro avec une courbe d'apprentissage réelle — et l'export code n'est pas du code fonctionnel, c'est du handoff pour développeur.
 Un designer + dev freelance donne un résultat 5 étoiles — pour $5 000–$50 000+ et 2–4 mois.
+
+Le marché a compris la menace : le stock Figma a chuté de 6.8% le jour du lancement de Claude Design.
 
 Claude Design donne 4 étoiles en 2h pour le prix de l'abonnement.
 Zéro expérience en design requise.
@@ -220,14 +222,14 @@ Rectangle fond `#C97B3A` (cuivre) — texte Inter Bold `#FFFFFF` — coins arron
 > Sources vérifiées : support.claude.com, WebFX, Cybernews, NxCode, BoostWithAiTools — avril 2026.
 > Note coût freelance : $1 000–$15 000 = freelance indépendant. Agences établies : $15 000–$50 000+.
 
-| | Claude Design + Claude Code | Canva AI | Bolt / Lovable | Designer + Dev freelance |
+| | Claude Design + Claude Code | Figma (+ Make) | Bolt / Lovable | Designer + Dev freelance |
 |--|--|--|--|--|
-| **Temps résultat** | ~1–2h (design) + implémentation | Quelques heures (maquette) | Quelques heures | 2–4 mois (design + dev) |
-| **Coût total** | Inclus abo ($20+/mois) | $13/mois | Gratuit–$25/mois | $5 000–$50 000+ (design + dev) |
-| **Niveau requis pour démarrer** | Aucun — prompting naturel | Goût design utile | Aucun | Savoir briefer |
-| **Courbe d'apprentissage** | Faible | Très faible | Faible | Nulle (tu délègues) |
-| **Qualité redesign site** | ★★★★ | ★★★ (maquette statique) | ★★★ | ★★★★★ |
-| **Design → Code** | ★★★★★ (pipeline natif) | ★ (export à recoder) | ★★★★★ (code direct) | ★★★ (handoff manuel) |
+| **Temps résultat** | ~1–2h (design) + implémentation | Jours (courbe d'apprentissage) | Quelques heures | 2–4 mois (design + dev) |
+| **Coût total** | Inclus abo ($20+/mois) | Gratuit–$16/mois | Gratuit–$25/mois | $5 000–$50 000+ (design + dev) |
+| **Niveau requis pour démarrer** | Aucun — prompting naturel | Moyen — outil pro | Aucun | Savoir briefer |
+| **Courbe d'apprentissage** | Faible | Élevée | Faible | Nulle (tu délègues) |
+| **Qualité redesign site** | ★★★★ | ★★★★ (si maîtrisé) | ★★★ | ★★★★★ |
+| **Design → Code** | ★★★★★ (pipeline natif) | ★★ (handoff dev, pas de code fonctionnel) | ★★★★★ (code direct) | ★★★ (handoff manuel) |
 | **Site en production** | ✅ | ❌ | ✅ | ✅ |
 
 ---
@@ -256,7 +258,7 @@ Rectangle fond `#C97B3A` (cuivre) — texte Inter Bold `#FFFFFF` — coins arron
 **Différences clés vs les alternatives :**
 
 - **vs Bolt / Lovable** : ils livrent du code en production directement, sans vrai process de design. Claude Design fait le design proprement → Claude Code implémente. Meilleure qualité visuelle, en deux étapes.
-- **vs Canva** : maquettes statiques à recoder manuellement après. Pas de pipeline code, pas de design system automatique.
+- **vs Figma** : outil pro avec courbe d'apprentissage réelle. Figma Make fait du text-to-design, mais l'export code = handoff pour développeur, pas du code fonctionnel. Stock Figma -6.8% le jour du lancement de Claude Design.
 - **vs Designer + Dev freelance** : qualité supérieure, mais $5 000–$50 000+ et 2–4 mois. Claude Design donne 80% du résultat en 2h pour le prix de l'abonnement.
 
 ### Points incertains — ne pas affirmer dans le post
