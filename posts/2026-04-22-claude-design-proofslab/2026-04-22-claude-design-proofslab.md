@@ -218,22 +218,15 @@ Rectangle fond `#C97B3A` (cuivre) — texte Inter Bold `#FFFFFF` — coins arron
 > Sources vérifiées : support.claude.com, WebFX, Cybernews, NxCode, BoostWithAiTools — avril 2026.
 > Note coût freelance : $1 000–$15 000 = freelance indépendant. Agences établies : $15 000–$50 000+.
 
-| | Claude Design + Claude Code | Canva AI | Bolt / Lovable | Designer freelance |
+| | Claude Design + Claude Code | Canva AI | Bolt / Lovable | Designer + Dev freelance |
 |--|--|--|--|--|
-| **Temps résultat** | ~1–2h (design) + implémentation | Quelques heures (maquette) | Quelques heures | 4–8 semaines (design seul) |
-| **Coût** | Inclus abo ($20+/mois) | $13/mois | Gratuit–$25/mois | $500–$5 000+ (design seul) |
+| **Temps résultat** | ~1–2h (design) + implémentation | Quelques heures (maquette) | Quelques heures | 2–4 mois (design + dev) |
+| **Coût total** | Inclus abo ($20+/mois) | $13/mois | Gratuit–$25/mois | $5 000–$50 000+ (design + dev) |
 | **Niveau requis pour démarrer** | Aucun — prompting naturel | Goût design utile | Aucun | Savoir briefer |
 | **Courbe d'apprentissage** | Faible | Très faible | Faible | Nulle (tu délègues) |
 | **Qualité redesign site** | ★★★★ | ★★★ (maquette statique) | ★★★ | ★★★★★ |
-| **Site en production** | ✅ (via Claude Code) | ❌ (à recoder manuellement) | ✅ (code live direct) | ❌ (design seulement — dev séparé) |
-
-**Différences clés par outil :**
-
-**vs Bolt / Lovable** : ils livrent du code en production directement, sans vrai process de design (pas de brief visuel, pas de directions multiples). Claude Design fait le design proprement, puis Claude Code implémente. Meilleure qualité visuelle, mais en deux étapes.
-
-**vs Canva** : Canva produit des maquettes statiques — il faut recoder le site à la main après. Pas de pipeline vers le code, pas de design system automatique. Bon pour des assets marketing rapides, pas pour un redesign de site complet.
-
-**vs Designer freelance** : le designer te livre les fichiers (Figma, maquettes) — pas le site. Tu paies ensuite un développeur séparément pour l'implémentation. Meilleure qualité visuelle, mais le coût et le délai total (design + dev) sont sans commune mesure.
+| **Design → Code** | ★★★★★ (pipeline natif) | ★ (export à recoder) | ★★★★★ (code direct) | ★★★ (handoff manuel) |
+| **Site en production** | ✅ | ❌ | ✅ | ✅ |
 
 ---
 
@@ -257,6 +250,12 @@ Rectangle fond `#C97B3A` (cuivre) — texte Inter Bold `#FFFFFF` — coins arron
 - Gros repositories peuvent causer du lag
 - Plus tu es précis dans le brief, meilleur le résultat — courbe d'apprentissage légère
 - Pas un remplacement Figma pour une équipe design pro à l'échelle
+
+**Différences clés vs les alternatives :**
+
+- **vs Bolt / Lovable** : ils livrent du code en production directement, sans vrai process de design. Claude Design fait le design proprement → Claude Code implémente. Meilleure qualité visuelle, en deux étapes.
+- **vs Canva** : maquettes statiques à recoder manuellement après. Pas de pipeline code, pas de design system automatique.
+- **vs Designer + Dev freelance** : qualité supérieure, mais $5 000–$50 000+ et 2–4 mois. Claude Design donne 80% du résultat en 2h pour le prix de l'abonnement.
 
 ### Points incertains — ne pas affirmer dans le post
 
