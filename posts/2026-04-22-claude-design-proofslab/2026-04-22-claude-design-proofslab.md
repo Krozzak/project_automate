@@ -49,12 +49,17 @@ Pas une seule réponse. Un vrai choix.
 J'ai pris Spectrum.
 En quelques heures, j'avais un prototype complet — landing, workspace, dashboard, pricing — avec une charte que j'ai pu implémenter directement dans mon code.
 
-Le before/after, le process complet, et un comparatif avec Canva, Bolt et un designer humain → dans le carousel ci-dessous.
+Ce qui le distingue vraiment des alternatives : les autres outils supposent que tu sais déjà ce que tu veux.
+Canva : tu dois avoir le goût. Bolt ou Lovable : tu dois savoir ce que tu codes. Un designer humain : tu dois savoir briefer.
+
+Claude Design part du principe que tu ne sais pas — et il t'aide à découvrir.
+Zéro expérience en design requise. Output 4 étoiles.
+Pas 5 — un bon designer reste meilleur. Mais avec un investissement en temps et en argent sans commune mesure.
 
 La limite honnête : une session aussi complète m'a bouffé tous mes crédits hebdomadaires en abonnement Pro.
 C'est puissant. Pas illimité.
 
-Mais pour débloquer un non-designer sur un vrai projet en production — rien de comparable pour l'instant.
+Before/after, process complet et comparatif détaillé → dans le carousel ci-dessous.
 
 ---
 
@@ -103,8 +108,74 @@ Une session aussi complète (6 pages, 3 directions, dark mode, logo redesigné) 
 | 4 | Pour / Contre Claude Design | Avantages : rapidité, non-designer, pipeline code, collaboration view/comment/edit, input depuis lien ou inspiration. Limites : crédits hebdo, research preview, gros repos = lag |
 | 5 | Comparatif | Claude Design vs Canva vs Bolt vs Lovable vs Designer humain — axes : temps, coût, courbe d'apprentissage, barrière à l'entrée, output |
 
-**Règle visuelle :**
-Screenshots bruts pour slides 1-3, infographie minimaliste (fond `#f5f5f5`) pour slides 4-5. Pas de texte superposé sur les screenshots.
+---
+
+## Charte graphique — à appliquer sur toutes les slides
+
+**Format** : 1080 × 1440 px (portrait 3:4) — taille personnalisée dans Canva
+
+**Fond** : `#f5f5f5` (gris très clair, ton standard)
+
+**Polices** :
+- Titres : **Inter Bold** (ou Poppins Bold si Inter indisponible) — taille 48-64px
+- Sous-titres / labels : Inter SemiBold — 28-36px
+- Corps / données tableau : Inter Regular — 22-26px
+
+**Couleurs accent** :
+- Bleu pastel (highlight) : `#C7DCFF` — fond des cellules mises en avant
+- Texte principal : `#1A1A1A`
+- Texte secondaire / muted : `#6B6B6B`
+- Séparateur / bordures : `#E0E0E0`
+- Vert confirmation (✅ pour / avantages) : `#D4EDDA`
+- Rouge doux (❌ contre / limites) : `#F8D7DA`
+
+**Logo** : `ekenor.com` — bas gauche, marge ~40px, largeur ~200px (template Canva habituel)
+
+**Règles visuelles** :
+- Coins arrondis sur tous les blocs (radius 12-16px)
+- Drop shadow légère sur les cards (`0 2px 8px rgba(0,0,0,0.08)`)
+- Pas de texte superposé sur les screenshots
+- Padding interne généreux (40-60px sur les bords)
+- 1 titre par slide en haut, bien aéré
+
+---
+
+## Guide slide par slide — Canva
+
+**Slide 1 — Before / After**
+- Titre haut : "Before → After" (Inter Bold, 56px)
+- Moitié haute : screenshot ancien ProofsLab — label "Avant" en Inter SemiBold gris
+- Ligne séparatrice fine `#E0E0E0`
+- Moitié basse : screenshot Spectrum — label "Après" en Inter SemiBold bleu `#4A90D9`
+- Logo Ekenor bas gauche
+
+**Slide 2 — Le process**
+- Titre : "Comment ça marche" (Inter Bold)
+- 4 blocs verticaux avec flèches entre eux :
+  1. 📋 Brief — "Tu décris ton projet ou tu colles un lien"
+  2. ❓ Questions — "Claude comprend l'ambiance, l'audience, le style"
+  3. 🎨 3 directions — "Studio / Spectrum / Lab — tu choisis"
+  4. ⚡ Implémentation — "Design system exporté, intégré dans ton code"
+- Fond de chaque bloc : blanc, coins arrondis, drop shadow légère
+
+**Slide 3 — Bonus : les 2 autres directions**
+- Titre : "Les directions que je n'ai pas choisies"
+- 2 blocs côte à côte : screenshot Studio à gauche, screenshot Lab à droite
+- Label sous chaque screenshot : nom + 3 mots clés (ex: "Studio — éditorial, crème, indigo")
+- Note bas de page : "J'ai choisi Spectrum — voir slide 1"
+
+**Slide 4 — Pour / Contre**
+- Titre : "Claude Design — Pour / Contre"
+- 2 colonnes : colonne verte (Pour) + colonne rouge douce (Contre)
+- Fond colonne Pour : `#D4EDDA` — Fond colonne Contre : `#F8D7DA`
+- 5 points max par colonne, Inter Regular 24px
+
+**Slide 5 — Comparatif**
+- Titre : "Claude Design vs les alternatives"
+- Tableau complet : 5 outils en colonnes, 6 axes en lignes
+- Colonne Claude Design surlignée en `#C7DCFF`
+- Cellules avec ★ pour qualité, texte court pour les autres axes
+- Note bas : "Données avril 2026"
 
 ---
 
