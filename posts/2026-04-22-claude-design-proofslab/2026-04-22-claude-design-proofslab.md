@@ -49,12 +49,14 @@ Pas une seule réponse. Un vrai choix.
 J'ai pris Spectrum.
 En quelques heures, j'avais un prototype complet — landing, workspace, dashboard, pricing — avec une charte que j'ai pu implémenter directement dans mon code.
 
-Ce qui le distingue vraiment des alternatives : les autres outils supposent que tu sais déjà ce que tu veux.
-Canva : tu dois avoir le goût. Bolt ou Lovable : tu dois savoir ce que tu codes. Un designer humain : tu dois savoir briefer.
+Ce qui le distingue vraiment des alternatives :
 
-Claude Design part du principe que tu ne sais pas — et il t'aide à découvrir.
-Zéro expérience en design requise. Output 4 étoiles.
-Pas 5 — un bon designer reste meilleur. Mais avec un investissement en temps et en argent sans commune mesure.
+Bolt et Lovable livrent du code directement — mais sans vrai process de design, pas de directions multiples, pas de design system.
+Canva produit des maquettes statiques — tu dois recoder le site à la main après.
+Un designer + dev freelance donne un résultat 5 étoiles — pour $5 000–$50 000+ et 2–4 mois.
+
+Claude Design donne 4 étoiles en 2h pour le prix de l'abonnement.
+Zéro expérience en design requise.
 
 La limite honnête : une session aussi complète m'a bouffé tous mes crédits hebdomadaires en abonnement Pro.
 C'est puissant. Pas illimité.
