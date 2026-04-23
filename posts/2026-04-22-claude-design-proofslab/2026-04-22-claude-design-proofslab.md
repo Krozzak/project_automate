@@ -218,17 +218,22 @@ Rectangle fond `#C97B3A` (cuivre) — texte Inter Bold `#FFFFFF` — coins arron
 > Sources vérifiées : support.claude.com, WebFX, Cybernews, NxCode, BoostWithAiTools — avril 2026.
 > Note coût freelance : $1 000–$15 000 = freelance indépendant. Agences établies : $15 000–$50 000+.
 
-| | Claude Design + Claude Code | Canva AI | Bolt.new | Lovable | Designer freelance |
-|--|--|--|--|--|--|
-| **Temps résultat** | ~1–2h (design) + implémentation | Quelques heures (maquette) | Quelques heures | Quelques heures | 4–8 semaines |
-| **Coût** | Inclus abo ($20+/mois) | $13/mois | Gratuit (limité) | $25/mois | $1 000–$15 000+ |
-| **Niveau requis pour démarrer** | Aucun — prompting naturel | Goût design utile | Aucun | Aucun | Savoir briefer |
-| **Courbe d'apprentissage** | Faible — plus tu es précis, meilleur le résultat | Très faible | Faible | Faible | Nulle (tu délègues) |
-| **Qualité redesign site** | ★★★★ | ★★★ (maquette statique) | ★★★ | ★★★★ | ★★★★★ |
-| **Site en production** | ✅ (via Claude Code) | ❌ (export manuel à recoder) | ✅ | ✅ | ✅ |
+| | Claude Design + Claude Code | Canva AI | Bolt / Lovable | Designer freelance |
+|--|--|--|--|--|
+| **Temps résultat** | ~1–2h (design) + implémentation | Quelques heures (maquette) | Quelques heures | 4–8 semaines (design seul) |
+| **Coût** | Inclus abo ($20+/mois) | $13/mois | Gratuit–$25/mois | $500–$5 000+ (design seul) |
+| **Niveau requis pour démarrer** | Aucun — prompting naturel | Goût design utile | Aucun | Savoir briefer |
+| **Courbe d'apprentissage** | Faible | Très faible | Faible | Nulle (tu délègues) |
+| **Qualité redesign site** | ★★★★ | ★★★ (maquette statique) | ★★★ | ★★★★★ |
+| **Site en production** | ✅ (via Claude Code) | ❌ (à recoder manuellement) | ✅ (code live direct) | ❌ (design seulement — dev séparé) |
 
-**Différence clé — usages distincts :**
-Lovable et Bolt livrent une **app en production** directement (URL live, full-stack). Claude Design livre un **prototype visuel + design system** — il faut ensuite Claude Code pour l'implémentation. Ce sont trois cas d'usage différents qui coexistent : Lovable pour shipper vite, Bolt pour le contrôle dev, Claude Design pour itérer visuellement avec le meilleur modèle de design du marché. Lovable a une UI plus soignée que Bolt (8/10 vs 5/10 selon les retours utilisateurs).
+**Différences clés par outil :**
+
+**vs Bolt / Lovable** : ils livrent du code en production directement, sans vrai process de design (pas de brief visuel, pas de directions multiples). Claude Design fait le design proprement, puis Claude Code implémente. Meilleure qualité visuelle, mais en deux étapes.
+
+**vs Canva** : Canva produit des maquettes statiques — il faut recoder le site à la main après. Pas de pipeline vers le code, pas de design system automatique. Bon pour des assets marketing rapides, pas pour un redesign de site complet.
+
+**vs Designer freelance** : le designer te livre les fichiers (Figma, maquettes) — pas le site. Tu paies ensuite un développeur séparément pour l'implémentation. Meilleure qualité visuelle, mais le coût et le délai total (design + dev) sont sans commune mesure.
 
 ---
 
