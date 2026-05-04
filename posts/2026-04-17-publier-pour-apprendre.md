@@ -3,8 +3,8 @@ title: "Publier pour apprendre : chaque post me force à sourcer ce que je crois
 slug: "2026-04-17-publier-pour-apprendre"
 type: MÉTA
 projet: LinkedIn Auto
-status: Brouillon
-planned_date: "2026-04-16"
+status: Brouillon — décalé mai
+planned_date: "2026-05-xx"
 slot: Jeudi
 concept: "Feynman Technique"
 concept_level: Simple
