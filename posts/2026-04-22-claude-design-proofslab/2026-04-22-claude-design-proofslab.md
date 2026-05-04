@@ -4,7 +4,7 @@ slug: "2026-04-22-claude-design-proofslab"
 type: ACTUALITÉ
 projet: "Claude Design / ProofsLab"
 status: Brouillon V2
-planned_date: "2026-04-22"
+planned_date: ""
 slot: Mercredi (actualité — à publier dans la journée)
 concept: ""
 concept_level: Simple

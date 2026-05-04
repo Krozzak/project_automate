@@ -3,8 +3,8 @@ title: "J'ai tapé /fin-voyage. Voici ce que j'ai reçu."
 slug: "2026-04-02-memory-logger-outputs"
 type: RÉFLEXION
 projet: Memory Logger
-status: Brouillon
-planned_date: "2026-04-02"
+status: Décalé — post-voyage (retour 08/06)
+planned_date: ""
 slot: Jeudi
 concept: "Transactive Memory (Wegner, 1985) — narration assistée"
 concept_level: Simple

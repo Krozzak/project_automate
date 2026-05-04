@@ -3,8 +3,8 @@ title: "360Brew : ce qui ne marche plus"
 slug: "2026-04-17-linkedin-360brew"
 type: OPINION
 projet: "Ligne éditoriale / algo LinkedIn"
-status: Brouillon
-planned_date: "2026-04-16"
+status: Brouillon — décalé mai
+planned_date: ""
 slot: Jeudi
 concept: "Goodhart's Law (lien post 4.2)"
 concept_level: Simple

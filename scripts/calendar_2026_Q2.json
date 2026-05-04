@@ -1,0 +1,93 @@
+{
+  "clear_planned_date": [
+    "2026-04-22-claude-design-proofslab",
+    "2026-04-02-memory-logger-outputs",
+    "2026-04-17-linkedin-360brew"
+  ],
+  "fix_status": [
+    { "slug": "2026-04-20-proofslab-approbation-visuels", "status": "Publié" }
+  ],
+  "create_stubs": [
+    {
+      "slug": "2026-05-08-algo1-360brew",
+      "planned_date": "2026-05-08",
+      "slot": "Jeudi",
+      "type": "OPINION",
+      "titre": "360Brew : ce qui ne marche plus",
+      "projet": "Ligne éditoriale",
+      "status": "Brouillon"
+    },
+    {
+      "slug": "2026-05-12-km-graphe-custom",
+      "planned_date": "2026-05-12",
+      "slot": "Mardi",
+      "type": "AUTOMATISATION",
+      "titre": "Knowledge Management — mon Obsidian custom public, sur mon propre site",
+      "projet": "KM #8",
+      "status": "À rédiger"
+    },
+    {
+      "slug": "2026-05-19-e04-timeline-actualite",
+      "planned_date": "2026-05-19",
+      "slot": "Mardi",
+      "type": "AUTOMATISATION",
+      "titre": "Timeline Actualité — le track record que les journalistes ne font pas",
+      "projet": "Ekenor",
+      "status": "À rédiger"
+    },
+    {
+      "slug": "2026-05-26-book-translator",
+      "planned_date": "2026-05-26",
+      "slot": "Lundi",
+      "type": "AUTOMATISATION",
+      "titre": "Book Translator — je lis mes livres EN sans traduction officielle",
+      "projet": "#50",
+      "status": "À rédiger"
+    },
+    {
+      "slug": "2026-06-03-studio-architecture-md",
+      "planned_date": "2026-06-03",
+      "slot": "Mardi",
+      "type": "AUTOMATISATION",
+      "titre": "Architecture .md — pourquoi tout mon site vit en fichiers texte",
+      "projet": "Content Studio",
+      "status": "À rédiger avant 23/05"
+    },
+    {
+      "slug": "2026-06-10-memory-logger-outputs",
+      "planned_date": "2026-06-10",
+      "slot": "Mardi",
+      "type": "AUTOMATISATION",
+      "titre": "J'ai tapé /fin-voyage. Voici ce que j'ai reçu.",
+      "projet": "Memory Logger",
+      "status": "À rédiger post-retour"
+    },
+    {
+      "slug": "2026-06-17-ai-context-system",
+      "planned_date": "2026-06-17",
+      "slot": "Mardi",
+      "type": "AUTOMATISATION",
+      "titre": "AI Context System — mon cerveau en .md",
+      "projet": "#29",
+      "status": "À créer"
+    },
+    {
+      "slug": "2026-06-22-e02-page-audit-prospect",
+      "planned_date": "2026-06-22",
+      "slot": "Lundi",
+      "type": "AUTOMATISATION",
+      "titre": "Page Audit Prospect — outil d'auto-audit disponible sur Ekenor",
+      "projet": "Ekenor",
+      "status": "À coder + rédiger"
+    },
+    {
+      "slug": "2026-06-25-sc-e-openai-milliards",
+      "planned_date": "2026-06-25",
+      "slot": "Jeudi",
+      "type": "ANALYSE",
+      "titre": "110 milliards pour OpenAI — l'économie circulaire du capital IA",
+      "projet": "Silicon Carne",
+      "status": "À rédiger"
+    }
+  ]
+}

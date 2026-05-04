@@ -9,7 +9,7 @@ slot: Lundi
 concept: "Story-Doing"
 concept_level: Intermédiaire
 tags: [IA, Anthropic, Mythos, Stratégie, Marketing, Contrôle du récit]
-linkedin_url: ""
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_les-%C3%A9quipes-marketing-danthropic-devraient-share-7449580233109749760-10Qr"
 lesson: "V1 rejetée (phrases hachées, style LinkedIn IA de base). V2 rejetée (trop explicative, trop sérieuse). V3 angle cinéma mais encore trop liste. V4 : angle contrôle du récit vs benchmarks, comparaison Anthropic/OpenAI sur la stratégie narrative. Leçon : pour une ACTUALITÉ avec beaucoup de matière, choisir UN angle saillant — garder le dense pour Ekenor."
 rules_applied: [accroche-3-lignes, structure-3-actes, max-2-takeaways, pas-de-teasing]
 rule_added: ""

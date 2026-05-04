@@ -4,7 +4,7 @@ slug: "2026-04-28-workflow-publication-claude-code"
 type: AUTOMATISATION
 projet: "LinkedIn Auto / Claude Code"
 status: Prêt
-planned_date: "2026-04-28"
+planned_date: "2026-05-05"
 slot: Mardi
 concept: ""
 concept_level: Simple
@@ -63,7 +63,7 @@ C'est l'infrastructure qui fait que la gestion disparaît.
 Salut [Prénom] 👋
 
 Merci d'avoir commenté — voilà le lien vers les 7 commandes et le workflow complet :
-ekenor.com/fr/resources/claude-commands
+ekenor.com/workflow
 
 Il y a un PDF à télécharger si tu veux garder ça sous la main.
 
@@ -72,7 +72,7 @@ Il y a un PDF à télécharger si tu veux garder ça sous la main.
 ## Commentaire épinglé
 
 ```text
-Les 7 commandes, le workflow complet et la structure du projet → ekenor.com/fr/resources/claude-commands
+Les 7 commandes, le workflow complet et la structure du projet → ekenor.com/workflow
 ```
 
 ---

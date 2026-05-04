@@ -490,14 +490,14 @@ def generate_disambiguation_report(posts):
 
 # ─── Frontmatter update ────────────────────────────────────────────────────────
 
-def update_frontmatter_linkedin_url(fm, url):
-    """Add or update linkedin_url field in post frontmatter file"""
+def update_post_frontmatter(fm, url):
+    """Add/update linkedin_url and set status to Publié in post frontmatter."""
     content = fm["content"]
     file_path = fm["file"]
+    changed = False
 
-    # Check if linkedin_url field exists
+    # Update linkedin_url
     if re.search(r"^linkedin_url:", content, re.MULTILINE):
-        # Update existing (even if empty)
         new_content = re.sub(
             r'^linkedin_url:.*$',
             f'linkedin_url: "{url}"',
@@ -520,12 +520,27 @@ def update_frontmatter_linkedin_url(fm, url):
                 content,
                 flags=re.MULTILINE
             )
-
     if new_content != content:
+        changed = True
+        content = new_content
+
+    # Update status → Publié if not already
+    status_match = re.search(r'^status:\s*["\']?(.+?)["\']?\s*$', content, re.MULTILINE)
+    if status_match and status_match.group(1).strip() != 'Publié':
+        new_content2 = re.sub(r'^status:.*$', 'status: Publié', content, flags=re.MULTILINE)
+        if new_content2 != content:
+            changed = True
+            content = new_content2
+
+    if changed:
         with open(file_path, "w", encoding="utf-8") as f:
-            f.write(new_content)
-        return True
-    return False
+            f.write(content)
+    return changed
+
+
+def update_frontmatter_linkedin_url(fm, url):
+    """Legacy alias for update_post_frontmatter."""
+    return update_post_frontmatter(fm, url)
 
 
 # ─── Main ──────────────────────────────────────────────────────────────────────
@@ -643,10 +658,10 @@ def main():
             if p.get("match") in ("HIGH", "MEDIUM") and p.get("fm"):
                 url = p.get("url", "")
                 if url:
-                    changed = update_frontmatter_linkedin_url(p["fm"], url)
+                    changed = update_post_frontmatter(p["fm"], url)
                     if changed:
                         updated += 1
-                        print(f"  OK {p['slug']} -> linkedin_url mis a jour")
+                        print(f"  OK {p['slug']} -> frontmatter mis a jour (linkedin_url + status)")
                     else:
                         skipped += 1
                         print(f"  -- {p['slug']} -> deja a jour")

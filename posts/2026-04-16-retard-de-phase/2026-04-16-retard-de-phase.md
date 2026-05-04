@@ -9,7 +9,7 @@ slot: Mercredi
 concept: ""
 concept_level: Simple
 tags: [IA pragmatique, Organisations, Innovation]
-linkedin_url: ""
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_dans-la-tech-une-innovation-sort-toutes-share-7450521427839143936-X6oI"
 lesson: "Le contraste top-down vs bottom-up donne un cadre conceptuel au post sans forcer un concept externe — il vient directement du sujet. Une ligne seule ('Top-down vs bottom-up.') suffit à planter le terme sans l'expliquer."
 rules_applied: [accroche-polarisante, structure-3-actes, max-2-takeaways, récit-personnel-spécifique, accroche-3-lignes, phrase-punch-finale, angle-personnel-narratif]
 rule_added: ""

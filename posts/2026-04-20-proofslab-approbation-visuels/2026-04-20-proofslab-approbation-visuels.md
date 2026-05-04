@@ -3,13 +3,13 @@ title: "25 heures d'approbation. Maintenant 4 heures."
 slug: "2026-04-20-proofslab-approbation-visuels"
 type: AUTOMATISATION
 projet: "ProofsLab"
-status: Programmé
+status: Publié
 planned_date: "2026-04-20"
 slot: Lundi
 concept: ""
 concept_level: ""
 tags: [proofreading, visuel, retail, automatisation, cosmétiques, impression]
-linkedin_url: ""
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_proofslab-approbation-pdf-avant-impression-ugcPost-7451745014809927681-WGbo"
 lesson: "Raccourcir un post trop long passe par identifier ce que le lecteur a déjà compris ligne 3 — le process en 6 flèches était du remplissage, une phrase suffisait. Et crédibiliser un outil en beta c'est supprimer les phrases qui doutent ('c'est en R&D'), pas les garder par honnêteté."
 rules_applied: [accroche-3-lignes, récit-personnel-spécifique, chiffres-cote-a-cote, voix-vecue-pas-pattern, max-2-takeaways, phrase-punch-finale]
 rule_added: ""
