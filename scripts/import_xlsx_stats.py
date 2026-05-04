@@ -259,7 +259,7 @@ def match_posts_to_slugs(xlsx_posts, frontmatters):
             if pd is None:
                 continue
             # Match within ±1 day
-            if abs((pub_date - pd).days) <= 1:
+            if abs((pub_date - pd).days) <= 3:
                 candidates.append(fm)
 
         if len(candidates) == 1:

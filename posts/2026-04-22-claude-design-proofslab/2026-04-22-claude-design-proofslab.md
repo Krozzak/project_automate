@@ -3,13 +3,13 @@ title: "Claude Design — Before/After ProofsLab"
 slug: "2026-04-22-claude-design-proofslab"
 type: ACTUALITÉ
 projet: "Claude Design / ProofsLab"
-status: Brouillon V2
-planned_date: ""
-slot: Mercredi (actualité — à publier dans la journée)
+status: Publié
+planned_date: "2026-04-24"
+slot: Vendredi
 concept: ""
 concept_level: Simple
 tags: ["claude-design", "proofslab", "ia", "design"]
-linkedin_url: ""
+linkedin_url: "https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_analyse-claude-design-ugcPost-7453208352551268353-S0Y_"
 lesson: ""
 rules_applied: ["accroche-3-lignes", "récit-personnel-spécifique", "max-2-takeaways", "solution-en-narration-pas-en-liste", "phrase-punch-finale"]
 rule_added: ""
