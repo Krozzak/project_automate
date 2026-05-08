@@ -80,6 +80,21 @@ Optionnel : contraste visuel simple "profil attendu vs profil réel" si l'infogr
 
 ---
 
+## ⚠️ Note de pivot — filtre builder IA (2026-05-08)
+
+Post hors territoire tel quel — carrière Polytechnique/L'Oréal sans angle build. Intéressant mais pas différenciant pour un créateur de contenu builder IA.
+
+**L'angle est pourtant là** : "Surqualifié = 60% sur le rôle, 40% pour construire ce qui n'existait pas." C'est exactement la logique du builder insider. Il faut la rendre explicite.
+
+**Pivot à faire avant publication** : ancrer les 40% dans un build concret. Exemples :
+- "Ces 40%, je les ai utilisés pour construire mes premiers workflows internes"
+- Nommer un outil ou une automatisation réelle construite pendant cette période
+- La conclusion "construire une case" peut devenir "construire des outils que personne d'autre n'aurait faits à ta place"
+
+Le post peut rester fort — il faut juste que le lecteur builder se reconnaisse dans les 40%, pas seulement dans le parcours de carrière.
+
+---
+
 ## Tracking
 
 | Métrique | Objectif | Résultat |

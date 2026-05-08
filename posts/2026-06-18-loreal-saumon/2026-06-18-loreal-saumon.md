@@ -79,6 +79,16 @@ Comprendre chaque étage en le traversant.
 |-------|-------------|-----------------|
 | 1 (optionnel) | Chaîne de décision verticale avec flèche remontante | Finance → Direction → Marketing → Category → Implémentation, flèche vers le haut avec label "parcours Thomas" |
 
+---
+
+## ⚠️ Note de pivot — filtre builder IA (2026-05-08)
+
+Post hors territoire tel quel — remontée de chaîne hiérarchique, parcours management. Fort narrativement mais zéro ancrage build. Recommandation : **décaler vers Ekenor** (matériau NL-04 "l'entreprise comme laboratoire") plutôt que pivoter.
+
+**Si on veut le garder sur LinkedIn** : la remontée de chaîne doit être instrumentalisée par le build. Angle possible : "À chaque étage, j'ai ajouté une couche d'automatisation que l'étage précédent n'avait pas. C'est ça qui m'a ouvert le suivant — pas le titre, le workflow." Mais c'est une réécriture quasi complète.
+
+**Option recommandée** : remplacer ce slot par un post builder plus fort et intégrer Le Saumon dans NL-04.
+
 Générable via Nano Banana Pro 2 — infographie minimaliste fond `#f5f5f5`.
 
 ---

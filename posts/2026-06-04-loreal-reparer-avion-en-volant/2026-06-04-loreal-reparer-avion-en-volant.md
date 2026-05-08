@@ -79,6 +79,19 @@ Aucun visuel nécessaire.
 
 ---
 
+## ⚠️ Note de pivot — filtre builder IA (2026-05-08)
+
+Post hors territoire tel quel — parle de carrière et de conseil vs terrain, zéro mention de build ou d'automatisation. Un consultant pourrait écrire ce post mot pour mot.
+
+**Pivot à faire avant publication** : ancrer l'histoire dans le build. L'angle existe déjà dans le post ("ajouter des analyses que personne ne faisait", "automatiser ce qui prenait du temps sans valeur ajoutée") — il faut le rendre concret. Exemples :
+- Nommer une automatisation réelle construite à ce moment-là
+- "C'est là que j'ai construit mon premier workflow interne — [description courte]"
+- Terminer sur "et c'est ce que je continue de faire aujourd'hui, en solo cette fois"
+
+Le post peut rester MÉTA/BUILD IN PUBLIC à condition que le build soit visible, pas juste sous-entendu.
+
+---
+
 ## Tracking
 
 | Métrique | Objectif | Résultat |

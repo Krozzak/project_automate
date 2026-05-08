@@ -76,6 +76,16 @@ Aucun visuel nécessaire — post texte pur, ton réflexif.
 
 ---
 
+## ⚠️ Note de pivot — filtre builder IA (2026-05-08)
+
+Post W7-A passe le filtre à 80% — le fond est bon (insider qui observe l'adoption réelle terrain vs discours LinkedIn). Mais il parle d'Excel et de carrière sans mentionner de build personnel.
+
+**Pivot à faire avant publication** : ajouter 1-2 lignes qui ancrent dans le territoire builder. Exemple d'angle : "Pendant ce temps, j'ai automatisé ce que mes collègues faisaient à la main." Ou : "C'est ce décalage qui m'a donné le temps de construire mes premiers outils."
+
+L'idée centrale reste — juste ajouter la couche "et voilà ce que j'en ai fait concrètement".
+
+---
+
 ## Tracking
 
 | Métrique | Objectif | Résultat |
