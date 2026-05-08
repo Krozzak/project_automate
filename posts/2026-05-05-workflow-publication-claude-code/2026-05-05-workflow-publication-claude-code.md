@@ -34,9 +34,9 @@ rule_hypothesis: "Si le CTA est un mot-clé en commentaire (COMMANDES), alors l'
 
 ## Post LinkedIn
 
-En 3 mois, j'ai publié 24 posts LinkedIn.
+En 3 mois, j'ai publié 24 posts LinkedIn, 6 articles, 85 fiches de concept.
 En parallèle d'un travail à temps plein.
-Voilà le système évolutif qui rend ça tenable.
+Voilà le système évolutif qui permet cela.
 
 J'utilise Claude Code — pas comme un assistant de rédaction.
 Comme un environnement de travail avec des commandes que j'ai construites autour de mon projet.
@@ -49,31 +49,31 @@ Claude connaît ma ligne éditoriale, mes règles de format, mes posts précéde
 Il mesure ce qui a fonctionné. Il ajuste pour le suivant.
 
 Derrière tout ça : un repo GitHub avec chaque post, chaque idée, chaque stat.
-Tout est versionné. Tout est lié.
+Tout est versionné. Tout est lié avec mon site de gestion du contenu.
 
-Ce n'est pas un outil de plus à gérer.
-C'est l'infrastructure qui fait que la gestion disparaît.
+Cette infrastructure permet de se focaliser uniquement sur les étapes intéressantes de la création de contenu :
+La recherche, l'écriture et l'analyse.
 
-Écris **COMMANDES** en commentaire → je t'envoie la liste complète.
+Écris **WORKFLOW** en commentaire → je t'envoie le workflow complet.
 
 ---
 
-## DM de réponse (pour les "COMMANDES" en commentaire)
+## DM de réponse (pour les "WORKFLOW" en commentaire)
 
 Salut [Prénom] 👋
 
-Merci d'avoir commenté — voilà le lien vers les 7 commandes et le workflow complet :
+Merci d'avoir commenté — voilà le workflow complet :
 ekenor.com/workflow
-
-Il y a un PDF à télécharger si tu veux garder ça sous la main.
 
 ---
 
 ## Commentaire épinglé
 
 ```text
-Les 7 commandes, le workflow complet et la structure du projet → ekenor.com/workflow
+Le workflow complet avec toutes les étapes → ekenor.com/workflow
 ```
+
+> ⚠️ TODO : quand la page `ekenor.com/algo-linkedin` (360Brew) sera créée, mettre à jour ce commentaire épinglé et le DM "WORKFLOW" — soit pointer vers une page ressources centrale, soit garder deux pages distinctes (workflow publication / algo LinkedIn).
 
 ---
 
@@ -97,6 +97,36 @@ Each step in a rounded rectangle, soft blue pastel accent, subtle drop shadow.
 Thin arrows connecting each step. Clean, minimal, no annotations.
 Bottom: leave 80px margin for logo badge.
 ```
+
+---
+
+## Page ekenor.com/workflow — Contenu suggéré
+
+### Section "Avant / Après" (à mettre en évidence)
+
+Ce qui était manuel avant → ce que le système fait maintenant :
+
+| Étape | Avant | Maintenant |
+| ----- | ----- | ---------- |
+| Trouver le prochain sujet | Relire les notes, chercher dans les idées en vrac | `/status` → buffer de contenu priorisé automatiquement |
+| Vérifier la cohérence éditoriale | Relire tous les posts récents à la main | Claude connaît la ligne éditoriale + les posts précédents |
+| Rédiger | Page blanche, structure à retrouver | `/write-post` → angle proposé, takeaways, structure adaptée au type |
+| Suivre les stats | Export XLSX LinkedIn, calcul manuel | `/analyze-stats` → ER calculé, comparaison à la moyenne, recommandations |
+| Publier sur Ekenor | Copier-coller, formatter, traduire à la main | `/publish-ekenor` → article formaté + version EN générée |
+| Garder une trace | Rien ou fichiers épars | Repo GitHub versionné, chaque post lié à ses stats |
+
+**Message clé de la section** : il ne reste plus que le brainstorm et la rédaction. Tout ce qui est gestion, tracking, cohérence, formatage — c'est absorbé. Les inputs humains arrivent aux moments où ils comptent vraiment.
+
+---
+
+## Question ouverte — Visuel GIF
+
+Est-ce qu'on peut faire un GIF animé du workflow diagram (style VSL) pour remplacer l'image statique ?
+
+- Les étapes s'allument une par une dans l'ordre de la boucle
+- Animation courte (~3-4 sec), loop infini
+- Format carré 1080×1080 pour LinkedIn
+- Faisable via Canva (animation de blocs) ou After Effects si on a le SVG source
 
 ---
 
