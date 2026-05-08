@@ -76,3 +76,47 @@ Le graphe est navigable ici : ekenor.com/fr/concepts/map
 | Commentaires | — | — |
 | EngagementRate | — | — |
 | Règle testée | — | — |
+
+---
+
+## Notes de session — 2026-05-08
+
+### Statut
+Post en brouillon — accroche validée par Thomas (dictée textos), corps à finaliser
+ce weekend. Ne pas réécrire l'accroche, elle est fixée :
+
+> "J'ai reconstruit ma mémoire. En créant un graphe de connaissance.
+> C'est comme Obsidian mais directement sur Github.
+> Claude Code peut ensuite parcourir cette connaissance et faire des liens
+> inattendus entre des concepts de thématiques différentes."
+
+### Ce qui a été décidé pendant la session
+
+Le post a déclenché une réflexion sur la publication du système en open source.
+Résultat : le projet **KMS (Knowledge Management System)** a été spécifié.
+
+- Repo GitHub créé pendant la session (dans une discussion parallèle)
+- Prompt de build complet : `projects/knowledge_curator/KMS_BUILD_PROMPT.md`
+- `/new-automation` réécrite en générique (supporte web-app, site-astro,
+  extension, script, plugin, api — plus seulement n8n)
+
+### Pour finaliser le post ce weekend
+
+1. Lire le repo KMS créé (URL à récupérer depuis l'autre discussion)
+2. Vérifier combien de fiches sont publiques dans le repo au moment de la rédaction
+   → mettre à jour "85 fiches" si le chiffre a changé
+3. Décider si on mentionne le repo GitHub dans le post ou juste ekenor.com
+   → si le repo est public et propre : ajouter en commentaire épinglé
+4. Le corps du post est à retravailler — Thomas n'était pas inspiré ce jour-là,
+   les formulations sonnent encore génériques après l'accroche
+5. Angle à garder : l'exemple concret Price Inelasticity → compétences est le
+   point fort — ne pas le diluer
+
+### Décisions d'architecture KMS (contexte pour le prochain post)
+
+- Structure par dossier : `notes/concepts/`, `notes/books/`, `notes/authors/`...
+- Schéma `related` unifié avec préfixes (`concept:`, `book:`, `author:`...)
+- Deux graphes : vault local privé + graphe public GitHub
+- GitHub Actions : validation PR + détection doublons (similarité Jaccard)
+- Dual licence : MIT (code) + CC BY-SA 4.0 (contenu notes/)
+- `.gitignore` : `notes/private/` pour sandbox local non commitable
