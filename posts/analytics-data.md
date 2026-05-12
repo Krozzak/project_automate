@@ -1,31 +1,31 @@
 # LinkedIn Analytics — Source de vérité
 
-> Généré le 2026-04-19 via export XLSX LinkedIn + session /analyze-stats.
+> Généré le 2026-05-11 via export XLSX LinkedIn + session /analyze-stats.
 > Ce fichier servira à construire la page /analytics sur Ekenor.
 > API LinkedIn Community Management : **en attente d'approbation** — sync automatique disponible dès approbation.
 > Snapshots historiques : `posts/analytics/` (par date).
 
 ---
 
-## Stats globales (snapshot 19/04/2026)
+## Stats globales (snapshot 11/05/2026)
 
 | Métrique | Valeur |
 |---|---|
-| Période | 21/01/2026 - 20/04/2026 |
-| Impressions totales | 5658 |
-| Membres uniques atteints | 976 |
-| Followers au 19/04/2026 | 364 |
-| Posts matchés | 19 (hors MANUAL_CHECK) |
-| Dernière sync | 2026-04-19 (XLSX manuel) |
+| Période | 12/05/2025 - 11/05/2026 |
+| Impressions totales | 6 634 |
+| Membres uniques atteints | 1 099 |
+| Followers au 11/05/2026 | 382 (+18 vs 19/04) |
+| Posts matchés | 22 (hors provisoire et MANUAL_CHECK non résolu) |
+| Dernière sync | 2026-05-11 (XLSX manuel) |
 | Prochaine sync | via Workflow A dès API approuvée |
 
 ## Croissance followers
 
-- Total au 19/04/2026 : 364 (+12 vs 12/04, +25 vs 03/04)
-- Pics notables (top 5) : 17/03 +9, 09/03 +7, 14/04 +7, 08/03 +6, 11/04 +6
-- Corrélation probable : pics 08-09/03 = deuxième vague should-i-buy-it ; pics 17-18/03 = ai-proof-job-scanner ; 14/04 = Time Tracker posts
+- Total au 11/05/2026 : 382 (+18 vs 19/04, +43 vs 03/04)
+- Pics notables (top 5) : 17/03 +9, 09/03 +7, 14/04 +7, 08/03 +6, 14/10 +6
+- Corrélation probable : pics 08-09/03 = should-i-buy-it ; pics 17-18/03 = ai-proof-job-scanner ; 14/04 = Time Tracker posts ; croissance stable mai 2026 post-360Brew
 
-## Démographie audience (snapshot 03/04/2026)
+## Démographie audience (snapshot 11/05/2026)
 
 | Dimension | Top valeurs |
 |---|---|
@@ -36,18 +36,19 @@
 
 ---
 
-## Moyennes de référence (calculées le 19/04/2026)
+## Moyennes de référence (calculées le 11/05/2026)
 
-> Calculées sur 17 posts éligibles (age ≥ 7j, stats disponibles). Exclut : mythos-anthropic (provisoire J+6), retard-de-phase (provisoire J+3).
+> Calculées sur 21 posts éligibles (age ≥ 7j, stats disponibles). Exclut : workflow-publication-claude-code (provisoire J+6).
+> Posts algo1-360brew et km-graphe-custom absents du XLSX (publiés trop proches de la date d'export).
 
 | Métrique | Valeur | Base de calcul |
 |---|---|---|
-| EngagementRate moyen | 1.42% | 17 posts |
-| ImpAdj7j moyen | 202 | 17 posts |
-| Médiane ImpAdj7j | 193 | 17 posts |
-| Écart-type ImpAdj7j | ~203 | 17 posts |
-| Seuil Tier A (ImpAdj7j) | > 303 | moy + 0.5σ |
-| Seuil Tier C (ImpAdj7j) | < 100 | moy - 0.5σ |
+| EngagementRate moyen | 1.62% | 20 posts (mythos exclu — interactions nulles) |
+| ImpAdj7j moyen | 161 | 21 posts |
+| Médiane ImpAdj7j | 163 | 21 posts |
+| Écart-type ImpAdj7j | ~185 | 21 posts |
+| Seuil Tier A (ImpAdj7j) | > 254 | moy + 0.5σ |
+| Seuil Tier C (ImpAdj7j) | < 68 | moy - 0.5σ |
 
 ---
 
@@ -59,71 +60,80 @@
 
 | Date pub | Slug | Type | Impressions | Interactions | EngRate% | ImpAdj7j | Flag | Tier | linkedin_url |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 2026-02-02 | 2026-02-03-ideas-logger-demo | AUTOMATISATION | 813 | 22 | 2.71 | 813 | mature | **A** ⚠️ outlier | https://www.linkedin.com/feed/update/urn:li:activity:7424081686419857408 |
-| 2026-02-09 | 2026-02-10-score-ice | MÉTA | 504 | 6 | 1.19 | 504 | mature | **A** ⚠️ outlier | https://www.linkedin.com/feed/update/urn:li:activity:7426618394608582658 |
-| 2026-02-16 | 2026-02-17-loi-de-gall | RETOUR_EXP | 371 | 5 | 1.35 | 371 | mature | **A** | https://www.linkedin.com/feed/update/urn:li:activity:7429155092739690497 |
-| 2026-02-23 | 2026-02-23-ego-depletion | RÉFLEXION | 248 | 5 | 2.02 | 248 | mature | B | https://www.linkedin.com/feed/update/urn:li:activity:7431691855224008704 |
-| 2026-03-02 | 2026-03-02-todo-manager-demo | AUTOMATISATION | 163 | 1 | 0.61 | 163 | mature | B | https://www.linkedin.com/feed/update/urn:li:activity:7434228527006277632 |
-| 2026-03-05 | 2026-03-05-savoir-quoi-faire | RÉFLEXION / BILAN | 475 | 9 | 1.89 | 475 | mature | **A** | https://www.linkedin.com/feed/update/urn:li:activity:7435315757825024001 |
-| 2026-03-07 | 2026-03-07-pentagon-anthropic-openai | ACTUALITÉ | 193 | 1 | 0.52 | 193 | mature | B | https://www.linkedin.com/feed/update/urn:li:activity:7436063141509091328 |
-| 2026-03-09 | 2026-03-09-should-i-buy-it | AUTOMATISATION | 365 | 8 | 2.19 | 365 | mature | **A** | https://www.linkedin.com/feed/update/urn:li:activity:7436750197331963904 |
-| 2026-03-12 | 2026-03-12-friction-positive | RÉFLEXION | 110 | 1 | 0.91 | 110 | mature | B | https://www.linkedin.com/feed/update/urn:li:activity:7437837330511679489 |
-| 2026-03-16 | 2026-03-16-ai-proof-job-scanner | AUTOMATISATION | 361 | 8 | 2.22 | 361 | mature | **A** | https://www.linkedin.com/feed/update/urn:li:activity:7439290652489740288 |
-| 2026-03-19 | 2026-03-19-utility-vs-meaning | RÉFLEXION | 193 | 3 | 1.55 | 193 | mature | B | https://www.linkedin.com/feed/update/urn:li:activity:7440374086372929536 |
-| 2026-03-23 | 2026-03-23-ekenor-lancement | AUTOMATISATION | 297 | 7 | 2.36 | 77 | actif | C | https://www.linkedin.com/feed/update/urn:li:activity:7441823643233435648 |
-| 2026-03-26 | 2026-03-26-pourquoi-newsletter | OPINION | 220 | 3 | 1.36 | 64 | actif | C | https://www.linkedin.com/feed/update/urn:li:activity:7442910753302548481 |
-| 2026-03-30 | 2026-03-30-memory-logger | AUTOMATISATION | 367 | 2 | 0.54 | 128 | actif | B | https://www.linkedin.com/feed/update/urn:li:activity:7444364062630703104 |
-| 2026-04-01 | 2026-04-01-leak-claude-code | ACTUALITÉ | 366 | 1 | 0.27 | 142 | actif | B | https://www.linkedin.com/feed/update/urn:li:activity:7445098597164945409 |
-| 2026-04-06 | 2026-04-06-time-tracker-estimation | AUTOMATISATION | 292 | 4 | 1.37 | 157 | actif | B | https://www.linkedin.com/feed/update/urn:li:activity:7446897041462505472 |
-| 2026-04-09 | 2026-04-09-time-tracker-dashboard | AUTOMATISATION | 92 | 1 | 1.09 | 64 | actif | C | https://www.linkedin.com/feed/update/urn:li:activity:7447984203624837120 |
-| 2026-04-13 | 2026-04-13-mythos-anthropic | ACTUALITÉ | 91 | — | — | 106 | **provisoire** J+6 | — | https://www.linkedin.com/feed/update/urn:li:activity:7449580234439352320 |
-| 2026-04-16 | 2026-04-16-retard-de-phase | OPINION | 48 | 1 | 2.08 | 112 | **provisoire** J+3 | — | https://www.linkedin.com/feed/update/urn:li:activity:7450521428942245888 |
-| 2026-04-20 | 2026-04-20-proofslab-approbation-visuels | AUTOMATISATION | — | — | — | — | **provisoire** J+0 | — | |
+| 2026-02-02 | 2026-02-03-ideas-logger-demo | AUTOMATISATION | 818 | 22 | 2.69 | 818 | mature | **A** ⚠️ outlier | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_pendant-longtemps-je-navais-pas-un-probl%C3%A8me-ugcPost-7423871838407106560-K930 |
+| 2026-02-09 | 2026-02-10-score-ice | MÉTA | 504 | 6 | 1.19 | 504 | mature | **A** ⚠️ outlier | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_la-semaine-derni%C3%A8re-jai-partag%C3%A9-comment-share-7426387664716783616-lp0D |
+| 2026-02-16 | 2026-02-17-loi-de-gall | RETOUR_EXP | 371 | 5 | 1.35 | 371 | mature | **A** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_lia-g%C3%A9n%C3%A8re-vite-et-cest-le-pi%C3%A8ge-mon-ugcPost-7428966489354895360-5DCQ |
+| 2026-02-23 | 2026-02-23-ego-depletion | RÉFLEXION | 248 | 5 | 2.02 | 248 | mature | **B** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_la-discipline-cest-surfait-en-vrai-chaque-share-7431529416373014528-0smn |
+| 2026-03-02 | 2026-03-02-todo-manager-demo | AUTOMATISATION | 163 | 1 | 0.61 | 163 | mature | **B** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_lia-a-rendu-lex%C3%A9cution-accessible-%C3%A0-tout-ugcPost-7434071525500235776-wr0a |
+| 2026-03-05 | 2026-03-05-savoir-quoi-faire | RÉFLEXION / BILAN | 475 | 9 | 1.89 | 475 | mature | **A** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_en-2025-javais-un-seul-projet-en-cours-share-7434073946594902016-QrTf |
+| 2026-03-07 | 2026-03-07-pentagon-anthropic-openai | ACTUALITÉ | 193 | 1 | 0.52 | 193 | mature | **B** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_quitgpt-share-7436057673466347520-FaCG |
+| 2026-03-09 | 2026-03-09-should-i-buy-it | AUTOMATISATION | 371 | 8 | 2.16 | 371 | mature | **A** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_je-suis-sur-amazon-je-vois-un-truc-pour-ugcPost-7436539538065215488-Nj7b |
+| 2026-03-12 | 2026-03-12-friction-positive | RÉFLEXION | 110 | 1 | 0.91 | 110 | mature | **B** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_on-passe-son-temps-%C3%A0-supprimer-la-friction-share-7437685334953574401-qwW7 |
+| 2026-03-16 | 2026-03-16-ai-proof-job-scanner | AUTOMATISATION | 361 | 8 | 2.22 | 361 | mature | **A** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_lia-va-transformer-ton-poste-la-question-ugcPost-7439285332115836929-n0yz |
+| 2026-03-19 | 2026-03-19-utility-vs-meaning | RÉFLEXION | 197 | 3 | 1.52 | 197 | mature | **B** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_jai-automatis%C3%A9-une-partie-de-mes-t%C3%A2ches-share-7440216527011770368--qdn |
+| 2026-03-23 | 2026-03-23-ekenor-lancement | AUTOMATISATION | 299 | 7 | 2.34 | 43 | actif | **C** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_jai-lanc%C3%A9-un-site-ce-nest-pas-un-blog-share-7441682022038683648-kjW5 |
+| 2026-03-26 | 2026-03-26-pourquoi-newsletter | OPINION | 229 | 4 | 1.75 | 35 | actif | **C** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_je-passe-mes-dimanches-matin-%C3%A0-discuter-de-share-7442545205934854144-ge-G |
+| 2026-03-30 | 2026-03-30-memory-logger | AUTOMATISATION | 385 | 2 | 0.52 | 64 | actif | **C** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_jai-essay%C3%A9-de-me-rappeler-dun-voyage-dil-ugcPost-7444358249165897728-V2Ii |
+| 2026-04-01 | 2026-04-01-leak-claude-code | ACTUALITÉ | 373 | 1 | 0.27 | 65 | actif | **C** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_r%C3%A9sum%C3%A9-des-meilleures-features-leaked-share-7445098596074524672-vUg7 |
+| 2026-04-06 | 2026-04-06-time-tracker-estimation | AUTOMATISATION | 317 | 4 | 1.26 | 63 | actif | **C** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_mon-manager-ma-dit-que-jestimais-toujours-ugcPost-7446595075729649664-Hezd |
+| 2026-04-09 | 2026-04-09-time-tracker-dashboard | AUTOMATISATION | 125 | 2 | 1.60 | 27 | actif | **C** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_dapr%C3%A8s-mon-time-tracker-je-sous-estime-ugcPost-7447625403311095808-HXhZ |
+| 2026-04-13 | 2026-04-13-mythos-anthropic | ACTUALITÉ | 114 | — | — | 29 | actif | **C** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_les-%C3%A9quipes-marketing-danthropic-devraient-share-7449580233109749760-10Qr |
+| 2026-04-16 | 2026-04-16-retard-de-phase | OPINION | 93 | 2 | 2.15 | 26 | actif | **C** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_dans-la-tech-une-innovation-sort-toutes-share-7450521427839143936-X6oI |
+| 2026-04-20 | 2026-04-20-proofslab-approbation-visuels | AUTOMATISATION | 370 | 12 | 3.24 | 123 | actif | **B** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_proofslab-approbation-pdf-avant-impression-ugcPost-7451745014809927681-WGbo |
+| 2026-04-24 | 2026-04-24-claude-design-proofslab | ACTUALITÉ | 226 | 5 | 2.21 | 93 | actif | **B** | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_analyse-claude-design-ugcPost-7453208352551268353-S0Y_ |
+| 2026-05-05 | 2026-05-05-workflow-publication-claude-code | AUTOMATISATION | 162 | 5 | 3.09 | 189 | **provisoire** J+6 | — | https://www.linkedin.com/posts/thomas-silliard-4b7b8a1b1_en-3-mois-jai-publi%C3%A9-24-posts-linkedin-ugcPost-7457428568499888128-uVIX |
+| 2026-05-08 | 2026-05-08-algo1-360brew | AUTOMATISATION | — | — | — | — | absent export | — | |
+| 2026-05-12 | 2026-05-12-km-graphe-custom | AUTOMATISATION | — | — | — | — | absent export | — | |
 
 > **Note ideas-logger-demo** : outlier structurel — premier post du compte, effet "félicitations de démarrage" du réseau. Non reproductible.
 > **Note score-ice** : 2ème post du compte, bénéficie encore de l'effet nouveauté.
-> **Note memory-logger** : momentum J+4 (ImpAdj7j 567 provisoire) non confirmé — stabilisé à 128 ImpAdj7j actif.
-> **Note leak-claude-code** : ImpAdj7j 903 provisoire → 142 actif. Post ACTUALITÉ hors-calendrier = distribution limitée.
+> **Note memory-logger** : ImpAdj7j stabilisé à 64 (actif 42j) — impressions brutes 385 mais distribution lente.
+> **Note leak-claude-code** : ImpAdj7j stabilisé à 65 (actif 40j). Post ACTUALITÉ hors-calendrier = distribution limitée.
+> **Note ekenor-lancement** : fort ER (2.34%) mais ImpAdj7j 43 — algo pénalise lien site dans le corps.
+> **Note proofslab-approbation-visuels** : meilleur ER du corpus (3.24%) avec ImpAdj7j 123. Signal audience qualifiée.
+> **Note mythos-anthropic** : interactions = 0 dans XLSX — probablement données incomplètes, ER non calculable.
 > **Note Lundi vs Jeudi** : corrélation type/slot — les posts Lundi sont majoritairement AUTOMATISATION, les Jeudi RÉFLEXION. La différence de perf (Lundi +90%) reflète peut-être le type plus que le slot.
 
 ---
 
-## Classement ImpAdj7j au 19/04/2026
+## Classement ImpAdj7j au 11/05/2026
 
 | Rang | Slug | ImpAdj7j | ER% | Tier | Note |
 |---|---|---|---|---|---|
-| — | retard-de-phase | 112 | 2.08% | [PROVISOIRE J+3] | à confirmer ~23/04 |
-| — | mythos-anthropic | 106 | — | [PROVISOIRE J+6] | interactions manquantes |
-| 1 | ideas-logger-demo | 813 | 2.71% | **A** | outlier premier post |
+| [PROVISOIRE J+6] | workflow-publication-claude-code | 189 | 3.09% | — | à confirmer ~12/05 |
+| 1 | ideas-logger-demo | 818 | 2.69% | **A** | outlier premier post |
 | 2 | score-ice | 504 | 1.19% | **A** | outlier 2ème post |
 | 3 | savoir-quoi-faire | 475 | 1.89% | **A** | bilan perso + chiffres |
 | 4 | loi-de-gall | 371 | 1.35% | **A** | |
-| 5 | should-i-buy-it | 365 | 2.19% | **A** | humour + référence personnelle |
+| 5 | should-i-buy-it | 371 | 2.16% | **A** | humour + référence personnelle |
 | 6 | ai-proof-job-scanner | 361 | 2.22% | **A** | bon ER + distribution forte |
-| 7 | ego-depletion | 248 | 2.02% | B | meilleur ER/imp ratio Tier B |
-| 8 | pentagon-anthropic-openai | 193 | 0.52% | B | ACTUALITÉ, ER faible |
-| 9 | utility-vs-meaning | 193 | 1.55% | B | |
-| 10 | todo-manager-demo | 163 | 0.61% | B | |
-| 11 | time-tracker-estimation | 157 | 1.37% | B | lien-site-dans-post testé |
-| 12 | leak-claude-code | 142 | 0.27% | B | hors-calendrier, ER faible |
-| 13 | memory-logger | 128 | 0.54% | B | carousel — momentum J+4 non confirmé |
-| 14 | friction-positive | 110 | 0.91% | B | post le moins distribué corpus |
-| 15 | ekenor-lancement | 77 | 2.36% | C | **meilleur ER global** — algo pénalise lien site |
-| 16 | pourquoi-newsletter | 64 | 1.36% | C | OPINION sans ancrage projet |
-| 17 | time-tracker-dashboard | 64 | 1.09% | C | J+10, distribution faible |
+| 7 | ego-depletion | 248 | 2.02% | **B** | |
+| 8 | utility-vs-meaning | 197 | 1.52% | **B** | |
+| 9 | pentagon-anthropic-openai | 193 | 0.52% | **B** | ACTUALITÉ, ER faible |
+| 10 | todo-manager-demo | 163 | 0.61% | **B** | |
+| 11 | proofslab-approbation-visuels | 123 | 3.24% | **B** | **meilleur ER du corpus** |
+| 12 | friction-positive | 110 | 0.91% | **B** | post le moins distribué corpus |
+| 13 | claude-design-proofslab | 93 | 2.21% | **B** | |
+| 14 | memory-logger | 64 | 0.52% | **C** | impressions brutes 385 — distribution lente |
+| 15 | leak-claude-code | 65 | 0.27% | **C** | hors-calendrier, ER faible |
+| 16 | time-tracker-estimation | 63 | 1.26% | **C** | lien-site-dans-post testé |
+| 17 | ekenor-lancement | 43 | 2.34% | **C** | fort ER — algo pénalise lien site |
+| 18 | pourquoi-newsletter | 35 | 1.75% | **C** | OPINION sans ancrage projet |
+| 19 | time-tracker-dashboard | 27 | 1.60% | **C** | |
+| 20 | mythos-anthropic | 29 | — | **C** | interactions nulles XLSX |
+| 21 | retard-de-phase | 26 | 2.15% | **C** | impressions faibles (93) |
 
 ---
 
-## Insights terrain (session 03/04/2026)
+## Insights terrain (session 11/05/2026)
 
-Ces observations viennent de retours directs et de perception qualitative — à croiser avec les stats futures.
-
-- **Effet premier/deuxième post** : ideas-logger (811) et score-ice (500) bénéficient de l'effet nouveauté réseau. À ne pas compter dans les tendances reproductibles.
+- **Effet premier/deuxième post** : ideas-logger (818) et score-ice (504) bénéficient de l'effet nouveauté réseau. À ne pas compter dans les tendances reproductibles.
 - **Humour + référence personnelle** : should-i-buy-it a généré du warm engagement (retours d'amis sur la référence au chat). Signal : les détails personnels inattendus créent de la complicité. Non mesurable via ER mais réel.
-- **Posts concept purs** : friction-positive et utility-vs-meaning (RÉFLEXION abstraits sans ancrage personnel fort) = les 2 plus faibles du corpus. Signal clair.
+- **Posts concept purs** : friction-positive et utility-vs-meaning (RÉFLEXION abstraits sans ancrage personnel fort) = parmi les plus faibles du corpus. Signal clair.
 - **Carousel vs screenshot n8n** : décision prise dès memory-logger — carousel explicatif workflow > screenshot technique. Plus accessible, meilleur rendu visuel.
-- **Lien site dans le post** : ekenor.com pas encore connu de l'audience. Règle à tester : mettre le lien directement dans le post (pas en commentaire) pour favoriser la conversion vs le reach.
-- **Stratégie 2 volets** : tester AUTOMATISATION en deux posts liés (ex: Memory Logger → Memory Logger Outputs). Double la fréquence AUTOMATISATION sans doubler le travail de création.
+- **Lien site dans le post** : pénalise la distribution (ekenor-lancement ImpAdj7j 43 malgré ER 2.34%). Règle en test.
+- **ER élevé post-360Brew** : proofslab (3.24%) et claude-design (2.21%) = les 2 meilleurs ER du corpus. L'audience devient plus qualifiée même si la distribution baisse. Signal de ciblage 360Brew qui fonctionne.
+- **Posts actifs récents (mars-avril)** : ImpAdj7j systématiquement bas (26-65) malgré impressions brutes correctes (93-385) — la distribution s'est stabilisée plus lentement que prévu.
 
 ---
 
@@ -132,16 +142,18 @@ Ces observations viennent de retours directs et de perception qualitative — à
 > Voir `.private/projects/productivity/linkedin_auto/WRITING_RULES.md` pour le détail complet.
 > Lancer `/analyze-stats` pour calculer les verdicts des règles EN TEST.
 
-### Verdicts calculés le 19/04/2026
+### Verdicts calculés le 11/05/2026
 
-**phrase-punch-finale** : VALIDÉE protocole (2/3+) — ego-depletion 2.02% (+), todo-manager 0.61% (−), savoir-quoi-faire 1.89% (+). → En attente de confirmation formelle ("valide phrase-punch-finale").
+**phrase-punch-finale** : ✅ VALIDÉE (2/3+, protocole atteint) — ego-depletion 2.02% (+24%), todo-manager 0.61% (−62%), savoir-quoi-faire 1.89% (+17%). Nuance : todo-manager 163 imp, ER bas peut refléter distribution autant que règle.
 
-**accroche-chiffre-contraste** : AMBIGUË (1+/1neutre/1−) — savoir-quoi-faire 1.89% (+), utility-vs-meaning 1.55% (neutre), memory-logger 0.54% (−). → Étendre à 5 posts.
+**accroche-chiffre-contraste** : ❌ INVALIDE (1+/2−, 3/3 posts) — savoir-quoi-faire 1.89% (+), utility-vs-meaning 1.52% (−), memory-logger 0.52% (−). Déplacée en Règles Abandonnées.
 
-**accroche-polarisante** : AMBIGUË (1+/1neutre/1−/1provisoire) — ego-depletion 2.02% (+), loi-de-gall 1.35% (neutre), friction-positive 0.91% (− ⚠️ parasité), retard-de-phase provisoire. → Attendre confirmation retard-de-phase (~23/04).
+**accroche-polarisante** : AMBIGUË (2+/1neutre/1−/1absent export) — ego-depletion 2.02% (+), retard-de-phase 2.15% (+), loi-de-gall 1.35% (neutre), friction-positive 0.91% (− ⚠️ parasité), algo1-360brew absent XLSX. → Verdict final après prochain export.
 
-**angle-personnel-narratif** : EN COURS (1−/2neutres/1provisoire) — memory-logger 0.54% (−), time-tracker-estimation 1.37% (neutre), time-tracker-dashboard 1.09% (neutre), retard-de-phase provisoire. → Signal faible, pas de verdict avant J+7 retard-de-phase.
+**angle-personnel-narratif** : AMBIGUË (1+/1neutre/1−) — retard-de-phase 2.15% (+), time-tracker-estimation 1.26% (neutre), memory-logger 0.52% (−). → Continuer sur 2 posts supplémentaires (loreal-mirage-urgence = candidat naturel).
 
-**lien-site-dans-post** : EN TEST (1/3 posts) — time-tracker-estimation 1.37% (neutre). → Continuer sur 2 prochains posts avec lien ekenor.com dans le corps.
+**lien-site-dans-post** : EN TEST (1/3 posts) — time-tracker-estimation 1.26% (neutre). → Continuer sur 2 prochains posts avec lien ekenor.com.
 
-**chiffres-cote-a-cote** : EN TEST (2/3 posts) — mythos-anthropic provisoire, proofslab-approbation-visuels J+0. → Attendre J+7 sur les deux posts.
+**chiffres-cote-a-cote** : EN TEST (1/3 mesurable) — proofslab-approbation-visuels 3.24% (+). mythos-anthropic interactions nulles = non comptabilisé. → 2 posts restants avant verdict.
+
+**cta-mot-cle-commentaire** : PROVISOIRE — workflow-publication-claude-code J+6 au 11/05. → Verdict à confirmer lors du prochain export.
