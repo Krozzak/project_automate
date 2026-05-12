@@ -95,6 +95,24 @@ Avantages vs champ manuel :
 - Complet — capture toutes les modifications, pas seulement la création
 - Modèle Wikipedia : chaque fiche a son historique de révisions traçable
 
+## Relation KMS ↔ Ekenor
+
+Le KMS public et Ekenor sont **deux systèmes distincts** avec des formats de frontmatter différents.
+
+| Champ | KMS public | Ekenor (`src/content/concepts/`) |
+|-------|-----------|----------------------------------|
+| Relations | `related: [type:slug]` unifié | `relatedConcepts: [slug]` + `relatedProjects` + `relatedArticles` |
+| Type de fiche | champ `type:` (dérivé du dossier) | champ `knowledgeType:` |
+| Graphe | `_graph.json` généré par `generate_graph.js` | `_graph.json` maintenu via `/sync-concepts` |
+| Langues | FR uniquement (V1) | FR + EN (paires `[slug].md` / `[slug]-en.md`) |
+
+**Synchronisation** : manuelle pour l'instant. Le flux est :
+1. Lecture des notes `.private/notes/` → rédaction d'une fiche Ekenor
+2. `/sync-concepts` met à jour `_graph.json` Ekenor
+3. La fiche peut aussi être ajoutée au KMS public (format différent)
+
+**Backlog Phase 6** : migration Ekenor vers le format `related: [type:slug]` unifié — reporté car changement architectural majeur (~175 fichiers à migrer + layouts à adapter).
+
 ## Repo GitHub
 
 `kms` (Knowledge Management System)
