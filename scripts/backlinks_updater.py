@@ -350,7 +350,16 @@ def run_update_cited_by():
     for path in concept_files:
         fm, _ = parse_file(path)
         source_slug = slug_from_filename(path.name)
-        for field in ("relatedConcepts", "relatedProjects", "relatedArticles"):
+
+        # New architecture: related: ["concept:slug", "author:slug", "project:slug", ...]
+        for entry in (fm.get("related") or []):
+            if isinstance(entry, str) and entry.startswith("concept:"):
+                target_slug = entry[len("concept:"):]
+                if target_slug in cited_by:
+                    cited_by[target_slug].add(source_slug)
+
+        # Legacy architecture: relatedConcepts: ["slug", ...]
+        for field in ("relatedConcepts", "relatedArticles"):
             for target_slug in (fm.get(field) or []):
                 if isinstance(target_slug, str) and target_slug in cited_by:
                     cited_by[target_slug].add(source_slug)
