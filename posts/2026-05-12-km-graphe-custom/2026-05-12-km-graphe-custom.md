@@ -82,6 +82,7 @@ Le graphe est navigable ici : ekenor.com/fr/concepts/map
 ## Notes de session — 2026-05-08
 
 ### Statut
+
 Post en brouillon — accroche validée par Thomas (dictée textos), corps à finaliser
 ce weekend. Ne pas réécrire l'accroche, elle est fixée :
 
