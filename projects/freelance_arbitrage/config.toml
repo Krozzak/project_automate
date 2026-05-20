@@ -1,0 +1,20 @@
+[scraper]
+interval_hours = 2
+categories = ["translation", "writing", "data-entry", "admin-support", "video-audio", "ai-services"]
+min_budget = 15
+max_proposals_threshold = 10
+
+[scoring]
+alert_threshold = 75
+weights = { feasibility = 0.4, urgency = 0.25, competition = 0.2, budget = 0.15 }
+
+[telegram]
+bot_token = ""  # depuis .env : TELEGRAM_BOT_TOKEN
+chat_id = ""    # depuis .env : TELEGRAM_CHAT_ID
+
+[openai]
+model = "gpt-4o-mini"
+
+[apify]
+fiverr_actor = "automation-lab/fiverr-scraper"
+api_token = ""  # depuis .env : APIFY_API_TOKEN

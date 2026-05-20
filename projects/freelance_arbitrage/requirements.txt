@@ -1,0 +1,8 @@
+playwright==1.44.0
+camoufox[geoip]==0.4.11
+python-telegram-bot==21.3
+streamlit==1.35.0
+openai==1.30.0
+python-dotenv==1.0.1
+toml==0.10.2
+aiohttp==3.9.5

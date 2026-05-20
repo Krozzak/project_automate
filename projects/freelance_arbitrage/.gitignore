@@ -1,0 +1,6 @@
+.env
+data/missions.db
+data/upwork_cookies.json
+__pycache__/
+*.pyc
+.streamlit/
