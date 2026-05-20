@@ -1,5 +1,7 @@
 # KMS — Knowledge Management System — Spec V1
 
+> **Engine déplacé** : le code/contenu KMS vit maintenant dans `D:\Projet_KMS\` (repo autonome). Ce dossier garde la SPEC + le prompt de build comme source de vérité architecturale. Utilisé en prod sur ekenor.com — version actuelle = ancien Atlas, transition vers KMS en cours.
+
 ## Objectif
 
 Pipeline KM complet publiable en open source. Quelqu'un clone le repo, lance 5 commandes, et a un système de knowledge management opérationnel avec graphe 3D interactif dans son navigateur : nœuds cliquables, clusters colorés, backlinks automatiques à chaque commit.
