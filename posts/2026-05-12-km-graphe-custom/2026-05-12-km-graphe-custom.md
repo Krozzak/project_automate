@@ -56,7 +56,7 @@ Tout le brainstorm autour d'un livre, en une vue.
 ✍️ L'usage plus profond, c'est quand j'écris.
 Sur un article sur l'IA et le marché du travail (disponible sur Ekenor), je cherchais comment expliquer pourquoi certains métiers vont disparaître.
 Claude a remonté un concept d'un autre thème : l'élasticité des prix — en finance, c'est ce qui fait qu'un produit remplaçable voit son prix s'effondrer.
-On a transposé l'idée aux compétences. Et la phrase qui en est sortie, je ne l'aurais pas écrite seul :
+On a transposé l'idée aux compétences :
 "Les compétences obéissent aux mêmes lois que les prix. Ce qui est substituable finit par être substitué."
 
 Mes notes existaient dans ma tête, dans ma mémoire.
