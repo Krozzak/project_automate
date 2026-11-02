@@ -9,3 +9,9 @@ CLAUDE.md
 
 # Original workflows with real credentials
 silliard-thomas-workflows/
+
+# Config agents Codex (contient un token Notion et des chemins locaux)
+AGENTS.md
+.agents/
+.codex/
+__pycache__/
