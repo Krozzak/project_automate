@@ -1,11 +1,11 @@
 ---
 title: "J'ai reconstruit ma mémoire"
-slug: "2026-05-12-km-graphe-custom"
+slug: "2026-05-21-km-graphe-custom"
 type: AUTOMATISATION
 projet: "KM #8"
 status: Prêt
-planned_date: "2026-05-12"
-slot: Mardi
+planned_date: "2026-05-21"
+slot: Jeudi
 concept: ""
 concept_level: Simple
 tags: [knowledge-management, atlas, obsidian, github, claude-code]
@@ -44,7 +44,7 @@ J'ai construit le mien à la place.
 
 🗺️ J'ai créé un atlas qui visualise toutes mes notes — chaque podcast, chaque article, chaque livre, chaque idée formalisée est devenu une fiche, reliée aux autres.
 
-🛠️ Tout est en local, dans un repo que je contrôle. Pas d'app tierce.
+🛠️ Tout est en local, dans un repository GitHub que je contrôle.
 Je décide de la visualisation, je décide des types de fiches : concepts, auteurs, livres, articles.
 Et je contrôle aussi l'input et l'output : mes workflows d'ingestion transforment podcasts et articles en fiches au bon format, et Claude Code les utilise directement quand j'écris.
 
@@ -56,7 +56,7 @@ Tout le brainstorm autour d'un livre, en une vue.
 ✍️ L'usage plus profond, c'est quand j'écris.
 Sur un article sur l'IA et le marché du travail (disponible sur Ekenor), je cherchais comment expliquer pourquoi certains métiers vont disparaître.
 Claude a remonté un concept d'un autre thème : l'élasticité des prix — en finance, c'est ce qui fait qu'un produit remplaçable voit son prix s'effondrer.
-On a transposé l'idée aux compétences :
+On a transposé l'idée aux compétences : si une compétence devient remplaçable par une autre, elle subit la même chute de demande ou de prix.
 "Les compétences obéissent aux mêmes lois que les prix. Ce qui est substituable finit par être substitué."
 
 Mes notes existaient dans ma tête, dans ma mémoire.
